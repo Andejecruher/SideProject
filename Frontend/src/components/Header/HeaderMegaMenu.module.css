@@ -1,0 +1,129 @@
+.header {
+  height: rem(60px);
+  padding-left: var(--mantine-spacing-md);
+  padding-right: var(--mantine-spacing-md);
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding-left: var(--mantine-spacing-md);
+  padding-right: var(--mantine-spacing-md);
+  text-decoration: none;
+  color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
+  font-weight: 500;
+  font-size: var(--mantine-font-size-md);
+  font-family: 'Poppins', sans-serif;
+  @media (max-width: $mantine-breakpoint-sm) {
+    height: rem(42px);
+    width: 100%;
+  }
+}
+
+.link {
+  /* Otros estilos para el enlace */
+  padding: 10px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.link:hover {
+  /* Otros estilos para el enlace */
+  padding: 10px;
+  text-decoration: none;
+  color: inherit !important;
+}
+
+.selected {
+  color: light-dark(var(--mantine-color-black), var(--mantine-color-white)) !important;
+  border-bottom: 2px solid grey; /* Borde gris en la parte inferior */
+}
+
+.subLink {
+  width: 100%;
+  padding: var(--mantine-spacing-xs) var(--mantine-spacing-md);
+  border-radius: var(--mantine-radius-md);
+
+  @mixin hover {
+    background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-7));
+  }
+}
+
+.iconSocial {
+  width: 20px;
+  height: 20px;
+  margin-right: var(--mantine-spacing-xs);
+  color: #000;
+}
+
+.dropdownFooter {
+  background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-7));
+  margin: calc(var(--mantine-spacing-md) * -1);
+  margin-top: var(--mantine-spacing-sm);
+  padding: var(--mantine-spacing-md) calc(var(--mantine-spacing-md) * 2);
+  padding-bottom: var(--mantine-spacing-xl);
+  border-top: rem(1px) solid light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-5));
+}
+
+.andejecruher {
+  font-family: "Manrope", sans-serif;
+  font-size: 25.5px !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--mantine-spacing-md);
+  font-weight: 500 !important;
+  font-style: normal;
+  cursor: pointer;
+}
+
+#mega-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: space-between;
+}
+
+
+/* Dispositivos móviles pequeños */
+@media (min-width: 320px) {
+  body {
+    font-size: 18px;
+  }
+  .andejecruher {
+    font-family: 'Manrop', sans-serif;
+    font-size: 16px !important;
+    font-style: normal;
+    font-weight: 500 !important;
+    letter-spacing: -0.32px;
+    line-height: 19.2px;
+  }
+  .drawer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: space-between;
+  }
+}
+
+/* Tabletas */
+@media (min-width: 768px) {
+  body {
+    font-size: 20px;
+  }
+}
+
+/* Escritorios pequeños */
+@media (min-width: 1024px) {
+  body {
+    font-size: 22px;
+  }
+}
+
+/* Escritorios grandes */
+@media (min-width: 1200px) {
+  body {
+    font-size: 24px;
+  }
+}
