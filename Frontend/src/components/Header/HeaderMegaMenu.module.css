@@ -16,8 +16,8 @@
   font-size: var(--mantine-font-size-md);
   font-family: 'Poppins', sans-serif;
   @media (max-width: $mantine-breakpoint-sm) {
-    height: rem(42px);
-    width: 100%;
+    height: rem(50px);
+    font-size: 36px;
   }
 }
 
@@ -26,6 +26,7 @@
   padding: 10px;
   text-decoration: none;
   color: inherit;
+  text-align: center;
 }
 
 .link:hover {
@@ -37,7 +38,7 @@
 
 .selected {
   color: light-dark(var(--mantine-color-black), var(--mantine-color-white)) !important;
-  border-bottom: 2px solid grey; /* Borde gris en la parte inferior */
+  border-bottom: 4px solid grey; /* Borde gris en la parte inferior */
 }
 
 .subLink {
@@ -85,9 +86,19 @@
   align-content: space-between;
 }
 
+.menu-area-custom{ 
+  height: 100% !important;
+  min-width: 100%;
+  display: flex !important;
+  align-items: center;
+  align-content: center;
+  flex-direction: column !important;
+}
+
+
 
 /* Dispositivos móviles pequeños */
-@media (min-width: 320px) {
+@media (max-width: 320px) {
   body {
     font-size: 18px;
   }
@@ -104,6 +115,15 @@
     flex-direction: column;
     justify-content: center;
     align-content: space-between;
+  }
+  
+  #menu-area > div > div { 
+    height: 100% !important;
+    min-width: 100%;
+    display: flex !important;
+    align-items: center;
+    align-content: center;
+    flex-direction: column !important;
   }
 }
 
@@ -127,3 +147,4 @@
     font-size: 24px;
   }
 }
+

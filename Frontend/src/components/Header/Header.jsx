@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import {
   Group,
-  Button,
-  Divider,
   Box,
   Burger,
   Drawer,
@@ -61,10 +59,10 @@ function HeaderMegaMenu() {
               <TwitterIcon className={classes.iconSocial} />
             </IconButton>
             <IconButton href="https://www.linkedin.com/in/antonio-de-jesus-cruz-hernandez-2535748b/" target="_blank">
-              <LinkedInIcon className={classes.iconSocial}/>
+              <LinkedInIcon className={classes.iconSocial} />
             </IconButton>
             <IconButton href="https://github.com/Andejecruher" target="_blank">
-              <GitHubIcon className={classes.iconSocial}/>
+              <GitHubIcon className={classes.iconSocial} />
             </IconButton>
           </Group>
 
@@ -85,53 +83,63 @@ function HeaderMegaMenu() {
         }
         hiddenFrom="sm"
         zIndex={1000000}
-        
       >
-        <ScrollArea h={`calc(100vh - ${rem(80)})`} mx="-md" justify='center'>
           <Box
+          h={`calc(100vh - ${rem(80)})`} 
             style={{
               display: 'flex',
               flexDirection: 'column',
-              justifyContent: 'center',
+              justifyContent: 'space-between',
+              height: '100%',
               alignItems: 'center',
               textAlign: 'center',
             }}
           >
-            <a
-              href="#"
-              className={`${classes.link} ${selectedPage === 'Inicio' ? classes.selected : ''}`}
-              onClick={() => handlePageClick('Inicio')}
+            <Box
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+                textAlign: 'center',
+                flexGrow: 1,
+              }}
             >
-              Inicio
-            </a>
-            <a
-              href="#"
-              className={`${classes.link} ${selectedPage === 'Blog' ? classes.selected : ''}`}
-              onClick={() => handlePageClick('Blog')}
-            >
-              Blog
-            </a>
-            <a
-              href="#"
-              className={`${classes.link} ${selectedPage === 'Contacto' ? classes.selected : ''}`}
-              onClick={() => handlePageClick('Contacto')}
-            >
-              Contacto
-            </a>
-          </Box>
+              <a
+                href="#"
+                className={`${classes.link} ${selectedPage === 'Inicio' ? classes.selected : ''}`}
+                onClick={() => handlePageClick('Inicio')}
+              >
+                Inicio
+              </a>
+              <a
+                href="#"
+                className={`${classes.link} ${selectedPage === 'Blog' ? classes.selected : ''}`}
+                onClick={() => handlePageClick('Blog')}
+              >
+                Blog
+              </a>
+              <a
+                href="#"
+                className={`${classes.link} ${selectedPage === 'Contacto' ? classes.selected : ''}`}
+                onClick={() => handlePageClick('Contacto')}
+              >
+                Contacto
+              </a>
+            </Box>
 
-          <Group justify="center" grow pb="xl" px="md">
-            <IconButton href="https://twitter.com/Andejecruher" target="_blank">
-              <TwitterIcon className={classes.iconSocial} />
-            </IconButton>
-            <IconButton href="https://www.linkedin.com/in/antonio-de-jesus-cruz-hernandez-2535748b/" target="_blank">
-              <LinkedInIcon className={classes.iconSocial} />
-            </IconButton>
-            <IconButton href="https://github.com/Andejecruher" target="_blank">
-              <GitHubIcon className={classes.iconSocial} />
-            </IconButton>
-          </Group>
-        </ScrollArea>
+            <Group justify="center" grow pb="xl" px="md">
+              <IconButton href="https://twitter.com/Andejecruher" target="_blank">
+                <TwitterIcon className={classes.iconSocial} />
+              </IconButton>
+              <IconButton href="https://www.linkedin.com/in/antonio-de-jesus-cruz-hernandez-2535748b/" target="_blank">
+                <LinkedInIcon className={classes.iconSocial} />
+              </IconButton>
+              <IconButton href="https://github.com/Andejecruher" target="_blank">
+                <GitHubIcon className={classes.iconSocial} />
+              </IconButton>
+            </Group>
+          </Box>
       </Drawer>
     </Box>
   );
