@@ -4,6 +4,20 @@
   padding-right: var(--mantine-spacing-md);
 }
 
+
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: white; /* Ajusta el color de fondo según sea necesario */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Añade una sombra para destacar el encabezado */
+}
+
+.main-content {
+  margin-top: 80px; /* Ajusta este valor según la altura del encabezado */
+}
+
 .link {
   display: flex;
   align-items: center;
@@ -11,6 +25,7 @@
   padding-left: var(--mantine-spacing-md);
   padding-right: var(--mantine-spacing-md);
   text-decoration: none;
+  text-align: center;
   color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
   font-weight: 500;
   font-size: var(--mantine-font-size-md);
@@ -21,24 +36,17 @@
   }
 }
 
-.link {
-  /* Otros estilos para el enlace */
-  padding: 10px;
-  text-decoration: none;
-  color: inherit;
-  text-align: center;
-}
-
 .link:hover {
-  /* Otros estilos para el enlace */
-  padding: 10px;
   text-decoration: none;
   color: inherit !important;
 }
 
 .selected {
-  color: light-dark(var(--mantine-color-black), var(--mantine-color-white)) !important;
-  border-bottom: 4px solid grey; /* Borde gris en la parte inferior */
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: repeat-x;
+  background-size: 1px 2px;
+  background-position: 0 100%;
+  background-position: 0 calc(100% - 0.1em);
 }
 
 .subLink {
@@ -67,18 +75,6 @@
   border-top: rem(1px) solid light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-5));
 }
 
-.andejecruher {
-  font-family: "Manrope", sans-serif;
-  font-size: 25.5px !important;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: var(--mantine-spacing-md);
-  font-weight: 500 !important;
-  font-style: normal;
-  cursor: pointer;
-}
-
 #mega-menu {
   display: flex;
   flex-direction: column;
@@ -95,20 +91,10 @@
   flex-direction: column !important;
 }
 
-
-
 /* Dispositivos móviles pequeños */
 @media (max-width: 320px) {
   body {
     font-size: 18px;
-  }
-  .andejecruher {
-    font-family: 'Manrop', sans-serif;
-    font-size: 16px !important;
-    font-style: normal;
-    font-weight: 500 !important;
-    letter-spacing: -0.32px;
-    line-height: 19.2px;
   }
   .drawer {
     display: flex;
@@ -131,6 +117,22 @@
 @media (min-width: 768px) {
   body {
     font-size: 20px;
+  }
+  .link {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding-left: var(--mantine-spacing-md);
+    padding-right: var(--mantine-spacing-md);
+    text-decoration: none;
+    color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
+    font-weight: 500;
+    font-size: var(--mantine-font-size-md) !important;
+    font-family: 'Poppins', sans-serif;
+    @media (max-width: $mantine-breakpoint-sm) {
+      height: rem(50px);
+      font-size: 36px;
+    }
   }
 }
 

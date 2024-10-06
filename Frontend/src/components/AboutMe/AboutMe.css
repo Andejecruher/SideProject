@@ -1,0 +1,29 @@
+/* AboutMe.css */
+
+a {
+  text-decoration: none;
+  color: #000 !important;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.about-me-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.about-me-title {
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.about-me-text {
+  font-family: "Manrope", sans-serif;
+  color: #000;
+  font-style: normal;
+}

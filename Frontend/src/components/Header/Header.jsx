@@ -23,10 +23,10 @@ function HeaderMegaMenu() {
   };
 
   return (
-    <Box pb={120}>
+    <Box pb={10}>
       <header className={classes.header}>
         <Group justify="space-between" h="100%">
-          <Group h="100%" gap={0} visibleFrom="sm">
+          <Group h="60%" gap={0} visibleFrom="sm">
             <a
               href="#"
               className={`${classes.link} ${selectedPage === 'Inicio' ? classes.selected : ''}`}
@@ -141,6 +141,9 @@ function HeaderMegaMenu() {
             </Group>
           </Box>
       </Drawer>
+      <main className={classes.mainContent}>
+        {/* Aquí va el contenido principal de la página */}
+      </main>
     </Box>
   );
 }

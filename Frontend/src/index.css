@@ -142,3 +142,26 @@ body {
   font-weight: 900;
   font-style: italic;
 }
+
+.andejecruher {
+  font-family: "Manrope", sans-serif;
+  font-size: 25.5px !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--mantine-spacing-md);
+  font-weight: 500 !important;
+  font-style: normal;
+  cursor: pointer;
+}
+/* Dispositivos móviles pequeños */
+@media (max-width: 320px) {
+  .andejecruher {
+    font-family: 'Manrop', sans-serif;
+    font-size: 16px !important;
+    font-style: normal;
+    font-weight: 500 !important;
+    letter-spacing: -0.32px;
+    line-height: 19.2px;
+  }
+}
