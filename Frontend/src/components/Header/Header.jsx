@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import {
   Group,
   Box,
   Burger,
   Drawer,
-  ScrollArea,
   rem,
 } from '@mantine/core';
 import { Typography, IconButton } from '@mui/material';
@@ -13,14 +13,43 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { useDisclosure } from '@mantine/hooks';
 import classes from './HeaderMegaMenu.module.css';
+import Loader from '@src/components/Loader/Loader'; // Asegúrate de tener un componente Loader
 
 function HeaderMegaMenu() {
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
-  const [selectedPage, setSelectedPage] = useState('Inicio'); // Estado para la opción seleccionada
+  const [selectedPage, setSelectedPage] = useState('Inicio');
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    // Simula una carga de datos inicial
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000); // Cambia el tiempo según sea necesario
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    // Actualiza la página seleccionada basada en la ruta actual
+    const path = location.pathname.replace('/', '');
+    setSelectedPage(path || 'Inicio');
+  }, [location]);
 
   const handlePageClick = (page) => {
-    setSelectedPage(page); // Actualiza el estado con la página seleccionada
+    setLoading(true);
+    setSelectedPage(page);
+    setTimeout(() => {
+      navigate(`/${page}`);
+      setLoading(false);
+      closeDrawer();
+    }, 500); // Simula un retraso de carga de 1 segundo
   };
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <Box pb={10}>
