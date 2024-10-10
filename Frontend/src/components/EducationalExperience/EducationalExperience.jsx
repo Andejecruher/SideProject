@@ -1,6 +1,7 @@
 import React from 'react';
 import education from '../../assets/education.png';
-// import { FaGraduationCap } from 'react-icons/fa'; // Asegúrate de instalar react-icons
+import { useMediaQuery } from '@mui/material';
+// import { FaGraduationCap } from 'react-icons/fa';
 
 const steps = [
   {
@@ -22,11 +23,12 @@ const steps = [
 ];
 
 const EducationalExperience = () => {
+  const isMobile = useMediaQuery('(max-width: 768px)');
   return (
     <section>
       <div className="bg-white text-black py-8">
-        <div className="container mx-auto flex flex-col items-start md:flex-row my-1 md:my-1">
-          <div className="flex flex-col w-full sticky md:top-36 lg:w-1/3 mt-2 md:mt-12 px-8">
+        <div className="container mx-auto flex flex-col items-start lg:flex-row my-1 md:my-1">
+          <div className="flex flex-col w-full lg:sticky md:top-36 lg:w-1/3 mt-2 md:mt-12 lg:px-6 px-10">
             <p className="text-3xl md:text-4xl leading-normal md:leading-relaxed mb-2 font-bold">
               Experiencia Educativa
             </p>
@@ -37,28 +39,31 @@ const EducationalExperience = () => {
           <div className="ml-0 md:ml-12 lg:w-2/3 sticky">
             <div className="container mx-auto w-full h-full">
               <div className="relative wrap overflow-hidden p-10 h-full">
-                <div
+              <div
                   className="border-2 absolute h-full"
-                  style={{ right: '50%', border: '2px solid black', borderRadius: '1%' }}
+                  style={{ right: isMobile ? '95%' : '50%', border: '2px solid black', borderRadius: '1%' }}
                 ></div>
                 <div
                   className="border-2 absolute h-full"
-                  style={{ left: '50%', border: '2px solid black', borderRadius: '1%' }}
+                  style={{ left: isMobile ? '5%' : '50%', border: '2px solid black', borderRadius: '1%' }}
                 ></div>
 
                 {steps.map((step, index) => (
                   <div
                     key={index}
-                    className={`mb-8 flex justify-between items-center w-full ${step.alignment === "right" ? "flex-row-reverse left-timeline" : "right-timeline"
+                    className={`mb-8 ml-10 lg:flex lg:justify-between items-center w-full ${isMobile ? 'flex-row-reverse left-timeline' : step.alignment === "right" ? "flex-row-reverse left-timeline" : "right-timeline"
                       }`}
                   >
-                    {/* <div className="order-1 w-5/12 flex justify-center">
+                    {/* {isMobile ? (
+                      <div className="order-1 w-5/12 flex justify-center">
                       <FaGraduationCap className="text-3xl text-black" />
-                    </div> */}
+                    </div>
+                    ) : null} */}
                     <div
-                      className={`order-1 w-5/12 px-1 py-4 ${step.alignment === "right" ? "text-right" : "text-left"
+                      className={`order-1 w-10/12 lg:w-5/12 px-1 py-4 ${isMobile ? 'flex-row-reverse left-timeline' : step.alignment === "right" ? "text-right" : "text-left"
                         }`}
                     >
+
                       <p className="mb-1 text-base text-black font-bold">{step.date}</p>
                       <h4 className="mb-1 font-bold text-md md:text-2xl text-black">{step.title}</h4>
                       <h6 className="mb-3 font-normal text-md md:text-2xl text-black">{step.subtitle}</h6>
@@ -70,7 +75,7 @@ const EducationalExperience = () => {
                 ))}
               </div>
               <img
-                className="mx-auto -mt-5 md:-mt-5"
+                className="mx-auto -mt-5 md:-mt-5 w-[30%] md:w-[40%]"
                 src={education}
                 alt="Tech Fest"
               />

@@ -1,5 +1,6 @@
 import React from 'react';
-// import WorkHistoryIcon from '@mui/icons-material/WorkHistory';
+import { useMediaQuery } from '@mui/material';
+// import { WorkHistoryIcon } from 'react-icons/fa';
 
 const steps = [
   {
@@ -37,11 +38,13 @@ const steps = [
 ];
 
 const WorkExperience = () => {
+  const isMobile = useMediaQuery('(max-width: 768px)');
+
   return (
     <section>
       <div className="bg-[#D9D9D9] text-black py-8">
-        <div className="container mx-auto flex flex-col items-start md:flex-row my-1 md:my-1">
-          <div className="flex flex-col w-full sticky md:top-36 lg:w-1/3 mt-2 md:mt-12 px-8">
+        <div className="container mx-auto flex flex-col items-start lg:flex-row my-1 md:my-1">
+          <div className="flex flex-col w-full lg:sticky md:top-36 lg:w-1/3 mt-2 md:mt-12 lg:px-6 px-10">
             <p className="text-3xl md:text-4xl leading-normal md:leading-relaxed mb-2 font-bold">
             Experiencia Laboral
             </p>
@@ -54,24 +57,25 @@ const WorkExperience = () => {
               <div className="relative wrap overflow-hidden p-10 h-full">
                 <div
                   className="border-2 absolute h-full"
-                  style={{ right: '50%', border: '2px solid black', borderRadius: '1%' }}
+                  style={{ right: isMobile ? '95%' : '50%', border: '2px solid black', borderRadius: '1%' }}
                 ></div>
                 <div
                   className="border-2 absolute h-full"
-                  style={{ left: '50%', border: '2px solid black', borderRadius: '1%' }}
+                  style={{ left: isMobile ? '5%' : '50%', border: '2px solid black', borderRadius: '1%' }}
                 ></div>
 
                 {steps.map((step, index) => (
                   <div
                     key={index}
-                    className={`mb-8 flex justify-between items-center w-full ${step.alignment === "right" ? "flex-row-reverse left-timeline" : "right-timeline"
+                    className={`mb-8 ml-10 lg:flex justify-between items-center w-full ${isMobile ? 'flex-row-reverse left-timeline' : step.alignment === "right" ? "flex-row-reverse left-timeline" : "right-timeline"
                       }`}
                   >
-                    {/* <div className="order-1 w-5/12 flex justify-center">
+                    {/* {isMobile ? (
+                      <div className="order-1 w-5/12 flex justify-center">
                       <WorkHistoryIcon className="text-5xl text-black" />
-                    </div> */}
+                    </div> ) : null} */}
                     <div
-                      className={`order-1 w-5/12 px-1 py-4 ${step.alignment === "right" ? "text-right" : "text-left"
+                      className={`order-1 w-10/12 lg:w-5/12 px-1 py-4 ${isMobile ? 'flex-row-reverse left-timeline' : step.alignment === "right" ? "text-right" : "text-left"
                         }`}
                     >
                       <p className="mb-1 text-base text-black font-bold">{step.date}</p>
@@ -85,7 +89,7 @@ const WorkExperience = () => {
                 ))}
               </div>
               <img
-                className="mx-auto -mt-36 md:-mt-36"
+                className="mx-auto -mt-20 md:-mt-36 w-[40%] md:w-auto"
                 src="https://user-images.githubusercontent.com/54521023/116968861-ef21a000-acd2-11eb-95ac-a34b5b490265.png"
                 alt="Tech Fest"
               />

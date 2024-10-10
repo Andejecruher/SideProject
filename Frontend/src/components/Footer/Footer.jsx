@@ -3,37 +3,42 @@ import ajh from '../../assets/ajh.png';
 
 const Footer = () => {
   return (
-    <div className="flex flex-col w-full h-fit bg-[#D9D9D9] text-black px-14 py-14">
-      <div className="flex flex-row justify-center">
-        <div className="flex flex-row justify-center w-[50%]">
-          <div className="flex flex-row">
+    <div className="flex flex-col w-full h-fit bg-[#D9D9D9] text-black px-8 py-8 lg:px-14 lg:py-14">
+      <div className="flex flex-col lg:flex-row justify-between lg:items-center">
+        {/* Sección del Logo */}
+        <div className="flex flex-col items-center lg:items-start mb-2 lg:mb-0">
+          <div className="flex items-center">
             <img src={ajh} width="120" alt="Logo Preview" />
-            <div className="text-5xl andejecruher">Andejecruher</div>
+            <div className="text-3xl lg:text-5xl font-bold md:ml-2 andejecruher">Andejecruher</div>
           </div>
         </div>
 
-        <div className="flex flex-row w-[50%] justify-center">
-          {/* Sección de Newsletter */}
-          <div className="flex flex-col">
-            <div className="font-bold uppercase text-[#9ca3af] pb-3">Newsletter</div>
-            <p className="text-black mb-2">Suscríbete a nuestro boletín.</p>
-            <form className="flex items-center">
-              <input
-                type="email"
-                name="email"
-                placeholder="Introduce tu correo"
-                className="w-full bg-gray-100 text-gray-700 rounded-l-lg py-3 px-4 focus:outline-none focus:ring-purple-600 focus:border-transparent"
-                required
-              />
-              <button type="submit" className="bg-black text-[#ffffff] font-semibold py-3 px-6 rounded-r-lg transition-colors duration-300">
-                Suscribirse
-              </button>
-            </form>
-          </div>
+        {/* Sección de Newsletter */}
+        <div className="flex flex-col items-center lg:items-end">
+          <div className="font-bold uppercase text-[#9ca3af] pb-3 text-center lg:text-left">Newsletter</div>
+          <p className="text-black mb-2 text-center lg:text-left">Suscríbete a nuestro boletín.</p>
+          <form className="md:flex w-full lg:w-auto">
+            <input
+              type="email"
+              name="email"
+              placeholder="Introduce tu correo"
+              className="w-full bg-gray-100 text-gray-700 rounded md:rounded-l-lg py-3 px-4 focus:outline-none focus:ring-purple-600 focus:border-transparent"
+              required
+            />
+            <button
+              type="submit"
+              className="bg-black text-white font-semibold py-3 px-6 rounded md:rounded-r-lg transition-colors duration-300 w-full mt-2 md:mt-0"
+            >
+              Suscribirse
+            </button>
+          </form>
         </div>
       </div>
 
+      {/* Línea divisoria */}
       <div className="w-full border-t border-gray-500 my-8"></div>
+
+      {/* Texto de derechos reservados */}
       <div className="text-center">© {new Date().getFullYear()} Andejecruher - Todos los derechos reservados.</div>
     </div>
   );

@@ -22,17 +22,17 @@ const Skills = () => {
   return (
     <div className="w-full py-16 bg-[#D9D9D9] text-black">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
-        <h2 className="text-4xl font-extrabold mb-8">Mis Habilidades</h2>
-        <p className="text-lg text-gray-500 mb-12">Estas son algunas de las tecnologías y herramientas con las que trabajo para construir aplicaciones robustas y escalables.</p>
+        <h2 className="text-3xl font-extrabold mb-8">Mis Habilidades</h2>
+        <p className="text-sm md:text-base text-gray-500 mb-12">Estas son algunas de las tecnologías y herramientas con las que trabajo para construir aplicaciones robustas y escalables.</p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
           {skillsData.map((skill, index) => (
-            <div key={index} className="group relative p-6 bg-gray-100 shadow-lg rounded-lg transition-all duration-300 hover:shadow-2xl">
+            <div key={index} className="group relative p-2 bg-gray-100 shadow-lg rounded-lg transition-all duration-300 hover:shadow-2xl">
               <div className="w-16 h-16 mx-auto transition-transform duration-500 transform group-hover:scale-110">
                 {skill.icon}
               </div>
-              <h3 className="mt-4 text-xl font-semibold">{skill.name}</h3>
-              <p className="text-gray-500 mt-2">{skill.description}</p>
+              <h3 className="mt-4 text-xl md:text-2xl font-semibold">{skill.name}</h3>
+              <p className="text-gray-500 mt-2 text-sm">{skill.description}</p>
             </div>
           ))}
         </div>
