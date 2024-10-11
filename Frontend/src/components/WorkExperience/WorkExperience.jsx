@@ -38,7 +38,7 @@ const steps = [
 ];
 
 const WorkExperience = () => {
-  const isMobile = useMediaQuery('(max-width: 768px)');
+  const isTablet = useMediaQuery('(max-width: 1024px)');
 
   return (
     <section>
@@ -57,25 +57,25 @@ const WorkExperience = () => {
               <div className="relative wrap overflow-hidden p-10 h-full">
                 <div
                   className="border-2 absolute h-full"
-                  style={{ right: isMobile ? '95%' : '50%', border: '2px solid black', borderRadius: '1%' }}
+                  style={{ right: isTablet ? '95%' : '50%', border: '2px solid black', borderRadius: '1%' }}
                 ></div>
                 <div
                   className="border-2 absolute h-full"
-                  style={{ left: isMobile ? '5%' : '50%', border: '2px solid black', borderRadius: '1%' }}
+                  style={{ left: isTablet ? '5%' : '50%', border: '2px solid black', borderRadius: '1%' }}
                 ></div>
 
                 {steps.map((step, index) => (
                   <div
                     key={index}
-                    className={`mb-8 ml-10 lg:flex justify-between items-center w-full ${isMobile ? 'flex-row-reverse left-timeline' : step.alignment === "right" ? "flex-row-reverse left-timeline" : "right-timeline"
+                    className={`mb-8 ml-10 lg:flex justify-between items-center w-full ${isTablet ? 'flex-row-reverse left-timeline' : step.alignment === "right" ? "flex-row-reverse left-timeline" : "right-timeline"
                       }`}
                   >
-                    {/* {isMobile ? (
+                    {/* {isTablet ? (
                       <div className="order-1 w-5/12 flex justify-center">
                       <WorkHistoryIcon className="text-5xl text-black" />
                     </div> ) : null} */}
                     <div
-                      className={`order-1 w-10/12 lg:w-5/12 px-1 py-4 ${isMobile ? 'flex-row-reverse left-timeline' : step.alignment === "right" ? "text-right" : "text-left"
+                      className={`order-1 w-10/12 lg:w-5/12 px-1 py-4 ${isTablet ? 'flex-row-reverse left-timeline' : step.alignment === "right" ? "text-right" : "text-left"
                         }`}
                     >
                       <p className="mb-1 text-base text-black font-bold">{step.date}</p>

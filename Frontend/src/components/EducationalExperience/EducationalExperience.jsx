@@ -23,7 +23,7 @@ const steps = [
 ];
 
 const EducationalExperience = () => {
-  const isMobile = useMediaQuery('(max-width: 768px)');
+  const isMobile = useMediaQuery('(max-width: 1024px)');
   return (
     <section>
       <div className="bg-white text-black py-8">
