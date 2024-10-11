@@ -9,6 +9,9 @@ const ContactForm = () => {
     subject: '',
     message: '',
   });
+  const emailUserID = import.meta.env.VITE_APP_EMAIL_USER_ID;
+  const emailServiceID = import.meta.env.VITE_APP_EMAIL_SERVICE_ID;
+  const emailTemplateID = import.meta.env.VITE_APP_EMAIL_CONFIRMACION_TEMPLATE_ID;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,7 +24,7 @@ const ContactForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', formData, 'YOUR_USER_ID')
+    emailjs.send(emailServiceID, emailTemplateID, formData, emailUserID)
       .then((response) => {
         console.log('¡Correo enviado exitosamente!', response.status, response.text);
         // Aquí puedes agregar un mensaje de éxito para el usuario
@@ -45,7 +48,7 @@ const ContactForm = () => {
     <div className="bg-white relative flex min-h-screen flex-col justify-center overflow-hidden py-6 sm:py-12">
       <div className="max-w-5xl mx-auto w-full">
         <div className="grid grid-cols-1 lg:grid-cols-6 h-full">
-          <div className="bg-blue-900 p-10 lg:col-span-2 col-span-1">
+          <div className="bg-blue-900 p-4 lg:col-span-2 col-span-1">
             <h2 className="mb-10 font-bold text-2xl text-blue-100 before:block before:absolute before:bg-sky-300 before:content[''] relative before:w-20 before:h-1 before:-skew-y-3 before:-bottom-4">Información de Contacto</h2>
             <p className="font-bold text-blue-100 py-8 border-b border-blue-700">
               Dirección
@@ -64,7 +67,7 @@ const ContactForm = () => {
               </a></span>
             </p>
           </div>
-          <div className="bg-blue-50 p-14 lg:col-span-4 col-span-1">
+          <div className="bg-blue-50 p-4 lg:col-span-4 col-span-1">
             <h2 className="mb-14 font-bold text-4xl text-blue-900 before:block before:absolute before:bg-sky-300 before:content[''] relative before:w-20 before:h-1 before:-skew-y-3 before:-bottom-4">Ponerse en Contacto</h2>
             <form onSubmit={handleSubmit}>
               <div className="grid gap-6 mb-6 grid-cols-1 sm:grid-cols-2">

@@ -32,10 +32,15 @@ function HeaderMegaMenu() {
   }, []);
 
   useEffect(() => {
-    // Actualiza la página seleccionada basada en la ruta actual
-    const path = location.pathname.replace('/', '');
-    setSelectedPage(path || 'Inicio');
-  }, [location]);
+    // Redirige a la página de inicio si la ruta actual es "/"
+    if (location.pathname === '/') {
+      navigate('/Inicio');
+    } else {
+      // Actualiza la página seleccionada basada en la ruta actual
+      const path = location.pathname.replace('/', '');
+      setSelectedPage(path || 'Inicio');
+    }
+  }, [location, navigate]);
 
   const handlePageClick = (page) => {
     setLoading(true);
