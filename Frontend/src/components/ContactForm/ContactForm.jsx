@@ -101,7 +101,7 @@ const ContactForm = () => {
                     <label htmlFor="name" className="mb-2 text-xs font-semibold text-gray-600">Nombre</label>
                     <input
                       id="name"
-                      className="py-4 bg-white rounded-full px-6 placeholder:text-xs border border-gray-300 focus:border-blue-500 focus:outline-none"
+                      className="py-4 bg-white rounded-full px-4 placeholder:text-xs border border-gray-300 focus:border-blue-500 focus:outline-none"
                       name="name"
                       placeholder="Tu nombre"
                       value={formData.name}
@@ -112,7 +112,7 @@ const ContactForm = () => {
                     <label htmlFor="lastName" className="mb-2 text-xs font-semibold text-gray-600">Apellido</label>
                     <input
                       id="lastName"
-                      className="py-4 bg-white rounded-full px-6 placeholder:text-xs border border-gray-300 focus:border-blue-500 focus:outline-none"
+                      className="py-4 bg-white rounded-full px-4 placeholder:text-xs border border-gray-300 focus:border-blue-500 focus:outline-none"
                       name="lastName"
                       placeholder="Tu apellido"
                       value={formData.lastName}
@@ -125,7 +125,7 @@ const ContactForm = () => {
                     <label htmlFor="email" className="mb-2 text-xs font-semibold text-gray-600">Correo Electrónico</label>
                     <input
                       id="email"
-                      className="py-4 bg-white rounded-full px-6 placeholder:text-xs border border-gray-300 focus:border-blue-500 focus:outline-none"
+                      className="py-4 bg-white rounded-full px-4 placeholder:text-xs border border-gray-300 focus:border-blue-500 focus:outline-none"
                       name="email"
                       placeholder="Dirección de correo"
                       value={formData.email}
@@ -136,7 +136,7 @@ const ContactForm = () => {
                     <label htmlFor="subject" className="mb-2 text-xs font-semibold text-gray-600">Asunto</label>
                     <input
                       id="subject"
-                      className="py-4 bg-white rounded-full px-6 placeholder:text-xs border border-gray-300 focus:border-blue-500 focus:outline-none"
+                      className="py-4 bg-white rounded-full px-4 placeholder:text-xs border border-gray-300 focus:border-blue-500 focus:outline-none"
                       name="subject"
                       placeholder="Asunto"
                       value={formData.subject}
@@ -148,7 +148,7 @@ const ContactForm = () => {
                   <label htmlFor="message" className="mb-2 text-xs font-semibold text-gray-600">Mensaje</label>
                   <textarea
                     id="message"
-                    className="w-full bg-white rounded-2xl placeholder:text-xs px-6 py-4 border border-gray-300 focus:border-blue-500 focus:outline-none"
+                    className="w-full bg-white rounded-2xl placeholder:text-xs px-3 py-2 border border-gray-300 focus:border-blue-500 focus:outline-none"
                     name="message"
                     placeholder="Tu mensaje aquí"
                     value={formData.message}
