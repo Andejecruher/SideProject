@@ -118,66 +118,63 @@ function HeaderMegaMenu() {
         hiddenFrom="sm"
         zIndex={1000000}
       >
+        <Box
+          h={`calc(100vh - ${rem(80)})`}
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            height: '100%',
+            alignItems: 'center',
+            textAlign: 'center',
+          }}
+        >
           <Box
-          h={`calc(100vh - ${rem(80)})`} 
             style={{
               display: 'flex',
               flexDirection: 'column',
-              justifyContent: 'space-between',
-              height: '100%',
+              justifyContent: 'center',
               alignItems: 'center',
               textAlign: 'center',
+              flexGrow: 1,
             }}
           >
-            <Box
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'center',
-                textAlign: 'center',
-                flexGrow: 1,
-              }}
+            <a
+              href="#"
+              className={`${classes.link} ${selectedPage === 'Inicio' ? classes.selected : ''}`}
+              onClick={() => handlePageClick('Inicio')}
             >
-              <a
-                href="#"
-                className={`${classes.link} ${selectedPage === 'Inicio' ? classes.selected : ''}`}
-                onClick={() => handlePageClick('Inicio')}
-              >
-                Inicio
-              </a>
-              <a
+              Inicio
+            </a>
+            {/* <a
                 href="#"
                 className={`${classes.link} ${selectedPage === 'Blog' ? classes.selected : ''}`}
                 onClick={() => handlePageClick('Blog')}
               >
                 Blog
-              </a>
-              <a
-                href="#"
-                className={`${classes.link} ${selectedPage === 'Contacto' ? classes.selected : ''}`}
-                onClick={() => handlePageClick('Contacto')}
-              >
-                Contacto
-              </a>
-            </Box>
-
-            <Group justify="center" grow pb="xl" px="md">
-              <IconButton href="https://twitter.com/Andejecruher" target="_blank">
-                <TwitterIcon className={classes.iconSocial} />
-              </IconButton>
-              <IconButton href="https://www.linkedin.com/in/antonio-de-jesus-cruz-hernandez-2535748b/" target="_blank">
-                <LinkedInIcon className={classes.iconSocial} />
-              </IconButton>
-              <IconButton href="https://github.com/Andejecruher" target="_blank">
-                <GitHubIcon className={classes.iconSocial} />
-              </IconButton>
-            </Group>
+              </a> */}
+            <a
+              href="#"
+              className={`${classes.link} ${selectedPage === 'Contacto' ? classes.selected : ''}`}
+              onClick={() => handlePageClick('Contacto')}
+            >
+              Contacto
+            </a>
           </Box>
+
+          <Group justify="center" grow pb="xl" px="md">
+            <IconButton href="https://twitter.com/Andejecruher" target="_blank">
+              <TwitterIcon className={classes.iconSocial} />
+            </IconButton>
+            <IconButton href="https://www.linkedin.com/in/antonio-de-jesus-cruz-hernandez-2535748b/" target="_blank">
+              <LinkedInIcon className={classes.iconSocial} />
+            </IconButton>
+            <IconButton href="https://github.com/Andejecruher" target="_blank">
+              <GitHubIcon className={classes.iconSocial} />
+            </IconButton>
+          </Group>
+        </Box>
       </Drawer>
-      <main className={classes.mainContent}>
-        {/* Aquí va el contenido principal de la página */}
-      </main>
     </Box>
   );
 }
