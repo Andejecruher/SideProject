@@ -6,7 +6,7 @@ import { MantineProvider } from '@mantine/core';
 import CssBaseline from "@mui/material/CssBaseline";
 import theme from "@src/components/Themes/theme";
 import router from "@src/router/router";
-
+import 'animate.css';
 import '@mantine/core/styles.css';
 import "./index.css";
 
