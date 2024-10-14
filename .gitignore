@@ -1,22 +1,22 @@
-# Laravel
-/vendor
-/node_modules
-/public/storage
-/storage/*.key
-.phpunit.result.cache
-Homestead.yaml
-Homestead.json
-/.vagrant
+# Laravel (dentro de la carpeta Backend)
+Backend/vendor
+Backend/node_modules
+Backend/public/storage
+Backend/storage/*.key
+Backend/.phpunit.result.cache
+Backend/Homestead.yaml
+Backend/Homestead.json
+Backend/.vagrant
 
-# React
-node_modules/
-build/
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+# React (dentro de la carpeta Frontend)
+Frontend/node_modules/
+Frontend/build/
+Frontend/.env.local
+Frontend/.env.development.local
+Frontend/.env.test.local
+Frontend/.env.production.local
 
-# Logs
+# Logs (para ambos proyectos)
 npm-debug.log*
 yarn-debug.log*
-yarn-error.log*
+yarn-error.log* 
