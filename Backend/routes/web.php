@@ -25,8 +25,6 @@ use App\Http\Livewire\Users\Users;
 
 Route::redirect('/', '/login');
 
-Route::get('/register', Register::class)->name('register');
-
 Route::get('/login', Login::class)->name('login');
 
 Route::get('/forgot-password', ForgotPassword::class)->name('forgot-password');

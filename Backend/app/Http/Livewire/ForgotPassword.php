@@ -15,12 +15,12 @@ class ForgotPassword extends Component
 
     public $mailSentAlert = false;
     public $showDemoNotification = false;
-    public $email='';
-    public $rules=[
+    public $email = '';
+    public $rules = [
         'email' => 'required|email|exists:users'
     ];
     protected $messages = [
-        'email.exists' => 'The Email Address must be in our database.',
+        'email.exists' => 'El correo electrónico no existe.',
     ];
 
     public function mount()
@@ -32,21 +32,20 @@ class ForgotPassword extends Component
 
     public function updatedEmail()
     {
-        $this->validate(['email'=>'required|email|exists:users']);
+        $this->validate(['email' => 'required|email|exists:users']);
     }
-    public function routeNotificationForMail() {
+
+    public function routeNotificationForMail()
+    {
         return $this->email;
     }
-    public function recoverPassword() {
-        if(env('IS_DEMO')) {
-            $this->showDemoNotification = true;
-        }
-        else {
-            $this->validate();
-            $user=User::where('email', $this->email)->first();
-            $this->notify(new ResetPassword($user->id));
-            $this->mailSentAlert = true;
-        }
+
+    public function recoverPassword()
+    {
+        $this->validate();
+        $user = User::where('email', $this->email)->first();
+        $this->notify(new ResetPassword($user->id));
+        $this->mailSentAlert = true;
     }
 
     public function render()
