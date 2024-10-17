@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Auth;
 
-use App\Http\Livewire\Auth;
 use Livewire\Component;
 
 class Logout extends Component

@@ -1,5 +1,4 @@
 <main>
-    <title>Volt Laravel Dashboard - Sign In page</title>
     <!-- Section -->
     <section class="vh-lg-100 mt-5 mt-lg-0 bg-soft d-flex align-items-center">
         <div class="container">
@@ -8,13 +7,13 @@
                     <div class="bg-white shadow-soft border rounded border-light p-4 p-lg-5 w-100 fmxw-500">
                         <div class="text-center text-md-center mb-4 mt-md-0">
                             <img src="/assets/img/icons/ajh.png" style="width: 40%;"/>
-                            <h1 class="mb-3 h3">{{__("Bienvenido de nuevo")}}</h1>
-                            <p class="mb-0"> {{__("Ingresa a tu cuenta para continuar")}} </p>
+                            <h1 class="mb-3 h3">{{__("Welcome back")}}</h1>
+                            <p class="mb-0"> {{__("Sign in to your account to continue")}} </p>
                         </div>
                         <form wire:submit.prevent="login" action="#" class="mt-4" method="POST">
                             <!-- Form -->
                             <div class="form-group mb-4">
-                                <label for="email">Correo electrónico</label>
+                                <label for="email">{{__("Email address")}}</label>
                                 <div class="input-group">
                                     <span class="input-group-text" id="basic-addon1"><svg
                                             class="icon icon-xs text-gray-600" fill="currentColor" viewBox="0 0 20 20"
@@ -34,7 +33,7 @@
                             <div class="form-group">
                                 <!-- Form -->
                                 <div class="form-group mb-4">
-                                    <label for="password">Contraseña</label>
+                                    <label for="password">{{__("Password")}}</label>
                                     <div class="input-group">
                                         <span class="input-group-text" id="basic-addon2"><svg
                                                 class="icon icon-xs text-gray-600" fill="currentColor"
@@ -54,14 +53,14 @@
                                         <input wire:model="remember_me" class="form-check-input" type="checkbox"
                                             value="" id="remember">
                                         <label class="form-check-label mb-0" for="remember">
-                                            Recuerdame
+                                            {{__("Remember me")}}
                                         </label>
                                     </div>
-                                    <div><a href="{{ route('forgot-password') }}" class="small text-right">Olvidaste tu contraseña?</a></div>
+                                    <div><a href="{{ route('forgot-password') }}" class="small text-right">{{__("Forgot your password?")}}</a></div>
                                 </div>
                             </div>
                             <div class="d-grid">
-                                <button type="submit" class="btn btn-gray-800">Iniciar sesión</button>
+                                <button type="submit" class="btn btn-gray-800">{{__("Sign in")}}</button>
                             </div>
                         </form>
                     </div>
