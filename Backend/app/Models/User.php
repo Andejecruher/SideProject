@@ -18,9 +18,9 @@ class User extends Authenticatable
         'email',
         'password',
         'address',
-        'number',
+        'phone',
         'city',
-        'ZIP',
+        'postal_code',
         'status',
         'role',
         'email_verified_at',
@@ -35,4 +35,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function articulos()
+    {
+        return $this->hasMany(Articulo::class);
+    }
 }

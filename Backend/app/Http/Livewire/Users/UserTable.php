@@ -18,43 +18,47 @@ class UserTable extends DataTableComponent
     public function columns(): array
     {
         return [
-            Column::make("Id", "id")
+            Column::make(__("Id"), "id")
                 ->sortable(),
-            Column::make("First name", "first_name")
+            Column::make(__("First name"), "first_name")
                 ->searchable()
                 ->sortable(),
-            Column::make("Last name", "last_name")
+            Column::make(__("Last name"), "last_name")
                 ->searchable()
                 ->sortable(),
-            Column::make("Avatar", "avatar")
+            Column::make(__("Avatar"), "avatar")
                 ->sortable(),
-            Column::make("Gender", "gender")
+            Column::make(__("Gender"), "gender")
                 ->sortable(),
-            Column::make("Email", "email")
+            Column::make(__("Email"), "email")
                 ->searchable()
                 ->sortable(),
-            Column::make("Address", "address")
+            Column::make(__("Address"), "address")
                 ->searchable()
                 ->sortable(),
-            Column::make("Number", "number")
+            Column::make(__("Phone"), "phone")
                 ->searchable()
                 ->sortable(),
-            Column::make("City", "city")
+            Column::make(__("City"), "city")
                 ->searchable()
                 ->sortable(),
-            Column::make("ZIP", "ZIP")
+            Column::make(__("Postal Code"), "postal_code")
                 ->searchable()
                 ->sortable(),
-            Column::make("Status", "status")
+            Column::make(__("Status"), "status")
                 ->sortable(),
-            Column::make("Role", "role")
+            Column::make(__("Role"), "role")
                 ->sortable(),
-            Column::make("Email verified at", "email_verified_at")
-                ->sortable(),
-            Column::make("Created at", "created_at")
-                ->sortable(),
-            Column::make("Updated at", "updated_at")
-                ->sortable(),
+            Column::make(__('Actions'), 'id')
+                ->format(function ($value, $column, $row) {
+                    return view('livewire.components.actions', ['id' => $value, 'route' => 'users']);
+                }),
+            // Column::make(__("Email verified at"), "email_verified_at")
+            //     ->sortable(),
+            // Column::make(__("Created at"), "created_at")
+            //     ->sortable(),
+            // Column::make(__("Updated at"), "updated_at")
+            //     ->sortable(),
         ];
     }
 }

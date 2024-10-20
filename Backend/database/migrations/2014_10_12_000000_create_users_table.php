@@ -22,9 +22,9 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('address')->nullable();
-            $table->string('number')->nullable();
+            $table->string('phone')->nullable();
             $table->string('city')->nullable();
-            $table->string('ZIP')->nullable();
+            $table->string('postal_code')->nullable();
             $table->enum('status',['active', 'inactive'])->default('active');
             $table->enum('role',['admin', 'user'])->default('user');
             $table->timestamp('email_verified_at')->nullable();

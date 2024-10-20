@@ -14471,6 +14471,9 @@ textarea.form-control-lg {
   display: none; }
 
 @media (min-width: 992px) {
+    .sidebar {
+        width: 100%;
+        max-width: 260px; }
   #doc-index {
     display: block; }
   .doc-sidebar {
@@ -14507,7 +14510,7 @@ textarea.form-control-lg {
   @media (min-width: 768px) {
     .sidebar {
       width: 100%;
-      max-width: 260px; } }
+      /* max-width: 260px; } */ }
   .sidebar .nav {
     white-space: nowrap; }
   .sidebar .nav-item {
@@ -14891,7 +14894,7 @@ label {
 
 .scale-down-5:hover {
   transform: scale(2); }
-
+  md
 .animate-up-5:hover,
 .animate-hover:hover .animate-up-5 {
   -moz-transform: translate(0, -5px);

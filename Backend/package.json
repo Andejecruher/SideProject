@@ -28,6 +28,7 @@
     },
     "license": "https://github.com/themesberg/volt-laravel-dashboard/blob/master/LICENSE.md",
     "devDependencies": {
+        "autoprefixer": "^10.4.20",
         "browser-sync": "^3.0.3",
         "del": "4.1.1",
         "gulp": "^5.0.0",
@@ -47,7 +48,7 @@
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.21",
         "merge-stream": "2.0.0",
-        "postcss": "^8.1.14",
+        "postcss": "^8.4.47",
         "resolve-url-loader": "^5.0.0",
         "sass": "^1.79.5",
         "sass-loader": "^13.3.2"

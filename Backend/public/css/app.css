@@ -1,1 +1,9 @@
+.alert-floating {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050; /* Asegúrate de que esté por encima de otros elementos */
+    width: auto;
+    max-width: auto;
+}
 

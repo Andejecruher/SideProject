@@ -25,7 +25,7 @@ class Register extends Component
     {
         $this->validate(['email'=>'required|email:rfc,dns|unique:users']);
     }
-    
+
     public function register()
     {
         $this->validate([

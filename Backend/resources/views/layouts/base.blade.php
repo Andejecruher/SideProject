@@ -120,12 +120,21 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
-<body>
+<body style="position: relative !important;">
     <title>Andejecruher - Administrador</title>
 
     {{ $slot }}
 
     @livewireScripts
 </body>
-
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+            let alerts = document.querySelectorAll('.alert-floating');
+            alerts.forEach(function(alert) {
+                alert.style.display = 'none';
+            });
+        }, 5000); // Ocultar después de 5 segundos
+    });
+</script>
 </html>

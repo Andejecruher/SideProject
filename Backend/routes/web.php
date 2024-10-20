@@ -8,8 +8,7 @@ use App\Http\Livewire\Auth\ForgotPassword;
 use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\Users\Users;
 use App\Http\Livewire\Profile;
-
-
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,12 +25,17 @@ Route::redirect('/', '/login');
 Route::get('/login', Login::class)->name('login');
 Route::get('/forgot-password', ForgotPassword::class)->name('forgot-password');
 Route::get('/reset-password/{id}', ResetPassword::class)->name('reset-password')->middleware('signed');
+Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 
 Route::get('/404', Err404::class)->name('404');
 Route::get('/500', Err500::class)->name('500');
 
 Route::middleware('auth')->group(function () {
+    // views
     Route::get('/profile', Profile::class)->name('profile');
-    Route::get('/users', Users::class)->name('users');
+    Route::get('/users-list', Users::class)->name('users-list');
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
+
+    // controllers
+    Route::resource('users', UserController::class);
 });

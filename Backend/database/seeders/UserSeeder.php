@@ -30,10 +30,10 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
             'address' => $faker->address,
             'city' => $faker->city,
-            'ZIP' => $faker->randomNumber(6),
+            'postal_code' => $faker->randomNumber(6),
             'role' => 'admin',
             'status' => 'active',
-            'number' => $faker->buildingNumber,
+            'phone' => $faker->buildingNumber,
             'remember_token' => Str::random(10),
         ]);
     }
