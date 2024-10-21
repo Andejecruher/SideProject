@@ -7,20 +7,29 @@ use Illuminate\Support\Facades\DB;
 
 class CreateTagsTable extends Migration
 {
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
     public function up()
     {
         Schema::create('tags', function (Blueprint $table) {
-            $table->id();
-            $table->string('name')->unique();
-            $table->timestamps();
+            $table->id(); // Primary key
+            $table->string('name')->unique(); // Name of the tag, unique
+            $table->timestamps(); // Timestamps for created_at and updated_at
         });
     }
 
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
     public function down()
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS=0');
-        Schema::dropIfExists('tags');
-        DB::statement('SET FOREIGN_KEY_CHECKS=1');
+        DB::statement('SET FOREIGN_KEY_CHECKS=0'); // Disable foreign key checks
+        Schema::dropIfExists('tags'); // Drop the tags table
+        DB::statement('SET FOREIGN_KEY_CHECKS=1'); // Enable foreign key checks
     }
 }
-

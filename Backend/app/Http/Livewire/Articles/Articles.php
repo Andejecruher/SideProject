@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Livewire\Users;
+namespace App\Http\Livewire\Articles;
 
 use Livewire\Component;
 
-class Users extends Component
+class Articles extends Component
 {
     /**
      * Render the Livewire component.
@@ -15,6 +15,6 @@ class Users extends Component
      */
     public function render()
     {
-        return view('livewire.users.users'); // Return the view for the Livewire component
+        return view('livewire.articles.articles'); // Return the view for the Livewire component
     }
 }

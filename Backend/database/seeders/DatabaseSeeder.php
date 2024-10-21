@@ -9,18 +9,23 @@ class DatabaseSeeder extends Seeder
     /**
      * Seed the application's database.
      *
+     * This method is used to seed the database with initial data.
+     *
      * @return void
      */
     public function run()
     {
+        // Create 10 fake users using the User factory
         \App\Models\User::factory(10)->create();
+
+        // Call other seeders to seed additional tables
         $this->call([
-            UserSeeder::class,
-            CategoriesTableSeeder::class,
-            ArticlesTableSeeder::class,
-            CommentsTableSeeder::class,
-            TagsTableSeeder::class,
-            ArticleTagTableSeeder::class,
+            UserSeeder::class, // Seed the users table
+            CategoriesTableSeeder::class, // Seed the categories table
+            ArticlesTableSeeder::class, // Seed the articles table
+            CommentsTableSeeder::class, // Seed the comments table
+            TagsTableSeeder::class, // Seed the tags table
+            ArticleTagTableSeeder::class, // Seed the article_tag table
         ]);
     }
 }

@@ -7,13 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model
 {
+    // Fillable attributes for mass assignment
     protected $fillable = [
-        'name'
+        'name', // Name of the tag
     ];
 
+    /**
+     * The articles that belong to the tag.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function articles()
     {
-        return $this->belongsToMany(Article::class, 'article_tags');
+        return $this->belongsToMany(Article::class, 'article_tags'); // Define a belongsToMany relationship with the Article model
     }
-
 }

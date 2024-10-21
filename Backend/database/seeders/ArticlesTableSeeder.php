@@ -15,20 +15,22 @@ class ArticlesTableSeeder extends Seeder
      */
     public function run()
     {
+        // Create a Faker instance
         $faker = Faker::create();
 
+        // Insert 10 fake articles into the articles table
         foreach (range(1, 10) as $index) {
             DB::table('articles')->insert([
-                'title' => $faker->sentence,
-                'description' => $faker->paragraph,
-                'content' => $faker->randomHtml(1, 1),
-                'featured_image' => $faker->imageUrl(),
-                'thumbnail' => $faker->imageUrl(),
-                'publication_date' => $faker->dateTimeThisYear(),
-                'category_id' => $faker->randomElement([1, 2, 3]), // Change the category IDs according to your database
-                'user_id' => $faker->randomElement([1, 2, 3]), // Change the user IDs according to your database
-                'created_at' => now(),
-                'updated_at' => now(),
+                'title' => $faker->sentence, // Generate a fake title
+                'description' => $faker->paragraph, // Generate a fake description
+                'content' => $faker->randomHtml(1, 1), // Generate fake HTML content
+                'featured_image' => $faker->image('public/storage/featured_image', 640, 480, 'avatar', false), // Generate a fake featured image
+                'thumbnail' => $faker->image('public/storage/thumbnail', 320, 280, 'article', false), // Generate a fake thumbnail image
+                'publication_date' => $faker->dateTimeThisYear(), // Generate a fake publication date within this year
+                'category_id' => $faker->randomElement([1, 2, 3]), // Assign a random category ID (change according to your database)
+                'user_id' => $faker->randomElement([1, 2, 3]), // Assign a random user ID (change according to your database)
+                'created_at' => now(), // Set the current timestamp for created_at
+                'updated_at' => now(), // Set the current timestamp for updated_at
             ]);
         }
     }

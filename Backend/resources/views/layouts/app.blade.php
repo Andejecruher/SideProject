@@ -1,6 +1,17 @@
 <x-layouts.base>
 
-    @if(in_array(request()->route()->getName(), ['dashboard', 'profile', 'users-list','users.edit', 'users.create', 'categories-list', 'categories.edit', 'categories.create',]))
+    @if(in_array(request()->route()->getName(), [
+    'dashboard',
+    'profile',
+    'users-list',
+    'users.edit',
+    'users.create',
+    'categories-list',
+    'categories.edit',
+    'categories.create',
+    'articles-list',
+    'articles.edit',
+    'articles.create',]))
 
     {{-- Nav --}}
     @include('layouts.nav')

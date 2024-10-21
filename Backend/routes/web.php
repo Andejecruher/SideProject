@@ -9,8 +9,11 @@ use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\Users\Users;
 use App\Http\Livewire\Profile;
 use App\Http\Livewire\Categories\Categories;
+use App\Http\Livewire\Articles\Articles;
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -37,9 +40,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', Profile::class)->name('profile');
     Route::get('/users-list', Users::class)->name('users-list');
     Route::get('/categories-list', Categories::class)->name('categories-list');
+    Route::get('/articles-list', Articles::class)->name('articles-list');
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
 
     // controllers
     Route::resource('users', UserController::class);
     Route::resource('categories', CategoryController::class);
+    Route::resource('articles', ArticleController::class);
 });

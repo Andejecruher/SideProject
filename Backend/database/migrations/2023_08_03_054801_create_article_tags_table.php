@@ -8,20 +8,30 @@ use Illuminate\Support\Facades\DB;
 
 class CreateArticleTagsTable extends Migration
 {
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
     public function up()
     {
         Schema::create('article_tag', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('article_id')->constrained('articles')->onDelete('cascade');
-            $table->foreignId('tag_id')->constrained('tags')->onDelete('cascade');
-            $table->timestamps();
+            $table->id(); // Primary key
+            $table->foreignId('article_id')->constrained('articles')->onDelete('cascade'); // Foreign key to the articles table, cascade on delete
+            $table->foreignId('tag_id')->constrained('tags')->onDelete('cascade'); // Foreign key to the tags table, cascade on delete
+            $table->timestamps(); // Timestamps for created_at and updated_at
         });
     }
 
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
     public function down()
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS=0');
-        Schema::dropIfExists('article_tag');
-        DB::statement('SET FOREIGN_KEY_CHECKS=1');
+        DB::statement('SET FOREIGN_KEY_CHECKS=0'); // Disable foreign key checks
+        Schema::dropIfExists('article_tag'); // Drop the article_tag table
+        DB::statement('SET FOREIGN_KEY_CHECKS=1'); // Enable foreign key checks
     }
 }

@@ -8,28 +8,44 @@ use App\Models\Category;
 
 class CategoryTable extends DataTableComponent
 {
+    // Define the model associated with the DataTable
     protected $model = Category::class;
 
+    /**
+     * Configure the DataTable component.
+     *
+     * This method is used to configure the DataTable component.
+     *
+     * @return void
+     */
     public function configure(): void
     {
-        $this->setPrimaryKey('id');
+        $this->setPrimaryKey('id'); // Set the primary key for the DataTable
     }
 
+    /**
+     * Define the columns for the DataTable.
+     *
+     * This method is used to define the columns for the DataTable.
+     *
+     * @return array
+     */
     public function columns(): array
     {
         return [
             Column::make(__("Id"), "id")
-                ->sortable(),
+                ->sortable(), // Make the column sortable
             Column::make(__("Name"), "name")
-                ->sortable(),
+                ->sortable(), // Make the column sortable
             Column::make(__("Description"), "description")
-                ->sortable(),
+                ->sortable(), // Make the column sortable
             Column::make(__("Created at"), "created_at")
-                ->sortable(),
+                ->sortable(), // Make the column sortable
             Column::make(__("Updated at"), "updated_at")
-                ->sortable(),
+                ->sortable(), // Make the column sortable
             Column::make(__('Actions'), 'id')
                 ->format(function ($value, $column, $row) {
+                    // Render the actions view component with the provided ID and route
                     return view('livewire.components.actions', ['id' => $value, 'route' => 'categories']);
                 }),
         ];
