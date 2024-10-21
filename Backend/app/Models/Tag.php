@@ -8,12 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Tag extends Model
 {
     protected $fillable = [
-        'nombre'
+        'name'
     ];
 
-    public function articulos()
+    public function articles()
     {
-        return $this->belongsToMany(Articulo::class, 'articulo_tags');
+        return $this->belongsToMany(Article::class, 'article_tags');
     }
 
 }

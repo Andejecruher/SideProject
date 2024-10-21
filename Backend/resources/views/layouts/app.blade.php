@@ -1,8 +1,6 @@
 <x-layouts.base>
 
-    @if(in_array(request()->route()->getName(), ['dashboard', 'profile', 'profile-example', 'users-list','users.edit', 'users.create', 'bootstrap-tables', 'transactions',
-    'buttons',
-    'forms', 'modals', 'notifications', 'typography', 'upgrade-to-pro']))
+    @if(in_array(request()->route()->getName(), ['dashboard', 'profile', 'users-list','users.edit', 'users.create', 'categories-list', 'categories.edit', 'categories.create',]))
 
     {{-- Nav --}}
     @include('layouts.nav')
@@ -16,8 +14,7 @@
         @include('layouts.footer')
     </main>
 
-    @elseif(in_array(request()->route()->getName(), ['register', 'register-example', 'login', 'login-example',
-    'forgot-password', 'forgot-password-example', 'reset-password','reset-password-example']))
+    @elseif(in_array(request()->route()->getName(), ['register', 'login','forgot-password','reset-password']))
 
     {{ $slot }}
     {{-- Footer --}}

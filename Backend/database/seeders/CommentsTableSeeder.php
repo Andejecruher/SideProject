@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Faker\Factory as Faker;
 
-class ComentariosTableSeeder extends Seeder
+class CommentsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -18,11 +18,11 @@ class ComentariosTableSeeder extends Seeder
         $faker = Faker::create();
 
         foreach (range(1, 20) as $index) {
-            DB::table('comentarios')->insert([
-                'contenido' => $faker->paragraph,
-                'nombre_autor' => $faker->name,
-                'articulo_id' => $faker->numberBetween(1, 10), // Cambiar según tu base de datos
-                'user_id' => $faker->randomElement([1, 2, 3, null]), // Cambiar según tu base de datos
+            DB::table('comments')->insert([
+                'content' => $faker->paragraph,
+                'author_name' => $faker->name,
+                'article_id' => $faker->numberBetween(1, 10), // Change according to your database
+                'user_id' => $faker->randomElement([1, 2, 3, null]), // Change according to your database
                 'ip_address' => $faker->ipv4,
                 'created_at' => now(),
                 'updated_at' => now(),

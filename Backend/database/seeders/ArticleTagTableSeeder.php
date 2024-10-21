@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Faker\Factory as Faker;
 
-class ArticuloTagTableSeeder extends Seeder
+class ArticleTagTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,16 +17,16 @@ class ArticuloTagTableSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        $articulos = range(1, 10); // Cambia el rango según la cantidad de artículos que tengas
-        $tags = range(1, 9); // Cambia el rango según la cantidad de tags que tengas
+        $articles = range(1, 10); // Change the range according to the number of articles you have
+        $tags = range(1, 9); // Change the range according to the number of tags you have
 
-        foreach ($articulos as $articuloId) {
-            $numTags = $faker->numberBetween(1, 5); // Cambia el rango según la cantidad de tags por artículo
+        foreach ($articles as $articleId) {
+            $numTags = $faker->numberBetween(1, 5); // Change the range according to the number of tags per article
             $selectedTags = $faker->randomElements($tags, $numTags);
 
             foreach ($selectedTags as $tagId) {
-                DB::table('articulo_tag')->insert([
-                    'articulo_id' => $articuloId,
+                DB::table('article_tag')->insert([
+                    'article_id' => $articleId,
                     'tag_id' => $tagId,
                     'created_at' => now(),
                     'updated_at' => now(),

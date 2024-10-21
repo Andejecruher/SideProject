@@ -146,6 +146,28 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'first_name' => 'nombre',
+        'last_name' => 'apellido',
+        'email' => 'correo electrónico',
+        'password' => 'contraseña',
+        'address' => 'dirección',
+        'phone' => 'teléfono',
+        'city' => 'ciudad',
+        'postal_code' => 'código postal',
+        'status' => 'estado',
+        'role' => 'rol',
+        'avatar' => 'avatar',
+        'description' => 'descripción',
+        'name' => 'nombre',
+        'title' => 'título',
+        'content' => 'contenido',
+        'category' => 'categoría',
+        'article' => 'artículo',
+        'image' => 'imagen',
+        'thumbnail' => 'miniatura',
+        'file' => 'archivo',
+        'featured_image' => 'imagen destacada',
+    ],
 
 ];

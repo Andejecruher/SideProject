@@ -8,7 +8,9 @@ use App\Http\Livewire\Auth\ForgotPassword;
 use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\Users\Users;
 use App\Http\Livewire\Profile;
+use App\Http\Livewire\Categories\Categories;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,8 +36,10 @@ Route::middleware('auth')->group(function () {
     // views
     Route::get('/profile', Profile::class)->name('profile');
     Route::get('/users-list', Users::class)->name('users-list');
+    Route::get('/categories-list', Categories::class)->name('categories-list');
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
 
     // controllers
     Route::resource('users', UserController::class);
+    Route::resource('categories', CategoryController::class);
 });

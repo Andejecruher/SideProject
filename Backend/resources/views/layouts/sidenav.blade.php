@@ -63,8 +63,8 @@
                     <span class="sidebar-text">{{__("Users")}}</span>
                 </a>
             </li>
-            <li class="nav-item {{ Request::segment(1) == 'category' ? 'active' : '' }}">
-                <a href="/category" class="nav-link">
+            <li class="nav-item {{ Request::segment(1) == 'categories-list' ? 'active' : '' }}">
+                <a href="/categories-list" class="nav-link">
                     <span class="sidebar-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                             <style>
