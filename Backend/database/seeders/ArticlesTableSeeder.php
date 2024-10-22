@@ -23,7 +23,7 @@ class ArticlesTableSeeder extends Seeder
             DB::table('articles')->insert([
                 'title' => $faker->sentence, // Generate a fake title
                 'description' => $faker->paragraph, // Generate a fake description
-                'content' => $faker->randomHtml(1, 1), // Generate fake HTML content
+                'content' => $faker->randomHtml(), // Generate fake HTML content
                 'featured_image' => $faker->image('public/storage/featured_image', 640, 480, 'avatar', false), // Generate a fake featured image
                 'thumbnail' => $faker->image('public/storage/thumbnail', 320, 280, 'article', false), // Generate a fake thumbnail image
                 'publication_date' => $faker->dateTimeThisYear(), // Generate a fake publication date within this year

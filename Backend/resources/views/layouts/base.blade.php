@@ -69,7 +69,15 @@
 
     <!-- Notyf -->
     <link type="text/css" href="/vendor/notyf/notyf.min.css" rel="stylesheet">
-
+    <!-- ckeditor5-build-classic -->
+    <link rel="stylesheet" href="/vendor/ckeditor5/ckeditor5.css">
+    <style>
+        .main-container {
+            width: 795px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
     <!-- Volt CSS -->
     <link type="text/css" href="/css/volt.css" rel="stylesheet">
 
@@ -127,6 +135,39 @@
 
     @livewireScripts
 </body>
+<script type="importmap">
+    {
+                "imports": {
+                    "ckeditor5": "/vendor/ckeditor5/ckeditor5.js",
+                    "ckeditor5/": "/vendor/ckeditor5"
+                }
+            }
+        </script>
+<script type="module">
+    import {
+        ClassicEditor,
+        Essentials,
+        Paragraph,
+        Bold,
+        Italic,
+        Font
+    } from 'ckeditor5';
+
+    ClassicEditor
+        .create(document.querySelector('#editor'), {
+            plugins: [Essentials, Paragraph, Bold, Italic, Font],
+            toolbar: [
+                'undo', 'redo', '|', 'bold', 'italic', '|',
+                'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor'
+            ]
+        })
+        .then(editor => {
+            window.editor = editor;
+        })
+        .catch(error => {
+            console.error(error);
+        });
+</script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         setTimeout(function() {
@@ -137,4 +178,5 @@
         }, 5000); // Ocultar después de 5 segundos
     });
 </script>
+
 </html>

@@ -51,7 +51,9 @@ class CategoryController extends Controller
         // Find the category by ID
         $category = Category::find($id);
         if (!$category) {
-            return response()->json(['message' => __('Category not found')], 404);
+            return redirect()->back()
+                    ->withErrors(['message' => __('Category not found')])
+                    ->withInput();
         }
 
         // Return the edit form view with the category data
@@ -90,9 +92,11 @@ class CategoryController extends Controller
             'description' => 'string',
         ]);
 
-        // If validation fails, return a JSON response with errors
+        // If validation fails, return a response with errors
         if ($validator->fails()) {
-            return response()->json(['message' => __('Invalid data'), 'errors' => $validator->errors()], 422);
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
         }
 
         // Update the category with the validated data

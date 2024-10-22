@@ -112,5 +112,16 @@
     "The email has already been taken.": "El correo electrónico ya ha sido tomado.",
     "Category not found": "Categoría no encontrada",
     "Category created successfully": "Categoría creada correctamente",
-    "Category updated successfully": "Categoría actualizada correctamente"
+    "Category updated successfully": "Categoría actualizada correctamente",
+    "Featured": "Destacado",
+    "Featured image": "Imagen destacada",
+    "Thumbnail": "Miniatura",
+    "Published": "Publicado",
+    "Publication date": "Fecha de publicación",
+    "User id": "Creador",
+    "Category id": "Categoría",
+    "Description": "Descripción",
+    "Publication Date": "Fecha de publicación",
+    "Featured Image": "Imagen destacada",
+    "Select a category": "Selecciona una categoría"
 }

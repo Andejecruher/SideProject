@@ -42,7 +42,10 @@ class UserTable extends DataTableComponent
                 ->searchable() // Make the column searchable
                 ->sortable(), // Make the column sortable
             Column::make(__("Avatar"), "avatar")
-                ->sortable(), // Make the column sortable
+                ->format(function ($value, $column, $row) {
+                    // Render the article-image view component with the provided image path
+                    return view('livewire.components.avatar-image', ['imagePath' => $value]);
+                }),
             Column::make(__("Gender"), "gender")
                 ->sortable(), // Make the column sortable
             Column::make(__("Email"), "email")

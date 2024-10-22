@@ -7,41 +7,20 @@ use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 
 class ArticleController extends Controller
 {
-    public function __construct()
+    public function create()
     {
-        $this->middleware('auth:sanctum');
+        $categories = Category::all(); // Obtener todas las categorías
+        return view('livewire.articles.form', compact('categories'));
     }
 
-    public function index(Request $request)
+    public function edit(Article $article)
     {
-        $query = Article::with('tags', 'comments', 'category', 'user');
-        // Apply search filters if provided in the query
-        if ($request->has('title')) {
-            $query->where('title', 'like', '%' . $request->input('title') . '%');
-        }
-        if ($request->has('description')) {
-            $query->where('description', 'like', '%' . $request->input('description') . '%');
-        }
-        if ($request->has('content')) {
-            $query->where('content', 'like', '%' . $request->input('content') . '%');
-        }
-        $itemsPerPage = $request->input('per_page', 10);
-        $currentPage = $request->input('current_page', 1);
-        $articles = $query->paginate($itemsPerPage, ['*'], 'page', $currentPage);
-        return response()->json($articles, 200);
-    }
-
-    public function show($id)
-    {
-        $article = Article::with('tags', 'comments', 'category', 'user')->find($id);
-        if ($article) {
-            return response()->json($article, 200);
-        } else {
-            return response()->json(['message' => 'Article not found'], 404);
-        }
+        $categories = Category::all(); // Obtener todas las categorías
+        return view('livewire.articles.form', compact('article', 'categories'));
     }
 
     public function store(Request $request)
@@ -57,7 +36,9 @@ class ArticleController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['message' => 'Invalid data', 'errors' => $validator->errors()], 422);
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
         }
         $article = Article::create([
             'title' => $request->title,
@@ -74,14 +55,16 @@ class ArticleController extends Controller
             $article->tags()->attach($tags);
         }
 
-        return response()->json($article, 201);
+        return redirect()->route('articles-list')->with('success', __('Article created successfully.'));
     }
 
     public function update(Request $request, $id)
     {
         $article = Article::find($id);
         if (!$article) {
-            return response()->json(['message' => 'Article not found'], 404);
+            return redirect()->back()
+                    ->withErrors(['message' => __('Article not found')])
+                    ->withInput();
         }
 
         $validator = Validator::make($request->all(), [
@@ -95,7 +78,9 @@ class ArticleController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['message' => 'Invalid data', 'errors' => $validator->errors()], 422);
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
         }
 
         $article->update($request->only(['title', 'content', 'description', 'featured_image', 'category_id']));
@@ -105,7 +90,7 @@ class ArticleController extends Controller
             $article->tags()->sync($tags);
         }
 
-        return response()->json($article, 200);
+        return redirect()->route('articles-list')->with('success', __('Article updated successfully.'));
     }
 
     public function destroy($id)
@@ -114,9 +99,9 @@ class ArticleController extends Controller
         if ($article) {
             $article->tags()->detach();
             $article->delete();
-            return response()->json(['message' => 'Article deleted'], 200);
+            return redirect()->route('articles-list')->with('success', __('Article deleted successfully.'));
         } else {
-            return response()->json(['message' => 'Article not found'], 404);
+            return redirect()->route('articles-list')->withErrors(['message' => __('Article not found.')]);
         }
     }
 }
