@@ -29,7 +29,7 @@ const steps = [
     alignment: "right",
   },
   {
-    date: "2016 - 2018",
+    date: "2013 - 2015",
     title: "Diseñadores web",
     subtitle: "Creativa Softline",
     description:
