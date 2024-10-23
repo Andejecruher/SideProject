@@ -92,11 +92,11 @@
     "New Article" : "Nuevo artículo",
     "Edit Article" : "Editar artículo",
     "Delete Article" : "Eliminar artículo",
-    "Article deleted successfully" : "Artículo eliminado correctamente",
+    "Article deleted successfully." : "Artículo eliminado correctamente",
     "Update Article" : "Actualizar artículo",
     "Create Article" : "Crear artículo",
-    "Article updated successfully" : "Artículo actualizado correctamente",
-    "Article created successfully" : "Artículo creado correctamente",
+    "Article updated successfully." : "Artículo actualizado correctamente",
+    "Article created successfully." : "Artículo creado correctamente",
     "Title" : "Título",
     "Content" : "Contenido",
     "Author" : "Autor",
@@ -123,5 +123,6 @@
     "Description": "Descripción",
     "Publication Date": "Fecha de publicación",
     "Featured Image": "Imagen destacada",
-    "Select a category": "Selecciona una categoría"
+    "Select a category": "Selecciona una categoría",
+    "Unpublished": "No publicado"
 }

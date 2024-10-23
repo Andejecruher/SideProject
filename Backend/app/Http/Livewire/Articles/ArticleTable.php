@@ -91,12 +91,33 @@ class ArticleTable extends DataTableComponent
                 ->sortable(), // Make the column sortable
             Column::make(__("Updated at"), "updated_at")
                 ->sortable(), // Make the column sortable
+            Column::make(__("Is published"), "published")
+                ->sortable() // Make the column sortable
+                ->format(function ($value, $column, $row) {
+                    // Render a toggle button to change the published status
+                    return view('livewire.components.toggle-published', ['id' => $column->id, 'published' => $value]);
+                }),
             Column::make(__('Actions'), 'id')
                 ->format(function ($value, $column, $row) {
                     // Render the actions view component with the provided ID and route
                     return view('livewire.components.actions', ['id' => $value, 'route' => 'articles']);
                 }),
         ];
+    }
+
+    /**
+     * Toggle the published status of an article.
+     *
+     * @param  int  $id
+     * @return void
+     */
+    public function togglePublished($id)
+    {
+        $article = Article::find($id);
+        if ($article) {
+            $article->published = !$article->published;
+            $article->save();
+        }
     }
 
     /**

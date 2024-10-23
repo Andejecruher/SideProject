@@ -13,6 +13,7 @@ use App\Http\Livewire\Articles\Articles;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ImageUploadController;
 
 
 /*
@@ -36,6 +37,9 @@ Route::get('/404', Err404::class)->name('404');
 Route::get('/500', Err500::class)->name('500');
 
 Route::middleware('auth')->group(function () {
+    // resources
+    Route::post('/upload-image', [ImageUploadController::class, 'store'])->name('upload.image');
+
     // views
     Route::get('/profile', Profile::class)->name('profile');
     Route::get('/users-list', Users::class)->name('users-list');

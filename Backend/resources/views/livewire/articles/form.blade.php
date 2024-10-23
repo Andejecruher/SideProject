@@ -45,14 +45,10 @@
 
                 <div class="mb-3">
                     <label for="content" class="form-label">{{ __("Content") }}</label>
-                    <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content" required>{!! old('content', isset($article) ? html_entity_decode($article->content) : '') !!}</textarea>
+                    <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content">{!! old('content', isset($article) ? html_entity_decode($article->content) : '') !!}</textarea>
                     @error('content')
                     <div class="invalid-feedback">{{ __($message) }}</div>
                     @enderror
-                </div>
-
-                <div id="editor">
-                    <p>Hello from CKEditor 5!</p>
                 </div>
 
                 <div class="mb-3">
@@ -64,6 +60,30 @@
                         @endforeach
                     </select>
                     @error('category_id')
+                    <div class="invalid-feedback">{{ __($message) }}</div>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label for="tags" class="form-label">{{ __("Tags") }}</label>
+                    <div class="row">
+                        @foreach($tags as $index => $tag)
+                        @if($index % 6 == 0 && $index != 0)
+                    </div>
+                    <div class="row">
+                        @endif
+                        <div class="col-md-2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="{{ $tag->id }}" id="tag{{ $tag->id }}" {{ (collect(old('tags', isset($article) ? $article->tags->pluck('id')->toArray() : []))->contains($tag->id)) ? 'checked' : '' }} onclick="updateTagsInput()">
+                                <label class="form-check-label" for="tag{{ $tag->id }}">
+                                    {{ $tag->name }}
+                                </label>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                    <input type="hidden" name="tags" id="tags" value="{{ implode(',', (array) old('tags', isset($article) ? $article->tags->pluck('id')->toArray() : [])) }}">
+                    @error('tags')
                     <div class="invalid-feedback">{{ __($message) }}</div>
                     @enderror
                 </div>
@@ -106,8 +126,19 @@
             </form>
         </div>
     </div>
-    <script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js"></script>
+
     <script>
+        function updateTagsInput() {
+            const checkboxes = document.querySelectorAll('.form-check-input');
+            const selectedTags = [];
+            checkboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    selectedTags.push(checkbox.value);
+                }
+            });
+            document.getElementById('tags').value = selectedTags.join(',');
+        }
+
         function previewImage(event, previewId) {
             const reader = new FileReader();
             reader.onload = function() {

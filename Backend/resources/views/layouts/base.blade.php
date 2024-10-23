@@ -3,7 +3,7 @@
 
 <head>
 
-    <link rel="canonical" href="https://themesberg.com/product/laravel/volt-admin-dashboard-template">
+    <link rel="canonical" href="https://www.andejecruher.com">
     <meta name="keywords" content="software, diseno, programación, desarrollo, html dashboard, laravel, livewire, laravel livewire, alpine.js, html css dashboard laravel, Volt Laravel Admin Dashboard, livewire volt dashboard, volt admin, livewire dashboard, livewire admin, web dashboard, bootstrap 5 dashboard laravel, bootstrap 5, css3 dashboard, bootstrap 5 admin laravel, volt dashboard bootstrap 5 laravel, frontend, responsive bootstrap 5 dashboard, volt dashboard, volt laravel bootstrap 5 dashboard, superacion, aa, na, superacion, autoayuda">
     </meta>
     <meta name="description" content="Soy Andejecruher, un desarrollador full stack en constante crecimiento. En mi sitio web comparto contenido sobre programación, desarrollo web, tecnologías emergentes y superación personal. Aquí podrás conocer mi trayectoria, mis habilidades técnicas y proyectos, así como recursos y artículos para inspirar a otros desarrolladores.">
@@ -12,19 +12,15 @@
     </meta>
     <meta itemprop="description" content="Soy Andejecruher, un desarrollador full stack en constante crecimiento. En mi sitio web comparto contenido sobre programación, desarrollo web, tecnologías emergentes y superación personal. Aquí podrás conocer mi trayectoria, mis habilidades técnicas y proyectos, así como recursos y artículos para inspirar a otros desarrolladores.">
     </meta>
-    <meta itemprop="image" content="https://themesberg.s3.us-east-2.amazonaws.com/public/products/volt-laravel-dashboard/volt-free-laravel-dashboard.jpg">
-    </meta>
     <meta name="twitter:card" content="product">
     </meta>
-    <meta name="twitter:site" content="@themesberg">
+    <meta name="twitter:site" content="@Andejecruher">
     </meta>
     <meta name="twitter:title" content="Andejecruher - Backend">
     </meta>
     <meta name="twitter:description" content="Soy Andejecruher, un desarrollador full stack en constante crecimiento. En mi sitio web comparto contenido sobre programación, desarrollo web, tecnologías emergentes y superación personal. Aquí podrás conocer mi trayectoria, mis habilidades técnicas y proyectos, así como recursos y artículos para inspirar a otros desarrolladores.">
     </meta>
-    <meta name="twitter:creator" content="@themesberg">
-    </meta>
-    <meta name="twitter:image" content="https://themesberg.s3.us-east-2.amazonaws.com/public/products/volt-laravel-dashboard/volt-free-laravel-dashboard.jpg">
+    <meta name="twitter:creator" content="@Andejecruher">
     </meta>
     <meta property="fb:app_id" content="655968634437471">
     </meta>
@@ -34,11 +30,9 @@
     </meta>
     <meta property="og:url" content="http://www.andejecruher.com">
     </meta>
-    <meta property="og:image" content="https://themesberg.s3.us-east-2.amazonaws.com/public/products/volt-laravel-dashboard/volt-free-laravel-dashboard.jpg">
-    </meta>
     <meta property="og:description" content="Soy Andejecruher, un desarrollador full stack en constante crecimiento. En mi sitio web comparto contenido sobre programación, desarrollo web, tecnologías emergentes y superación personal. Aquí podrás conocer mi trayectoria, mis habilidades técnicas y proyectos, así como recursos y artículos para inspirar a otros desarrolladores.">
     </meta>
-    <meta property="og:site_name" content="Themesberg">
+    <meta property="og:site_name" content="Andejecruher">
     </meta>
 
 
@@ -137,45 +131,21 @@
 </body>
 <script type="importmap">
     {
-                "imports": {
-                    "ckeditor5": "/vendor/ckeditor5/ckeditor5.js",
-                    "ckeditor5/": "/vendor/ckeditor5"
-                }
-            }
-        </script>
-<script type="module">
-    import {
-        ClassicEditor,
-        Essentials,
-        Paragraph,
-        Bold,
-        Italic,
-        Font
-    } from 'ckeditor5';
-
-    ClassicEditor
-        .create(document.querySelector('#editor'), {
-            plugins: [Essentials, Paragraph, Bold, Italic, Font],
-            toolbar: [
-                'undo', 'redo', '|', 'bold', 'italic', '|',
-                'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor'
-            ]
-        })
-        .then(editor => {
-            window.editor = editor;
-        })
-        .catch(error => {
-            console.error(error);
-        });
+    "imports": {
+        "ckeditor5": "/vendor/ckeditor5/ckeditor5.js",
+        "ckeditor5/": "/vendor/ckeditor5/"
+        }
+    }
 </script>
-<script>
+<script type="module" src="/assets/js/ckeditor-config.js" defer></script>
+<script type="module">
     document.addEventListener('DOMContentLoaded', function() {
         setTimeout(function() {
             let alerts = document.querySelectorAll('.alert-floating');
             alerts.forEach(function(alert) {
                 alert.style.display = 'none';
             });
-        }, 5000); // Ocultar después de 5 segundos
+        }, 3000);
     });
 </script>
 
