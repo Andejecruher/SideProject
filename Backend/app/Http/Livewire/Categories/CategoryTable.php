@@ -39,6 +39,18 @@ class CategoryTable extends DataTableComponent
                 ->sortable(), // Make the column sortable
             Column::make(__("Description"), "description")
                 ->sortable(), // Make the column sortable
+            Column::make(__("Color"), "color")
+                ->format(function ($value, $column, $row) {
+                    // Render a colored badge with the color value
+                    return '<span class="badge" style="background-color: ' . $value . ';">' . $value . '</span>';
+                })
+                ->html(), // Indicate that the column contains HTML
+            Column::make(__("Icon"), "icon")
+                ->format(function ($value, $column, $row) {
+                    // Render the icon using Font Awesome
+                    return '<i class="' . $value . '"></i>';
+                })
+                ->html(), // Indicate that the column contains HTML
             Column::make(__("Created at"), "created_at")
                 ->sortable(), // Make the column sortable
             Column::make(__("Updated at"), "updated_at")

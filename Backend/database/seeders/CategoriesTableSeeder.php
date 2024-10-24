@@ -25,6 +25,8 @@ class CategoriesTableSeeder extends Seeder
             DB::table('categories')->insert([
                 'name' => $faker->word, // Generate a fake name
                 'description' => $faker->sentence, // Generate a fake description
+                'icon' => $faker->randomElement(['fas fa-laptop', 'fas fa-code', 'fas fa-database', 'fas fa-server', 'fas fa-mobile-alt']), // Assign a random icon
+                'color' => $faker->hexColor, // Generate a random hex color
                 'created_at' => now(), // Set the current timestamp for created_at
                 'updated_at' => now(), // Set the current timestamp for updated_at
             ]);

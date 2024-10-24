@@ -10,6 +10,7 @@ class Tag extends Model
     // Fillable attributes for mass assignment
     protected $fillable = [
         'name', // Name of the tag
+        'color', // Color of the tag
     ];
 
     /**

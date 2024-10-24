@@ -11,7 +11,8 @@
     'categories.create',
     'articles-list',
     'articles.edit',
-    'articles.create',]))
+    'articles.create',
+    'articles.show',]))
 
     {{-- Nav --}}
     @include('layouts.nav')

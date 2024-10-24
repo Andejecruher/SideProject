@@ -8,36 +8,6 @@ use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
 {
-    /**
-     * Store a newly created category in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        // Validate the request data
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string|unique:categories,name',
-            'description' => 'string',
-        ]);
-
-        // If validation fails, redirect back with errors and input
-        if ($validator->fails()) {
-            return redirect()->back()
-                ->withErrors($validator)
-                ->withInput();
-        }
-
-        // Create a new category
-        Category::create([
-            'name' => $request->name,
-            'description' => $request->description,
-        ]);
-
-        // Redirect to the categories list with a success message
-        return redirect()->route('categories-list')->with('success', __('Category created successfully.'));
-    }
 
     /**
      * Show the form for editing the specified category.
@@ -72,6 +42,37 @@ class CategoryController extends Controller
     }
 
     /**
+     * Store a newly created category in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        // Validate the request data
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|unique:categories,name',
+            'description' => 'required|string',
+            'icon' => 'required|string',
+            'color' => 'required|string',
+        ]);
+
+        // If validation fails, return a response with errors
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        // Create a new category with the validated data
+        Category::create($request->only('name', 'description', 'color', 'icon'));
+
+        // Redirect to the categories list with a success message
+        return redirect()->route('categories-list')->with('success', __('Category created successfully'));
+    }
+
+
+    /**
      * Update the specified category in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -90,6 +91,8 @@ class CategoryController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'string|unique:categories,name,' . $id,
             'description' => 'string',
+            'icon' => 'string',
+            'color' => 'string',
         ]);
 
         // If validation fails, return a response with errors
@@ -100,7 +103,7 @@ class CategoryController extends Controller
         }
 
         // Update the category with the validated data
-        $category->update($request->only('name', 'description'));
+        $category->update($request->only('name', 'description', 'color', 'icon'));
 
         // Redirect to the categories list with a success message
         return redirect()->route('categories-list')->with('success', __('Category updated successfully'));

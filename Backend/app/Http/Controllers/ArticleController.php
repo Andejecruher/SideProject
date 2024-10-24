@@ -13,6 +13,18 @@ use App\Models\Category;
 class ArticleController extends Controller
 {
     /**
+     * Display a listing of the articles.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function show($id)
+    {
+        $article = Article::find($id); // Find the article by ID
+        return view('livewire.articles.show', ['article' => $article]); // Return the article view with the article data
+    }
+
+
+    /**
      * Show the form for creating a new article.
      *
      * @return \Illuminate\View\View

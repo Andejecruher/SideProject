@@ -20,6 +20,8 @@ class CreateCategoriesTable extends Migration
             $table->id(); // Primary key
             $table->string('name'); // Name of the category
             $table->text('description')->nullable(); // Description of the category, nullable
+            $table->string('icon')->nullable(); // Icon of the category, nullable
+            $table->string('color')->nullable(); // Color of the category, nullable
             $table->timestamps(); // Timestamps for created_at and updated_at
         });
     }

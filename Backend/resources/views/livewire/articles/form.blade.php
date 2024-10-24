@@ -88,16 +88,6 @@
                     @enderror
                 </div>
 
-                @if(isset($article))
-                <div class="mb-3">
-                    <label for="publication_date" class="form-label">{{ __("Publication Date") }}</label>
-                    <input type="text" class="form-control datepicker-input in-edit @error('publication_date') is-invalid @enderror" id="publication_date" type="text" name="publication_date" placeholder="dd/mm/yyyy" value="{{ old('publication_date', $article->publication_date ?? '') }}" readonly>
-                    @error('publication_date')
-                    <div class="invalid-feedback">{{ __($message) }}</div>
-                    @enderror
-                </div>
-                @endif
-
                 <div class="mb-3">
                     <label for="featured_image" class="form-label">{{ __("Featured Image") }}</label>
                     <input type="file" class="form-control @error('featured_image') is-invalid @enderror" id="featured_image" name="featured_image" onchange="previewImage(event, 'featured_image-preview')">

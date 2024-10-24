@@ -26,7 +26,8 @@ class ArticlesTableSeeder extends Seeder
                 'content' => $faker->randomHtml(), // Generate fake HTML content
                 'featured_image' => $faker->image('public/storage/featured_image', 640, 480, 'avatar', false), // Generate a fake featured image
                 'thumbnail' => $faker->image('public/storage/thumbnail', 320, 280, 'article', false), // Generate a fake thumbnail image
-                'publication_date' => $faker->dateTimeThisYear(), // Generate a fake publication date within this year
+                'publication_date' => null, // Generate a fake publication date within this year
+                'published' => false, // Set the published status to false
                 'category_id' => $faker->randomElement([1, 2, 3]), // Assign a random category ID (change according to your database)
                 'user_id' => $faker->randomElement([1, 2, 3]), // Assign a random user ID (change according to your database)
                 'created_at' => now(), // Set the current timestamp for created_at

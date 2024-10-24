@@ -100,7 +100,7 @@ class ArticleTable extends DataTableComponent
             Column::make(__('Actions'), 'id')
                 ->format(function ($value, $column, $row) {
                     // Render the actions view component with the provided ID and route
-                    return view('livewire.components.actions', ['id' => $value, 'route' => 'articles']);
+                    return view('livewire.components.actions', ['id' => $value, 'route' => 'articles', 'show' => true]);
                 }),
         ];
     }
@@ -115,6 +115,11 @@ class ArticleTable extends DataTableComponent
     {
         $article = Article::find($id);
         if ($article) {
+            if ($article->published) {
+                $article->publication_date = null;
+            } else {
+                $article->publication_date = now();
+            }
             $article->published = !$article->published;
             $article->save();
         }

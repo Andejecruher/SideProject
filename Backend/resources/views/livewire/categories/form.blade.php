@@ -31,7 +31,7 @@
                     <label for="name" class="form-label">{{ __("Name") }}</label>
                     <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name', $category->name ?? '') }}" required>
                     @error('name')
-                        <div class="invalid-feedback">{{ __($message) }}</div>
+                    <div class="invalid-feedback">{{ __($message) }}</div>
                     @enderror
                 </div>
 
@@ -39,8 +39,30 @@
                     <label for="description" class="form-label">{{ __("Description") }}</label>
                     <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description" required>{{ old('description', $category->description ?? '') }}</textarea>
                     @error('description')
-                        <div class="invalid-feedback">{{ __($message) }}</div>
+                    <div class="invalid-feedback">{{ __($message) }}</div>
                     @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label for="color" class="form-label">{{ __("Color") }}</label>
+                    <input type="color" class="form-control @error('color') is-invalid @enderror" id="color" name="color" value="{{ old('color', $category->color ?? '#000000') }}" required>
+                    @error('color')
+                    <div class="invalid-feedback">{{ __($message) }}</div>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label for="icon" class="form-label">{{ __("Icon") }}</label>
+                    <input type="text" class="form-control @error('icon') is-invalid @enderror" id="icon" name="icon" value="{{ old('icon', $category->icon ?? '') }}" required>
+                    @error('icon')
+                    <div class="invalid-feedback">{{ __($message) }}</div>
+                    @enderror
+                    <div class="mt-2">
+                        <label>{{ __("Icon Preview") }}</label>
+                        <div id="icon-preview" class="border p-2">
+                            <i class="{{ old('icon', $category->icon ?? '') }}"></i>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="d-flex justify-content-end">
@@ -49,4 +71,14 @@
             </form>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const iconInput = document.getElementById('icon');
+            const iconPreview = document.getElementById('icon-preview').querySelector('i');
+
+            iconInput.addEventListener('input', function() {
+                iconPreview.className = iconInput.value;
+            });
+        });
+    </script>
 </x-layouts.app>
