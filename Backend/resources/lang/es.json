@@ -127,5 +127,19 @@
     "Unpublished": "No publicado",
     "Articles": "Artículos",
     "Color": "Color",
-    "Icon": "Icono"
+    "Icon": "Icono",
+    "Tags List": "Lista de etiquetas",
+    "New Tag": "Nueva etiqueta",
+    "Edit Tag": "Editar etiqueta",
+    "Delete Tag": "Eliminar etiqueta",
+    "Tag deleted successfully": "Etiqueta eliminada correctamente",
+    "Update Tag": "Actualizar etiqueta",
+    "Create Tag": "Crear etiqueta",
+    "Tag updated successfully": "Etiqueta actualizada correctamente",
+    "Tag created successfully": "Etiqueta creada correctamente",
+    "Tag not found": "Etiqueta no encontrada",
+    "Tag": "Etiqueta",
+    "Tags": "Etiquetas",
+    "Slug": "Slug",
+    "Tag Form": "Formulario de etiqueta"
 }

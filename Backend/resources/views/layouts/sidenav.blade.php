@@ -78,7 +78,7 @@
                     <span class="sidebar-text">{{__("Category")}}</span>
                 </a>
             </li>
-            <li class="nav-item {{ Request::segment(1) == 'article' ? 'active' : '' }}">
+            <li class="nav-item {{ Request::segment(1) == 'articles-list' ? 'active' : '' }}">
                 <a href="/articles-list" class="nav-link">
                     <span class="sidebar-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
@@ -91,6 +91,21 @@
                         </svg>
                     </span>
                     <span class="sidebar-text">{{__("Article")}}</span>
+                </a>
+            </li>
+            <li class="nav-item {{ Request::segment(1) == 'tags-list' ? 'active' : '' }}">
+                <a href="/tags-list" class="nav-link">
+                    <span class="sidebar-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                            <style>
+                                svg {
+                                    fill: #ffffff
+                                }
+                            </style>
+                            <path d="M0 80L0 229.5c0 17 6.7 33.3 18.7 45.3l176 176c25 25 65.5 25 90.5 0L418.7 317.3c25-25 25-65.5 0-90.5l-176-176c-12-12-28.3-18.7-45.3-18.7L48 32C21.5 32 0 53.5 0 80zm112 32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z" />
+                        </svg>
+                    </span>
+                    <span class="sidebar-text">{{__("Tags")}}</span>
                 </a>
             </li>
         </ul>

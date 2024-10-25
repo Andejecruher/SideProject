@@ -12,7 +12,10 @@
     'articles-list',
     'articles.edit',
     'articles.create',
-    'articles.show',]))
+    'articles.show',
+    'tags-list',
+    'tags.edit',
+    'tags.create',]))
 
     {{-- Nav --}}
     @include('layouts.nav')

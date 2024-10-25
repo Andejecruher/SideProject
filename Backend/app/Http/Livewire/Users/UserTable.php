@@ -63,6 +63,11 @@ class UserTable extends DataTableComponent
             Column::make(__("Postal Code"), "postal_code")
                 ->searchable() // Make the column searchable
                 ->sortable(), // Make the column sortable
+            Column::make(__('Actions'), 'id')
+                ->format(function ($value, $column, $row) {
+                    // Render the actions view component with the provided ID and route
+                    return view('livewire.components.actions', ['id' => $value, 'route' => 'users']);
+                }),
         ];
     }
 }
