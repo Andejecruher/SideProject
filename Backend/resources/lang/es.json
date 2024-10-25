@@ -141,5 +141,10 @@
     "Tag": "Etiqueta",
     "Tags": "Etiquetas",
     "Slug": "Slug",
-    "Tag Form": "Formulario de etiqueta"
+    "Tag Form": "Formulario de etiqueta",
+    "General information": "Información general",
+    "Tag name": "Nombre de la etiqueta",
+    "Location": "Ubicación",
+    "Save": "Guardar",
+    "Saved!": "¡Guardado!"
 }

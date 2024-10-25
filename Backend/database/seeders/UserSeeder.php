@@ -26,8 +26,8 @@ class UserSeeder extends Seeder
         // Insert a fake admin user into the users table
         DB::table("users")->insert([
             'first_name' => 'Admin', // First name of the user
-            'last_name' => 'User', // Last name of the user
-            'email' => 'admin@volt.com', // Email of the user
+            'last_name' => 'System', // Last name of the user
+            'email' => 'admin@system.com', // Email of the user
             'password' => Hash::make('secret'), // Hashed password of the user
             'gender' => Arr::random(['male', 'female', 'other']), // Random gender
             'avatar' => $faker->image('public/storage/avatars', 640, 480, null, false), // Fake avatar image

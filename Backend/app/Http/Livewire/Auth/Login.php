@@ -27,7 +27,7 @@ class Login extends Component
 
         // Fill the default credentials for the admin
         $this->fill([
-            'email' => 'admin@volt.com', // Default admin email
+            'email' => 'admin@system.com', // Default admin email
             'password' => 'secret', // Default admin password
         ]);
     }
