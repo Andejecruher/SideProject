@@ -24,6 +24,7 @@ class CommentsController extends Controller
                 'total_pages' => ceil($comments->total() / $comments->perPage()),
                 'total_items' => $comments->total(),
             ],
+            'message' => __('Comments retrieved successfully'),
         ]);
     }
 
@@ -47,7 +48,10 @@ class CommentsController extends Controller
         $comment->published_at = now();
         $comment->save();
 
-        return response()->json($comment, 201);
+        return response()->json([
+            'data' => $comment,
+            'message' => __('Comment created successfully'),
+        ]);
     }
 
     // Mostrar un comentario específico de un artículo
@@ -59,7 +63,10 @@ class CommentsController extends Controller
             return response()->json(['message' => __('Comment not found')], 404);
         }
 
-        return response()->json($comment);
+        return response()->json([
+            'data' => $comment,
+            'message' => __('Comment retrieved successfully'),
+        ]);
     }
 
     // Actualizar un comentario específico de un artículo
@@ -80,7 +87,10 @@ class CommentsController extends Controller
         }
 
         $comment->update($request->all());
-        return response()->json($comment);
+        return response()->json([
+            'data' => $comment,
+            'message' => __('Comment updated successfully'),
+        ]);
     }
 
     // Eliminar un comentario específico de un artículo
@@ -93,6 +103,9 @@ class CommentsController extends Controller
         }
 
         $comment->delete();
-        return response()->json(['message' => __('Comment deleted successfully')]);
+        return response()->json([
+            'data' => $comment,
+            'message' => __('Comment deleted successfully')
+        ]);
     }
 }

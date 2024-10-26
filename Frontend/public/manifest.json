@@ -1,0 +1,21 @@
+{
+  "name": "Andejecruher - Desarrollador Full Stack",
+  "short_name": "Andejecruher",
+  "description": "Explora mi trayectoria como desarrollador full stack, conoce mis proyectos y obtén recursos sobre programación y superación personal.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "/apple-icon-180x180.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    }
+  ]
+}

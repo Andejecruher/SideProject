@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
-import andejecruher from "../../assets/andejecruher.png";
-import ajh from "../../assets/ajh.png";
-import "./AboutMe.css";
+import andejecruher from "@src/assets/andejecruher.png";
+import ajh from "@src/assets/ajh.png";
 import EmailIcon from "@mui/icons-material/Email";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import PhoneIcon from "@mui/icons-material/Phone";
 import useOnScreen from "@src/hooks/useOnScreen";
 import classNames from "classnames";
 import { useMediaQuery } from "@mui/material";
+
+import "./AboutMe.css";
 
 const AboutMe = () => {
   const isMobile = useMediaQuery("(max-width: 768px)");

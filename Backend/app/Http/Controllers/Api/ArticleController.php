@@ -16,18 +16,24 @@ class ArticleController extends Controller
      */
     public function index(Request $request)
     {
-        // Get search and pagination parameters
+        // Get search, category, and pagination parameters
         $search = $request->input('search');
+        $category = $request->input('category');
         $perPage = $request->input('per_page', 10); // Number of articles per page, default is 10
 
         // Build the query
-        $query = Article::query();
+        $query = Article::query()->with('category', 'tags', 'comments');
 
         // Apply search if a search term is provided
         if ($search) {
             $query->where('title', 'like', '%' . $search . '%')
                 ->orWhere('description', 'like', '%' . $search . '%')
                 ->orWhere('content', 'like', '%' . $search . '%');
+        }
+
+        // Apply category filter if a category is provided
+        if ($category) {
+            $query->where('category_id', $category);
         }
 
         // Get paginated articles
@@ -46,6 +52,7 @@ class ArticleController extends Controller
                 'total_pages' => ceil($articles->total() / $articles->perPage()),
                 'total_items' => $articles->total(),
             ],
+            'message' => __('Articles retrieved successfully'),
         ];
 
         // Return the JSON response with paginated articles
@@ -61,11 +68,11 @@ class ArticleController extends Controller
     public function show($id, Request $request)
     {
         // Find the article by ID
-        $article = Article::find($id);
+        $article = Article::find($id)->with('category', 'tags')->first();
 
         // Check if the article exists
         if (!$article) {
-            return response()->json(['message' => 'Article not found'], 404);
+            return response()->json(['message' => __('Article not found')], 404);
         }
 
         // Get pagination parameters
@@ -90,9 +97,13 @@ class ArticleController extends Controller
                     'total_items' => $comments->total(),
                 ],
             ],
+            'message' => __('Article retrieved successfully'),
         ];
 
         // Return the JSON response with the article and its paginated comments
-        return response()->json($response);
+        return response()->json([
+            'data' => $response,
+            'message' => __('Article retrieved successfully'),
+        ]);
     }
 }
