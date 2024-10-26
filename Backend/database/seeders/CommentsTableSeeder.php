@@ -26,7 +26,8 @@ class CommentsTableSeeder extends Seeder
                 'content' => $faker->paragraph, // Generate a fake paragraph for the comment content
                 'author_name' => $faker->name, // Generate a fake name for the author
                 'article_id' => $faker->numberBetween(1, 10), // Assign a random article ID (change according to your database)
-                'user_id' => $faker->randomElement([1, 2, 3, null]), // Assign a random user ID or null (change according to your database)
+                'author_email' => $faker->email, // Generate a fake email address
+                'published_at' => $faker->date, // Generate a fake date of publication
                 'ip_address' => $faker->ipv4, // Generate a fake IPv4 address
                 'created_at' => now(), // Set the current timestamp for created_at
                 'updated_at' => now(), // Set the current timestamp for updated_at

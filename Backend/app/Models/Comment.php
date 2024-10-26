@@ -14,7 +14,8 @@ class Comment extends Model
         'content', // Content of the comment
         'author_name', // Name of the author
         'article_id', // Foreign key to the articles table
-        'user_id', // Foreign key to the users table
+        'author_email', // Email of the author
+        'published_at', // Date and time when the comment was published
         'ip_address', // IP address of the author
     ];
 

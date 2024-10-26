@@ -18,9 +18,10 @@ class CreateCommentsTable extends Migration
             $table->id(); // Primary key
             $table->text('content'); // Content of the comment
             $table->string('author_name')->nullable(); // Name of the author, nullable
+            $table->string('author_email')->nullable(); // Email of the author, nullable
+            $table->date('published_at')->nullable(); // Date of publication, nullable
             $table->string('ip_address')->nullable(); // IP address of the author, nullable
             $table->foreignId('article_id')->constrained('articles')->onDelete('cascade'); // Foreign key to the articles table, cascade on delete
-            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('set null'); // Foreign key to the users table, set to null on delete
             $table->timestamps(); // Timestamps for created_at and updated_at
         });
     }
