@@ -146,13 +146,13 @@ function HeaderMegaMenu() {
             >
               Inicio
             </a>
-            {/* <a
+            <a
                 href="#"
                 className={`${classes.link} ${selectedPage === 'Blog' ? classes.selected : ''}`}
                 onClick={() => handlePageClick('Blog')}
               >
                 Blog
-              </a> */}
+              </a>
             <a
               href="#"
               className={`${classes.link} ${selectedPage === 'Contacto' ? classes.selected : ''}`}

@@ -2,7 +2,7 @@ import { Autocomplete, Group, Burger, rem } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconSearch } from '@tabler/icons-react';
 import { MantineLogo } from '@mantinex/mantine-logo';
-import classes from './HeaderBlog.module.css';
+import classes from './HeaderSearch.module.css';
 
 const links = [
   { link: '/about', label: 'Features' },
@@ -11,7 +11,7 @@ const links = [
   { link: '/community', label: 'Community' },
 ];
 
-export function HeaderBlog() {
+export default function HeaderSearch() {
   const [opened, { toggle }] = useDisclosure(false);
 
   const items = links.map((link) => (
@@ -30,13 +30,13 @@ export function HeaderBlog() {
       <div className={classes.inner}>
         <Group>
           <Burger opened={opened} onClick={toggle} size="sm" hiddenFrom="sm" />
-          <Group ml={50} gap={5} className={classes.links} visibleFrom="sm">
-            {items}
-          </Group>
+          <MantineLogo size={28} />
         </Group>
 
         <Group>
-          
+          <Group ml={50} gap={5} className={classes.links} visibleFrom="sm">
+            {items}
+          </Group>
           <Autocomplete
             className={classes.search}
             placeholder="Search"
