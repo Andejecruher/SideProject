@@ -2,6 +2,7 @@ import React from 'react';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import HeaderSearch from '@src/components/HeaderSearch/HeaderSearch';
+import FeedIcon from '@mui/icons-material/Feed';
 import './Blog.css';
 
 function Blog() {
@@ -14,7 +15,7 @@ function Blog() {
       >
         <div>
           <Typography variant="h1" gutterBottom>
-            Blog
+            Blog <FeedIcon fontSize="large" className='paper-icon' />
           </Typography>
           <Typography>Mantente al tanto de las últimas novedades.</Typography>
         </div>
