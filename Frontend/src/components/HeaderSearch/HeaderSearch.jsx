@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import './HeaderSearch.css';
 
-export default function HeaderSearch() {
+export default function HeaderSearch({ categories }) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedLink, setSelectedLink] = useState('Todas');
 
@@ -60,4 +61,8 @@ export default function HeaderSearch() {
       </nav>
     </div>
   );
+};
+
+HeaderSearch.propTypes = {
+  categories: PropTypes.array,
 };

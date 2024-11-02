@@ -4,6 +4,7 @@ import Root from "./root";
 import Home from "@src/pages/Home/Home";
 import Contact from "@src/pages/Contact/Contact";
 import Blog from "@src/pages/Blog/Blog";
+import Article from "@src/pages/Article/Article";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
       {
         path: "/Blog",
         element: <Blog />,
+      },
+      {
+        path: "/Blog/:postId", // Nueva ruta para mostrar los posts individualmente
+        element: <Article />,
       },
       {
         path: "/Contacto",

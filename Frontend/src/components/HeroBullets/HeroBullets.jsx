@@ -40,7 +40,7 @@ function HeroBullets() {
             </List.Item>
           </List>
 
-          <Group mt={30}>
+          <Group mt={30} className='w-full'>
             <Button radius="xl" size="md" className={classes.control}>
               Leer más ...
             </Button>

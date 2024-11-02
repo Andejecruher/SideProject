@@ -31,9 +31,7 @@
 }
 
 .control {
-  @media (max-width: $mantine-breakpoint-xs) {
-    flex: 1;
-  }
+  flex: 1;
 }
 
 .image {
