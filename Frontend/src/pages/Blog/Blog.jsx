@@ -3,11 +3,13 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import HeaderSearch from '@src/components/HeaderSearch/HeaderSearch';
 import FeedIcon from '@mui/icons-material/Feed';
+import CardsCarousel from '@src/components/Carousels/Carousel';
 import './Blog.css';
 
 function Blog() {
   return (
     <>
+      
       <Container
         maxWidth="xl"
         component="main"
@@ -20,6 +22,7 @@ function Blog() {
           <Typography>Mantente al tanto de las últimas novedades.</Typography>
         </div>
         <HeaderSearch />
+        <CardsCarousel />
       </Container>
     </>
   );

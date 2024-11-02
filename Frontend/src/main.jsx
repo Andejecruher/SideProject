@@ -8,6 +8,7 @@ import theme from "@src/components/Themes/theme";
 import router from "@src/router/router";
 import 'animate.css';
 import '@mantine/core/styles.css';
+import '@mantine/carousel/styles.css';
 import "./index.css";
 
 

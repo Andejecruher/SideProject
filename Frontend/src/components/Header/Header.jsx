@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import {
   Group,
   Box,
@@ -61,27 +61,27 @@ function HeaderMegaMenu() {
       <header className={classes.header}>
         <Group justify="space-between" h="100%">
           <Group h="60%" gap={0} visibleFrom="sm">
-            <a
+            <Link
               href="#"
               className={`${classes.link} ${selectedPage === 'Inicio' ? classes.selected : ''}`}
               onClick={() => handlePageClick('Inicio')}
             >
               Inicio
-            </a>
-            <a
+            </Link>
+            <Link
               href="#"
               className={`${classes.link} ${selectedPage === 'Blog' ? classes.selected : ''}`}
               onClick={() => handlePageClick('Blog')}
             >
               Blog
-            </a>
-            <a
+            </Link>
+            <Link
               href="#"
               className={`${classes.link} ${selectedPage === 'Contacto' ? classes.selected : ''}`}
               onClick={() => handlePageClick('Contacto')}
             >
               Contacto
-            </a>
+            </Link>
           </Group>
 
           <Typography className={classes.andejecruher}>
@@ -139,27 +139,27 @@ function HeaderMegaMenu() {
               flexGrow: 1,
             }}
           >
-            <a
+            <Link
               href="#"
               className={`${classes.link} ${selectedPage === 'Inicio' ? classes.selected : ''}`}
               onClick={() => handlePageClick('Inicio')}
             >
               Inicio
-            </a>
-            <a
-                href="#"
-                className={`${classes.link} ${selectedPage === 'Blog' ? classes.selected : ''}`}
-                onClick={() => handlePageClick('Blog')}
-              >
-                Blog
-              </a>
-            <a
+            </Link>
+            <Link
+              href="#"
+              className={`${classes.link} ${selectedPage === 'Blog' ? classes.selected : ''}`}
+              onClick={() => handlePageClick('Blog')}
+            >
+              Blog
+            </Link>
+            <Link
               href="#"
               className={`${classes.link} ${selectedPage === 'Contacto' ? classes.selected : ''}`}
               onClick={() => handlePageClick('Contacto')}
             >
               Contacto
-            </a>
+            </Link>
           </Box>
 
           <Group justify="center" grow pb="xl" px="md">

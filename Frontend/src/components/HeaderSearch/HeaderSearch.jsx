@@ -44,14 +44,14 @@ export default function HeaderSearch() {
             </button>
           </div>
           <div className={`md:flex justify-between items-center w-full md:w-auto md:order-1 ${isOpen ? 'block' : 'hidden'}`}>
-            <ul className="flex-col md:flex-row flex md:space-x-8 mt-4 md:mt-0 md:text-sm md:font-medium">
-              <li className='w-full'>
+            <ul className="flex-col md:flex-row flex md:space-x-2 mt-4 md:mt-0 md:text-sm md:font-medium">
+              <li className=''>
                 <a href="#" onClick={() => handleLinkClick('Todas')} className={`block rounded p-2 ${selectedLink === 'Todas' ? 'btn-selected' : 'text-gray-70'}`}>Todas</a>
               </li>
-              <li className='w-full'>
+              <li className=''>
                 <a href="#" onClick={() => handleLinkClick('Desarrollo')} className={`block rounded p-2 ${selectedLink === 'Desarrollo' ? 'btn-selected' : 'text-gray-70'}`}>Desarrollo</a>
               </li>
-              <li className='w-full'>
+              <li className=''>
                 <a href="#" onClick={() => handleLinkClick('Autoayuda')} className={`block rounded p-2 ${selectedLink === 'Autoayuda' ? 'btn-selected' : 'text-gray-70'}`}>Autoayuda</a>
               </li>
             </ul>
