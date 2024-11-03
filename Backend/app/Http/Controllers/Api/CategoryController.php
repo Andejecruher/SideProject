@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Category;
 
 class CategoryController extends Controller
@@ -21,7 +20,7 @@ class CategoryController extends Controller
 
         // Response structure
         $response = [
-            'data' => $categories->items(),
+            'data' => $categories,
             'message' => __('Categories retrieved successfully'),
         ];
 

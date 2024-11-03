@@ -68,7 +68,7 @@ class ArticleController extends Controller
     public function show($id, Request $request)
     {
         // Find the article by ID
-        $article = Article::find($id)->with('category', 'tags')->first();
+        $article = Article::where('id', $id)->with('category', 'tags')->first();
 
         // Check if the article exists
         if (!$article) {
@@ -96,8 +96,7 @@ class ArticleController extends Controller
                     'total_pages' => ceil($comments->total() / $comments->perPage()),
                     'total_items' => $comments->total(),
                 ],
-            ],
-            'message' => __('Article retrieved successfully'),
+            ]
         ];
 
         // Return the JSON response with the article and its paginated comments
@@ -105,5 +104,31 @@ class ArticleController extends Controller
             'data' => $response,
             'message' => __('Article retrieved successfully'),
         ]);
+    }
+
+    /**
+     * Display a listing of the latest articles.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+
+    public function latest(Request $request)
+    {
+        // Get the number of latest articles to retrieve
+        $limit = $request->input('limit', 5); // Default is 5
+
+        // Get the latest articles based on publication_date
+        $articles = Article::orderBy('publication_date', 'desc')->limit($limit)->get();
+
+        $articles->load('category', 'tags');
+        // Response structure
+        $response = [
+            'data' => $articles,
+            'message' => __('Latest articles retrieved successfully'),
+        ];
+
+        // Return the JSON response with the latest articles
+        return response()->json($response);
     }
 }

@@ -11,31 +11,28 @@ export const getArticles = async () => {
         return error;
     }
 };
-
-// Llama a la API para agregar una tarea
-export const addTask = async (title, description, date) => {
+// Llama a la API para obtener los posts mas recientes
+export const getLatestPosts = async () => {
     try {
-        const response = await axiosInstance.post('/tasks', { title, description, date });
+        const response = await axiosInstance.get('/articles-latest');
         return response.data;
     } catch (error) {
         return error;
     }
 };
-
-// Llama a la API para actualizar una tarea
-export const updateTask = async (taskId, title, description, status) => {
+// Llama a la API para obtener los categorias
+export const getCategories = async () => {
     try {
-        const response = await axiosInstance.put(`/tasks/${taskId}`, { title, description, status });
+        const response = await axiosInstance.get('/categories');
         return response.data;
     } catch (error) {
         return error;
     }
 };
-
-// Llama a la API para eliminar una tarea
-export const deleteTask = async (taskId) => {
+// Llama a la API para obtener los tags
+export const getTags = async () => {
     try {
-        const response = await axiosInstance.delete(`/tasks/${taskId}`);
+        const response = await axiosInstance.get('/tags');
         return response.data;
     } catch (error) {
         return error;

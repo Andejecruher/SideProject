@@ -9,6 +9,8 @@ class Category extends Model
 {
     use HasFactory;
 
+    protected $table = 'categories'; // Define the table name
+
     // Fillable attributes for mass assignment
     protected $fillable = [
         'name', // Name of the category

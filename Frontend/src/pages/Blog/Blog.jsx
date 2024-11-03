@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 import HeaderSearch from '@src/components/HeaderSearch/HeaderSearch';
 import CardsCarousel from '@src/components/Carousels/Carousel';
 import Posts from '@src/components/Posts/Posts';
-import { getArticles } from '@src/Api/api';
+import { getArticles, getCategories, getTags, getLatestPosts } from '@src/Api/api';
 import './Blog.css';
 
 function Blog() {
@@ -52,8 +52,26 @@ function Blog() {
     console.log(articles);
   };
 
+  const getCategoriesData = async () => {
+    const categories = await getCategories();
+    console.log(categories);
+  }
+
+  const getTagsData = async () => {
+    const tags = await getTags();
+    console.log(tags);
+  }
+
+  const getLatestPostsData = async () => {
+    const latestPosts = await getLatestPosts();
+    console.log(latestPosts);
+  }
+
   useEffect(() => {
+    getLatestPostsData();
     getArticlesData();
+    getCategoriesData();
+    getTagsData();
   }, []);
   return (
     <>
