@@ -15,8 +15,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        // Get paginated categories
-        $categories = Category::all();
+        // Get categories with the count of articles
+        $categories = Category::withCount('articles')->get();
 
         // Response structure
         $response = [

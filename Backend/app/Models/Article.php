@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\URL;
+
 
 class Article extends Model
 {
@@ -21,7 +23,36 @@ class Article extends Model
         'category_id', // Foreign key to the categories table
         'user_id', // Foreign key to the users table
     ];
+    /**
+     * Get the URL for the featured image.
+     *
+     * @return string
+     */
+    public function getFeaturedImageAttribute($value)
+    {
+        return $this->getImageUrl($value);
+    }
 
+    /**
+     * Get the URL for the thumbnail image.
+     *
+     * @return string
+     */
+    public function getThumbnailAttribute($value)
+    {
+        return $this->getImageUrl($value);
+    }
+
+    /**
+     * Generate the full URL for an image.
+     *
+     * @param string $value
+     * @return string
+     */
+    protected function getImageUrl($value)
+    {
+        return $value ? URL::route('images.show', ['imageName' => $value]) : URL::route('images.show', ['imageName' => 'default.jpg']);
+    }
     /**
      * Get the user that owns the article.
      *

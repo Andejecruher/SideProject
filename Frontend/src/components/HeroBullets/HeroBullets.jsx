@@ -1,19 +1,19 @@
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Image, Container, Title, Button, Group, Text, List, ThemeIcon, rem } from '@mantine/core';
 import { IconCheck } from '@tabler/icons-react';
-import image from '@src/assets/image.svg';
 import classes from './HeroBullets.module.css';
 
-function HeroBullets() {
+function HeroBullets({ article }) {
   return (
     <Container size="md">
       <div className={classes.inner}>
         <div className={classes.content}>
           <Title className={classes.title}>
-            A <span className={classes.highlight}>modern</span> React <br /> components library
+            <span className={classes.highlight}>{article.title}</span>
           </Title>
           <Text c="dimmed" mt="md">
-            Build fully functional accessible web applications faster than ever – Mantine includes
-            more than 120 customizable components and hooks to cover you in any situation
+            {article.description}
           </Text>
 
           <List
@@ -26,30 +26,27 @@ function HeroBullets() {
               </ThemeIcon>
             }
           >
-            <List.Item>
-              <b>TypeScript based</b> – build type safe applications, all components and hooks
-              export types
-            </List.Item>
-            <List.Item>
-              <b>Free and open source</b> – all packages have MIT license, you can use Mantine in
-              any project
-            </List.Item>
-            <List.Item>
-              <b>No annoying focus ring</b> – focus ring will appear only when user navigates with
-              keyboard
-            </List.Item>
+            {article.tags && article.tags.map((tag) => (
+              <List.Item key={tag.id}>{tag.name}</List.Item>
+            ))}
           </List>
 
           <Group mt={30} className='w-full'>
-            <Button radius="xl" size="md" className={classes.control}>
+            <Button radius="xl" size="md" className={classes.control} onClick={() => {
+              console.log('Leer más', article.id);
+            }}>
               Leer más ...
             </Button>
           </Group>
         </div>
-        <Image src={image} className={`sm:w-[60%] ${classes.image}`} />
+        <Image src={article.featured_image} className={`sm:w-[60%] ${classes.image}`} />
       </div>
     </Container>
   );
 }
+
+HeroBullets.propTypes = {
+  article: PropTypes.object,
+};
 
 export default HeroBullets;

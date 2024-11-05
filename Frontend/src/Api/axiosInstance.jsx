@@ -26,13 +26,6 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.response.use(
     (response) => response,
     (error) => {
-        if (error.response && error.response.status === 401) {
-            // Si el token ha caducado, elimina la cookie y redirige al login
-            if (typeof window !== 'undefined') {
-                // Redirige al usuario al login si está en el navegador
-                window.location.href = '/Blog';
-            }
-        }
         return Promise.reject(error);
     }
 );

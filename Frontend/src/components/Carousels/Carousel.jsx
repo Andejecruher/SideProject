@@ -6,32 +6,32 @@ import PropTypes from 'prop-types';
 
 function CardsCarousel({ data }) {
 
-  const slides = data.map((item) => (
+  const slides = Array.isArray(data) ? data.map((item) => (
     <Carousel.Slide key={item.title}>
-      <HeroBullets />
+      <HeroBullets article={item} />
     </Carousel.Slide>
-  ));
+  )) : [];
 
   return (
     <div className={classes.carousel}>
       <Carousel
-      withIndicators
-      align="start"
-      slidesToScroll={1}
-      classNames={{
-        indicator: classes.indicator,
-        indicators: classes.indicators,
-        slide: classes.slide,
-      }}
-    >
-      {slides}
-    </Carousel>
+        withIndicators
+        align="start"
+        slidesToScroll={1}
+        classNames={{
+          indicator: classes.indicator,
+          indicators: classes.indicators,
+          slide: classes.slide,
+        }}
+      >
+        {slides}
+      </Carousel>
     </div>
   );
 }
 
 CardsCarousel.propTypes = {
-  data: PropTypes.array.isRequired,
+  data: PropTypes.array,
 };
 
 export default CardsCarousel;

@@ -49,12 +49,11 @@ export default function HeaderSearch({ categories }) {
               <li className=''>
                 <a href="#" onClick={() => handleLinkClick('Todas')} className={`block rounded p-2 ${selectedLink === 'Todas' ? 'btn-selected' : 'text-gray-70'}`}>Todas</a>
               </li>
-              <li className=''>
-                <a href="#" onClick={() => handleLinkClick('Desarrollo')} className={`block rounded p-2 ${selectedLink === 'Desarrollo' ? 'btn-selected' : 'text-gray-70'}`}>Desarrollo</a>
-              </li>
-              <li className=''>
-                <a href="#" onClick={() => handleLinkClick('Autoayuda')} className={`block rounded p-2 ${selectedLink === 'Autoayuda' ? 'btn-selected' : 'text-gray-70'}`}>Autoayuda</a>
-              </li>
+              {categories && categories.map((category) => (
+                <li key={category.id} className=''>
+                  <a href="#" onClick={() => handleLinkClick(category.name)} className={`block rounded p-2 ${selectedLink === category.name ? 'btn-selected' : 'text-gray-70'}`}>{category.name}</a>
+                </li>
+              ))}
             </ul>
           </div>
         </div>

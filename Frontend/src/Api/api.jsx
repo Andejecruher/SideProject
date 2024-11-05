@@ -20,7 +20,7 @@ export const getLatestPosts = async () => {
         return error;
     }
 };
-// Llama a la API para obtener los categorias
+// Llama a la API para obtener los categories
 export const getCategories = async () => {
     try {
         const response = await axiosInstance.get('/categories');
@@ -38,3 +38,4 @@ export const getTags = async () => {
         return error;
     }
 };
+

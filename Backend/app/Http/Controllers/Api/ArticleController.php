@@ -22,7 +22,7 @@ class ArticleController extends Controller
         $perPage = $request->input('per_page', 10); // Number of articles per page, default is 10
 
         // Build the query
-        $query = Article::query()->with('category', 'tags', 'comments');
+        $query = Article::query()->with('category', 'tags', 'comments', 'user');
 
         // Apply search if a search term is provided
         if ($search) {

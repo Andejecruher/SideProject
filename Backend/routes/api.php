@@ -6,6 +6,9 @@ use App\Http\Controllers\Api\ArticleController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\CommentsController;
 use App\Http\Controllers\Api\TagController;
+use App\Http\Controllers\Api\ImageController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -18,12 +21,15 @@ use App\Http\Controllers\Api\TagController;
 |
 */
 
+Route::get('/images/{imageName}', [ImageController::class, 'show'])->name('images.show');
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-
 Route::middleware('auth:sanctum')->group(function () {
+
+
+
     Route::resource('articles', ArticleController::class)->except(['create', 'edit', 'update', 'destroy', 'store']);
     Route::resource('categories', CategoryController::class)->except(['create', 'edit', 'update', 'destroy', 'store', 'show']);
     Route::resource('tags', TagController::class)->except(['create', 'edit', 'update', 'destroy', 'store', 'show']);

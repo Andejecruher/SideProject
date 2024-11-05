@@ -18,9 +18,7 @@
 
 .title {
   color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
-  font-family:
-    Greycliff CF,
-    var(--mantine-font-family);
+  font-family: Greycliff CF, var(--mantine-font-family);
   font-size: rem(44px);
   line-height: 1.2;
   font-weight: 900;
@@ -37,6 +35,7 @@
 .image {
   width: rem(376px);
   height: rem(356px);
+  flex: inherit !important;
 
   @media (max-width: $mantine-breakpoint-md) {
     width: 100%;

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\URL;
 
 class User extends Authenticatable
 {
@@ -27,6 +28,7 @@ class User extends Authenticatable
         'role', // Role of the user (e.g., admin, user)
         'email_verified_at', // Timestamp when the email was verified
     ];
+    protected $appends = ['avatar'];
 
     // Hidden attributes for arrays
     protected $hidden = [
@@ -38,6 +40,26 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime', // Cast email_verified_at to datetime
     ];
+    /**
+     * Get the URL for the thumbnail image.
+     *
+     * @return string
+     */
+    public function getAvatarAttribute($value)
+    {
+        return $this->getImageUrl($value);
+    }
+
+    /**
+     * Generate the full URL for an image.
+     *
+     * @param string $value
+     * @return string
+     */
+    protected function getImageUrl($value)
+    {
+        return $value ? URL::route('images.show', ['imageName' => $value]) : URL::route('images.show', ['imageName' => 'default.jpg']);
+    }
 
     /**
      * Get the articles for the user.
