@@ -7,14 +7,12 @@ Backend/.phpunit.result.cache
 Backend/Homestead.yaml
 Backend/Homestead.json
 Backend/.vagrant
+Backend/.env
 
 # React (dentro de la carpeta Frontend)
 Frontend/node_modules/
 Frontend/build/
-Frontend/.env.local
-Frontend/.env.development.local
-Frontend/.env.test.local
-Frontend/.env.production.local
+Frontend/.env
 
 # Logs (para ambos proyectos)
 npm-debug.log*

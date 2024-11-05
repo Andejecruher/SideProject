@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useContext } from 'react';
+import { BlogContext } from '@src/Context/BlogContext';
 import './HeaderSearch.css';
 
-export default function HeaderSearch({ categories }) {
+export default function HeaderSearch() {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedLink, setSelectedLink] = useState('Todas');
+  const { categories } = useContext(BlogContext);
+
 
   const handleLinkClick = (link) => {
     setSelectedLink(link);
@@ -60,8 +62,4 @@ export default function HeaderSearch({ categories }) {
       </nav>
     </div>
   );
-};
-
-HeaderSearch.propTypes = {
-  categories: PropTypes.array,
 };

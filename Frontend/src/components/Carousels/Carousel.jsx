@@ -2,11 +2,12 @@ import React from 'react';
 import { Carousel } from '@mantine/carousel';
 import HeroBullets from '../HeroBullets/HeroBullets';
 import classes from './CardCarousel.module.css';
-import PropTypes from 'prop-types';
+import { BlogContext } from '@src/Context/BlogContext';
 
-function CardsCarousel({ data }) {
+function CardsCarousel() {
+  const { latestPosts } = React.useContext(BlogContext);
 
-  const slides = Array.isArray(data) ? data.map((item) => (
+  const slides = Array.isArray(latestPosts) ? latestPosts.map((item) => (
     <Carousel.Slide key={item.title}>
       <HeroBullets article={item} />
     </Carousel.Slide>
@@ -29,9 +30,5 @@ function CardsCarousel({ data }) {
     </div>
   );
 }
-
-CardsCarousel.propTypes = {
-  data: PropTypes.array,
-};
 
 export default CardsCarousel;

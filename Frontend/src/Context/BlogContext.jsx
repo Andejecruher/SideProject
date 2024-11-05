@@ -12,35 +12,69 @@ export const BlogProvider = ({ children }) => {
   const [categories, setCategories] = useState([]);
   const [tags, setTags] = useState([]);
   const [pagination, setPagination] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Función para obtener los datos de la API
-    const fetchData = async () => {
+    const fetchLatestPosts = async () => {
       try {
-        const latestPostsResponse = await getLatestPosts();
-        setLatestPosts(latestPostsResponse.data);
-
-        const articlesResponse = await getArticles();
-        setArticles(articlesResponse.data);
-
-        const categoriesResponse = await getCategories();
-        setCategories(categoriesResponse.data);
-
-        const tagsResponse = await getTags();
-        setTags(tagsResponse.data);
-
-        // Suponiendo que la paginación viene en la respuesta de los artículos
-        setPagination(articlesResponse.pagination);
-      } catch (error) {
-        console.error('Error fetching data:', error);
+        const response = await getLatestPosts();
+        if (response && response.data) setLatestPosts(response.data);
+      } catch (err) {
+        setError('Error fetching latest posts');
       }
     };
 
-    fetchData();
+    const fetchArticles = async () => {
+      try {
+        const response = await getArticles();
+        if (response && response.data) {
+          setArticles(response.data);
+          setPagination(response.pagination || {});
+        }
+      } catch (err) {
+        setError('Error fetching articles');
+      }
+    };
+
+    const fetchCategories = async () => {
+      try {
+        const response = await getCategories();
+        if (response && response.data) setCategories(response.data);
+      } catch (err) {
+        setError('Error fetching categories');
+      }
+    };
+
+    const fetchTags = async () => {
+      try {
+        const response = await getTags();
+        if (response && response.data) setTags(response.data);
+      } catch (err) {
+        setError('Error fetching tags');
+      }
+    };
+
+    // Llamar a todas las funciones de carga
+    const fetchAllData = async () => {
+      setIsLoading(true);
+      await Promise.all([fetchLatestPosts(), fetchArticles(), fetchCategories(), fetchTags()]);
+      setIsLoading(false);
+    };
+
+    fetchAllData();
   }, []);
 
   return (
-    <BlogContext.Provider value={{ latestPosts, articles, categories, tags, pagination }}>
+    <BlogContext.Provider value={{
+      latestPosts,
+      articles,
+      categories,
+      tags,
+      pagination,
+      isLoading,
+      error
+    }}>
       {children}
     </BlogContext.Provider>
   );

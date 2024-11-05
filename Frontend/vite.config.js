@@ -9,8 +9,12 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@src': path.resolve(__dirname, './src'), 
+      '@src': path.resolve(__dirname, './src'),
     },
+  },
+  build: {
+    outDir: 'build', // Directorio de salida
+    sourcemap: true, // Habilitar sourcemaps
   },
   server: {
     host: true, // Escuchar en todas las interfaces

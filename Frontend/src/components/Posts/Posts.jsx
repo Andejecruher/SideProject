@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button } from '@mantine/core';
-import PropTypes from 'prop-types';
+import { BlogContext } from '@src/Context/BlogContext';
 
-const Posts = ({ articles, categories, tags, pagination }) => {
+const Posts = () => {
+  const { articles, categories, tags, pagination } = useContext(BlogContext);
   return (
     <div className="container mx-auto">
       {/* Layout de las dos secciones */}
@@ -143,22 +144,6 @@ const Posts = ({ articles, categories, tags, pagination }) => {
 
     </div>
   );
-};
-
-Posts.propTypes = {
-  articles: PropTypes.array,
-  categories: PropTypes.array,
-  tags: PropTypes.array,
-  pagination: PropTypes.shape({
-    current_page: PropTypes.number,
-    total_pages: PropTypes.number,
-    total_items: PropTypes.number,
-    per_page: PropTypes.number,
-    links: PropTypes.shape({
-      prev_page_url: PropTypes.string || null,
-      next_page_url: PropTypes.string || null,
-    }),
-  }),
 };
 
 export default Posts;
