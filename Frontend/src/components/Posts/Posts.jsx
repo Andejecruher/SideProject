@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from '@mantine/core';
-import { BlogContext } from '@src/Context/BlogContext';
+import { useBlog } from '@src/Context/BlogContext';
 
 const Posts = () => {
-  const { articles, categories, tags, pagination, setArticle, setCategory, setTag } = useContext(BlogContext);
+  const { articles, categories, tags, pagination, setArticle, setCategory, setTag } = useBlog();
   const navigate = useNavigate();
 
   const handleReadMore = (article) => {

@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 import { getArticles, getCategories, getTags, getLatestPosts } from '@src/Api/api';
 import PropTypes from 'prop-types';
 
@@ -14,50 +14,50 @@ export const BlogProvider = ({ children }) => {
   const [pagination, setPagination] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [article, setArticle] = useState({});
-  const [category, setCategory] = useState({});
-  const [tag, setTag] = useState({});
+  const [category, setCategory] = useState(null);
+  const [tag, setTag] = useState(null);
   const [error, setError] = useState(null);
 
+  const fetchLatestPosts = async () => {
+    try {
+      const response = await getLatestPosts();
+      if (response && response.data) setLatestPosts(response.data);
+    } catch (err) {
+      setError('Error fetching latest posts');
+    }
+  };
+
+  const fetchArticles = async (query) => {
+    try {
+      const response = await getArticles(query);
+      if (response && response.data) {
+        setArticles(response.data);
+        setPagination(response.pagination || {});
+      }
+    } catch (err) {
+      setError('Error fetching articles');
+    }
+  };
+
+  const fetchCategories = async () => {
+    try {
+      const response = await getCategories();
+      if (response && response.data) setCategories(response.data);
+    } catch (err) {
+      setError('Error fetching categories');
+    }
+  };
+
+  const fetchTags = async () => {
+    try {
+      const response = await getTags();
+      if (response && response.data) setTags(response.data);
+    } catch (err) {
+      setError('Error fetching tags');
+    }
+  };
+
   useEffect(() => {
-    const fetchLatestPosts = async () => {
-      try {
-        const response = await getLatestPosts();
-        if (response && response.data) setLatestPosts(response.data);
-      } catch (err) {
-        setError('Error fetching latest posts');
-      }
-    };
-
-    const fetchArticles = async () => {
-      try {
-        const response = await getArticles();
-        if (response && response.data) {
-          setArticles(response.data);
-          setPagination(response.pagination || {});
-        }
-      } catch (err) {
-        setError('Error fetching articles');
-      }
-    };
-
-    const fetchCategories = async () => {
-      try {
-        const response = await getCategories();
-        if (response && response.data) setCategories(response.data);
-      } catch (err) {
-        setError('Error fetching categories');
-      }
-    };
-
-    const fetchTags = async () => {
-      try {
-        const response = await getTags();
-        if (response && response.data) setTags(response.data);
-      } catch (err) {
-        setError('Error fetching tags');
-      }
-    };
-
     // Llamar a todas las funciones de carga
     const fetchAllData = async () => {
       setIsLoading(true);
@@ -67,6 +67,17 @@ export const BlogProvider = ({ children }) => {
 
     fetchAllData();
   }, []);
+
+  useEffect(() => {
+    if (category === 'Todas') {
+      fetchArticles('');
+    }
+
+    if (category && category !== 'Todas') {
+      const query = `?category=${category.id}`;
+      fetchArticles(query);
+    }
+  }, [category]);
 
   return (
     <BlogContext.Provider value={{
@@ -82,7 +93,7 @@ export const BlogProvider = ({ children }) => {
       category,
       setArticle,
       setTag,
-      setCategory,
+      setCategory
     }}>
       {children}
     </BlogContext.Provider>
@@ -91,4 +102,12 @@ export const BlogProvider = ({ children }) => {
 
 BlogProvider.propTypes = {
   children: PropTypes.node.isRequired,
+};
+
+export const useBlog = () => {
+  const context = useContext(BlogContext);
+  if (context === undefined) {
+    throw new Error('useBlog must be used within a BlogProvider');
+  }
+  return context;
 };

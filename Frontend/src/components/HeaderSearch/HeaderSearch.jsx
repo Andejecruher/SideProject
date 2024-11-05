@@ -1,11 +1,19 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { BlogContext } from '@src/Context/BlogContext';
+import React, { useState, useEffect } from 'react';
+import { useBlog } from '@src/Context/BlogContext';
 import './HeaderSearch.css';
 
 export default function HeaderSearch() {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedLink, setSelectedLink] = useState('Todas');
-  const { category, categories, setCategory } = useContext(BlogContext);
+  const { category, categories, setCategory } = useBlog();
+
+  useEffect(() => {
+
+    if (category && category.name) {
+      console.log('Category:', category.name);
+      setSelectedLink(category.name);
+    }
+  }, []);
 
   useEffect(() => {
     if (category && category.name) {
@@ -16,7 +24,7 @@ export default function HeaderSearch() {
   const handleLinkClick = (category) => {
     if (category === 'Todas') {
       setSelectedLink('Todas');
-      setCategory({});
+      setCategory('Todas');
       return;
     }
     setSelectedLink(category.name);

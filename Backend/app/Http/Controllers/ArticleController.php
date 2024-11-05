@@ -133,8 +133,8 @@ class ArticleController extends Controller
             'description' => 'required|string',
             'content' => 'required|string',
             'category_id' => 'required|exists:categories,id',
-            'featured_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'thumbnail' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'featured_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'thumbnail' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         // Handle featured_image upload

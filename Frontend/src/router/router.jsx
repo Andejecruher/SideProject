@@ -1,34 +1,58 @@
-import React from "react";
-import { createBrowserRouter } from "react-router-dom";
+import React, { Suspense, lazy } from "react";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import Root from "./root";
-import Home from "@src/pages/Home/Home";
-import Contact from "@src/pages/Contact/Contact";
-import Blog from "@src/pages/Blog/Blog";
-import Article from "@src/pages/Article/Article";
+import ErrorPage from "./error-page";
+import Loader from "../components/Loader/Loader";
+
+// Usar React.lazy para cargar los componentes de forma diferida
+const Home = lazy(() => import("@src/pages/Home/Home"));
+const Contact = lazy(() => import("@src/pages/Contact/Contact"));
+const Blog = lazy(() => import("@src/pages/Blog/Blog"));
+const Article = lazy(() => import("@src/pages/Article/Article"));
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
-    errorElement: <h1>404 Not Found</h1>,
+    errorElement: <ErrorPage />,
     children: [
       {
+        path: "/",
+        element: <Navigate to="/Inicio" />,
+      },
+      {
         path: "/Inicio",
-        element: <Home />,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <Home />
+          </Suspense>
+        ),
       },
       {
         path: "/Blog",
-        element: <Blog />,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <Blog />
+          </Suspense>
+        ),
       },
       {
-        path: "/Blog/:title", // Nueva ruta para mostrar los posts individualmente
-        element: <Article />,
+        path: "/Blog/:title",
+        element: (
+          <Suspense fallback={<Loader />}>
+            <Article />
+          </Suspense>
+        ),
       },
       {
         path: "/Contacto",
-        element: <Contact />,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <Contact />
+          </Suspense>
+        ),
       },
-    ]
+    ],
   },
 ]);
 

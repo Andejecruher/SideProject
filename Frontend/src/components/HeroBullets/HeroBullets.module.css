@@ -28,6 +28,15 @@
   }
 }
 
+.list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px; /* Espacio entre los elementos */
+  @media (max-width: $mantine-breakpoint-md) {
+    text-align: justify;
+  }
+}
+
 .control {
   flex: 1;
 }

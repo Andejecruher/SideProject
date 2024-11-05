@@ -3,9 +3,9 @@ import axiosInstance from './axiosInstance';
 
 
 // Llama a la API para obtener los articulos
-export const getArticles = async () => {
+export const getArticles = async (query = '') => {
     try {
-        const response = await axiosInstance.get('/articles');
+        const response = await axiosInstance.get(`/articles${query}`);
         return response.data;
     } catch (error) {
         return error;

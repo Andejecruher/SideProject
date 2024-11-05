@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Carousel } from '@mantine/carousel';
 import HeroBullets from '../HeroBullets/HeroBullets';
 import classes from './CardCarousel.module.css';
-import { BlogContext } from '@src/Context/BlogContext';
+import { useBlog } from '@src/Context/BlogContext';
 
 function CardsCarousel() {
-  const { latestPosts, setArticle } = useContext(BlogContext);
+  const { latestPosts, setArticle } = useBlog();
 
   const slides = Array.isArray(latestPosts) ? latestPosts.map((item) => (
     <Carousel.Slide key={item.title}>

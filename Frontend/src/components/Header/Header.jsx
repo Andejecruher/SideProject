@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation, Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import {
   Group,
   Box,
@@ -13,48 +13,25 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { useDisclosure } from '@mantine/hooks';
 import classes from './HeaderMegaMenu.module.css';
-import Loader from '@src/components/Loader/Loader'; // Asegúrate de tener un componente Loader
 
 function HeaderMegaMenu() {
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
   const [selectedPage, setSelectedPage] = useState('Inicio');
-  const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
   const location = useLocation();
-
   useEffect(() => {
-    // Simula una carga de datos inicial
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1000); // Cambia el tiempo según sea necesario
-
-    return () => clearTimeout(timer);
+    const page = location.pathname.split('/')[1];
+    setSelectedPage(page || 'Inicio');
+    scrollTo(0, 0);
   }, []);
 
-  useEffect(() => {
-    // Redirige a la página de inicio si la ruta actual es "/"
-    if (location.pathname === '/') {
-      navigate('/Inicio');
-    } else {
-      // Actualiza la página seleccionada basada en la ruta actual
-      const path = location.pathname.replace('/', '');
-      setSelectedPage(path || 'Inicio');
-    }
-  }, [location, navigate]);
 
   const handlePageClick = (page) => {
-    setLoading(true);
     setSelectedPage(page);
+    scrollTo(0, 0);
     setTimeout(() => {
-      navigate(`/${page}`);
-      setLoading(false);
       closeDrawer();
     }, 500); // Simula un retraso de carga de 1 segundo
   };
-
-  if (loading) {
-    return <Loader />;
-  }
 
   return (
     <Box pb={10}>
@@ -62,21 +39,21 @@ function HeaderMegaMenu() {
         <Group justify="space-between" h="100%">
           <Group h="60%" gap={0} visibleFrom="sm">
             <Link
-              href="#"
+              to="/Inicio"
               className={`${classes.link} ${selectedPage === 'Inicio' ? classes.selected : ''}`}
               onClick={() => handlePageClick('Inicio')}
             >
               Inicio
             </Link>
             <Link
-              href="#"
+              to="/Blog"
               className={`${classes.link} ${selectedPage === 'Blog' ? classes.selected : ''}`}
               onClick={() => handlePageClick('Blog')}
             >
               Blog
             </Link>
             <Link
-              href="#"
+              to="/Contacto"
               className={`${classes.link} ${selectedPage === 'Contacto' ? classes.selected : ''}`}
               onClick={() => handlePageClick('Contacto')}
             >
@@ -140,21 +117,21 @@ function HeaderMegaMenu() {
             }}
           >
             <Link
-              href="#"
+              to="/Inicio"
               className={`${classes.link} ${selectedPage === 'Inicio' ? classes.selected : ''}`}
               onClick={() => handlePageClick('Inicio')}
             >
               Inicio
             </Link>
             <Link
-              href="#"
+              to="/Blog"
               className={`${classes.link} ${selectedPage === 'Blog' ? classes.selected : ''}`}
               onClick={() => handlePageClick('Blog')}
             >
               Blog
             </Link>
             <Link
-              href="#"
+              to="/Contacto"
               className={`${classes.link} ${selectedPage === 'Contacto' ? classes.selected : ''}`}
               onClick={() => handlePageClick('Contacto')}
             >

@@ -27,13 +27,13 @@ function HeroBullets({ article, setArticle }) {
 
           <List
             mt={30}
-            spacing="sm"
             size="sm"
             icon={
               <ThemeIcon size={20} radius="xl">
                 <IconCheck style={{ width: rem(12), height: rem(12) }} stroke={1.5} />
               </ThemeIcon>
             }
+            className={classes.list}
           >
             {article.tags && article.tags.map((tag) => (
               <List.Item key={tag.id}>{tag.name}</List.Item>
