@@ -1,10 +1,19 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 import { Image, Container, Title, Button, Group, Text, List, ThemeIcon, rem } from '@mantine/core';
 import { IconCheck } from '@tabler/icons-react';
+import PropTypes from 'prop-types';
 import classes from './HeroBullets.module.css';
 
-function HeroBullets({ article }) {
+function HeroBullets({ article, setArticle }) {
+
+  const navigate = useNavigate();
+
+  const handleReadMore = (article) => {
+    setArticle(article);
+    const title = article.title.toLowerCase().replace(/ /g, '-');
+    navigate(`/Blog/${title}`);
+  }
   return (
     <Container size="md">
       <div className={classes.inner}>
@@ -33,7 +42,7 @@ function HeroBullets({ article }) {
 
           <Group mt={30} className='w-full'>
             <Button radius="xl" size="md" className={classes.control} onClick={() => {
-              console.log('Leer más', article.id);
+              handleReadMore(article);
             }}>
               Leer más ...
             </Button>
@@ -47,6 +56,7 @@ function HeroBullets({ article }) {
 
 HeroBullets.propTypes = {
   article: PropTypes.object,
+  setArticle: PropTypes.func,
 };
 
 export default HeroBullets;

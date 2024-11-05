@@ -13,6 +13,9 @@ export const BlogProvider = ({ children }) => {
   const [tags, setTags] = useState([]);
   const [pagination, setPagination] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [article, setArticle] = useState({});
+  const [category, setCategory] = useState({});
+  const [tag, setTag] = useState({});
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -73,7 +76,13 @@ export const BlogProvider = ({ children }) => {
       tags,
       pagination,
       isLoading,
-      error
+      error,
+      article,
+      tag,
+      category,
+      setArticle,
+      setTag,
+      setCategory,
     }}>
       {children}
     </BlogContext.Provider>

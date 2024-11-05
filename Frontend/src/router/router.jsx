@@ -21,7 +21,7 @@ const router = createBrowserRouter([
         element: <Blog />,
       },
       {
-        path: "/Blog/:postId", // Nueva ruta para mostrar los posts individualmente
+        path: "/Blog/:title", // Nueva ruta para mostrar los posts individualmente
         element: <Article />,
       },
       {

@@ -1,9 +1,26 @@
 import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from '@mantine/core';
 import { BlogContext } from '@src/Context/BlogContext';
 
 const Posts = () => {
-  const { articles, categories, tags, pagination } = useContext(BlogContext);
+  const { articles, categories, tags, pagination, setArticle, setCategory, setTag } = useContext(BlogContext);
+  const navigate = useNavigate();
+
+  const handleReadMore = (article) => {
+    setArticle(article);
+    const title = article.title.toLowerCase().replace(/ /g, '-');
+    navigate(`/Blog/${title}`);
+  }
+
+  const handleCategory = (category) => {
+    setCategory(category);
+  }
+
+  const handleTag = (tag) => {
+    setTag(tag);
+  }
+
   return (
     <div className="container mx-auto">
       {/* Layout de las dos secciones */}
@@ -59,7 +76,7 @@ const Posts = () => {
                     </span>
                   </div>
                 </div>
-                <Button radius="xl" size="md">
+                <Button radius="xl" size="md" onClick={() => { handleReadMore(article) }}>
                   Leer más ...
                 </Button>
               </div>
@@ -117,7 +134,7 @@ const Posts = () => {
             <h3 className="text-xl font-bold mb-4">Categorías</h3>
             <ul className="space-y-2">
               {categories && categories.map((category) => (
-                <li onClick={() => { console.log('id categorie', category.id) }} key={category.id} className="flex justify-between text-blue-500 cursor-pointer border-b-gray-200 border-b">
+                <li onClick={() => { handleCategory(category) }} key={category.id} className="flex justify-between text-blue-500 cursor-pointer border-b-gray-200 border-b">
                   <span>{category.name}</span>
                   <span>{category.articles_count}</span>
                 </li>
@@ -130,7 +147,9 @@ const Posts = () => {
             <h3 className="text-xl font-bold mb-4">Tags</h3>
             <div className="flex flex-wrap gap-2">
               {tags && tags.map((tag) => (
-                <div key={tag.id} onClick={() => { console.log('id tag', tag.id) }} className={`bg-[${tag.color}] cursor-pointer text-white rounded-full px-4 py-1 text-sm`} style={
+                <div key={tag.id} onClick={() => {
+                  handleTag(tag)
+                }} className={`bg-[${tag.color}] cursor-pointer text-white rounded-full px-4 py-1 text-sm`} style={
                   {
                     backgroundColor: tag.color,
                   }

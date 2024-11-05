@@ -1,16 +1,28 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { BlogContext } from '@src/Context/BlogContext';
 import './HeaderSearch.css';
 
 export default function HeaderSearch() {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedLink, setSelectedLink] = useState('Todas');
-  const { categories } = useContext(BlogContext);
+  const { category, categories, setCategory } = useContext(BlogContext);
 
+  useEffect(() => {
+    if (category && category.name) {
+      setSelectedLink(category.name);
+    }
+  }, [category]);
 
-  const handleLinkClick = (link) => {
-    setSelectedLink(link);
+  const handleLinkClick = (category) => {
+    if (category === 'Todas') {
+      setSelectedLink('Todas');
+      setCategory({});
+      return;
+    }
+    setSelectedLink(category.name);
+    setCategory(category);
   };
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -53,7 +65,7 @@ export default function HeaderSearch() {
               </li>
               {categories && categories.map((category) => (
                 <li key={category.id} className=''>
-                  <a href="#" onClick={() => handleLinkClick(category.name)} className={`block rounded p-2 ${selectedLink === category.name ? 'btn-selected' : 'text-gray-70'}`}>{category.name}</a>
+                  <a href="#" onClick={() => handleLinkClick(category)} className={`block rounded p-2 ${selectedLink === category.name ? 'btn-selected' : 'text-gray-70'}`}>{category.name}</a>
                 </li>
               ))}
             </ul>
