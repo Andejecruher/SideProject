@@ -31,7 +31,7 @@
                     <label for="first_name" class="form-label">{{ __("First Name") }}</label>
                     <input type="text" class="form-control @error('first_name') is-invalid @enderror" id="first_name" name="first_name" value="{{ old('first_name', $user->first_name ?? '') }}" required>
                     @error('first_name')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -39,7 +39,7 @@
                     <label for="last_name" class="form-label">{{ __("Last Name") }}</label>
                     <input type="text" class="form-control @error('last_name') is-invalid @enderror" id="last_name" name="last_name" value="{{ old('last_name', $user->last_name ?? '') }}" required>
                     @error('last_name')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -47,11 +47,15 @@
                     <label for="avatar" class="form-label">{{ __("Avatar") }}</label>
                     <input type="file" class="form-control @error('avatar') is-invalid @enderror" id="avatar" name="avatar" onchange="previewAvatar(event)">
                     @error('avatar')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
-                    @if(isset($user) && $user->avatar)
+                    @php
+                    $img = str_replace("http://localhost:8000/api/images/", "", auth()->user()->avatar);
+                    $avatar = auth()->user()->avatar ? asset("storage/avatars/".$img) : asset('assets/img/avatars/default.jpg');
+                    @endphp
+                    @if(isset($user) && $avatar !== 'default.jpg')
                     <div class="d-flex justify-content-center mt-2">
-                        <img id="avatar-preview" src="{{ asset('storage/avatars/' . $user->avatar) }}" alt="User Avatar" class="img-thumbnail mt-2" width="100">
+                        <img id="avatar-preview" src="{{ $avatar }}" alt="User Avatar" class="img-thumbnail mt-2" width="100">
                     </div>
                     @else
                     <div class="d-flex justify-content-center mt-2">
@@ -67,7 +71,7 @@
                         <option value="female" {{ old('gender', $user->gender ?? '') == 'female' ? 'selected' : '' }}>{{ __("Female") }}</option>
                     </select>
                     @error('gender')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -75,7 +79,7 @@
                     <label for="email" class="form-label">{{ __("Email") }}</label>
                     <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email', $user->email ?? '') }}" required>
                     @error('email')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -84,7 +88,7 @@
                     <label for="password" class="form-label">{{ __("Password") }}</label>
                     <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" {{ isset($user) ? '' : 'required' }}>
                     @error('password')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
                 @endif
@@ -93,7 +97,7 @@
                     <label for="address" class="form-label">{{ __("Address") }}</label>
                     <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address', $user->address ?? '') }}" required>
                     @error('address')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -101,7 +105,7 @@
                     <label for="phone" class="form-label">{{ __("Phone") }}</label>
                     <input type="text" class="form-control @error('phone') is-invalid @enderror" id="phone" name="phone" value="{{ old('phone', $user->phone ?? '') }}" required>
                     @error('phone')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -109,7 +113,7 @@
                     <label for="city" class="form-label">{{ __("City") }}</label>
                     <input type="text" class="form-control @error('city') is-invalid @enderror" id="city" name="city" value="{{ old('city', $user->city ?? '') }}" required>
                     @error('city')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -117,7 +121,7 @@
                     <label for="postal_code" class="form-label">{{ __("Postal Code") }}</label>
                     <input type="text" class="form-control @error('postal_code') is-invalid @enderror" id="postal_code" name="postal_code" value="{{ old('postal_code', $user->postal_code ?? '') }}" required>
                     @error('postal_code')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -128,7 +132,7 @@
                         <option value="inactive" {{ old('status', $user->status ?? '') == 'inactive' ? 'selected' : '' }}>{{ __("Inactive") }}</option>
                     </select>
                     @error('status')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -139,7 +143,7 @@
                         <option value="user" {{ old('role', $user->role ?? '') == 'user' ? 'selected' : '' }}>{{ __("User") }}</option>
                     </select>
                     @error('role')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 

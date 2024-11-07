@@ -7,7 +7,8 @@
             <div class="d-flex align-items-center">
                 <div class="avatar-lg me-4">
                     @php
-                    $avatar = auth()->user()->avatar ? asset("storage/avatars/".auth()->user()->avatar) : asset('assets/img/avatars/default.jpg');
+                    $img = str_replace("http://localhost:8000/api/images/", "", auth()->user()->avatar);
+                    $avatar = auth()->user()->avatar ? asset("storage/avatars/".$img) : asset('assets/img/avatars/default.jpg');
                     @endphp
                     <img src="{{ $avatar }}" class="card-img-top rounded-circle border-white" alt="{{ auth()->user()->name }}">
                 </div>
@@ -49,7 +50,7 @@
                 </a>
             </li>
             <li class="nav-item {{ Request::segment(1) == 'users-list' ? 'active' : '' }}">
-                <a href="/users-list" class="nav-link">
+                <a href="/users-list" class="nav-link d-flex align-items-center">
                     <span class="sidebar-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                             <style>
@@ -64,7 +65,7 @@
                 </a>
             </li>
             <li class="nav-item {{ Request::segment(1) == 'categories-list' ? 'active' : '' }}">
-                <a href="/categories-list" class="nav-link">
+                <a href="/categories-list" class="nav-link d-flex align-items-center">
                     <span class="sidebar-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                             <style>
@@ -79,7 +80,7 @@
                 </a>
             </li>
             <li class="nav-item {{ Request::segment(1) == 'articles-list' ? 'active' : '' }}">
-                <a href="/articles-list" class="nav-link">
+                <a href="/articles-list" class="nav-link d-flex align-items-center">
                     <span class="sidebar-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                             <style>
@@ -94,7 +95,7 @@
                 </a>
             </li>
             <li class="nav-item {{ Request::segment(1) == 'tags-list' ? 'active' : '' }}">
-                <a href="/tags-list" class="nav-link">
+                <a href="/tags-list" class="nav-link d-flex align-items-center">
                     <span class="sidebar-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
                             <style>

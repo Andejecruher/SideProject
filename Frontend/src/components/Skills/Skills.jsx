@@ -31,16 +31,16 @@ const Skills = () => {
   return (
     <div className="w-full py-16 bg-[#D9D9D9] text-black" ref={ref}>
       <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center" >
-        <h2 className={classNames("text-3xl font-extrabold mb-8 animate__animated",{
+        <h2 className={classNames("text-3xl font-extrabold mb-8 animate__animated", {
           "animate__fadeInDown ": isVisible,
         })}>Mis Habilidades</h2>
-        <p className={classNames("text-sm md:text-base text-gray-500 mb-12",{
+        <p className={classNames("text-sm md:text-base text-gray-500 mb-12", {
 
           "animate__animated animate__fadeInDown": isVisible,
         })}>Estas son algunas de las tecnologías y herramientas con las que trabajo para construir aplicaciones robustas y escalables.</p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-        {skillsData.map((skill, index) => {
+          {skillsData.map((skill, index) => {
             const [ref, isVisible] = useOnScreen({
               root: null,
               rootMargin: '0px',
@@ -51,7 +51,7 @@ const Skills = () => {
               <div
                 key={index}
                 ref={ref}
-                className={classNames("group relative p-2 bg-gray-100 shadow-lg rounded-lg transition-all duration-300 hover:shadow-2xl", {
+                className={classNames("cursor-pointer group relative p-2 bg-gray-100 shadow-lg rounded-lg transition-all duration-300 hover:shadow-2xl", {
                   "animate__animated animate__flipInX": isVisible,
                 })}
               >

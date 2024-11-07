@@ -16,7 +16,9 @@ export const BlogProvider = ({ children }) => {
   const [article, setArticle] = useState({});
   const [category, setCategory] = useState(null);
   const [tag, setTag] = useState(null);
+  const [search, setSearch] = useState('');
   const [error, setError] = useState(null);
+  const [page, setPage] = useState(1);
 
   const fetchLatestPosts = async () => {
     try {
@@ -69,6 +71,7 @@ export const BlogProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
+    setTag(null);
     if (category === 'Todas') {
       fetchArticles('');
     }
@@ -78,6 +81,37 @@ export const BlogProvider = ({ children }) => {
       fetchArticles(query);
     }
   }, [category]);
+
+  useEffect(() => {
+    setCategory('Todas');
+    if (tag) {
+      const query = `?tag=${tag.id}`;
+      fetchArticles(query);
+    }
+  }, [tag]);
+
+  useEffect(() => {
+    setCategory(null);
+    setTag(null);
+    if (search) {
+      const query = `?search=${search}`;
+      fetchArticles(query);
+    }
+  }, [search]);
+
+  useEffect(() => {
+    let query = `?page=${page}`;
+    if (category && category !== 'Todas') {
+      query = `?category=${category.id}&page=${page}`;
+    }
+    if (tag) {
+      query += `&tag=${tag.id}`;
+    }
+    if (search) {
+      query += `&search=${search}`;
+    }
+    fetchArticles(query);
+  }, [page]);
 
   return (
     <BlogContext.Provider value={{
@@ -91,9 +125,12 @@ export const BlogProvider = ({ children }) => {
       article,
       tag,
       category,
+      page,
       setArticle,
       setTag,
-      setCategory
+      setCategory,
+      setSearch,
+      setPage,
     }}>
       {children}
     </BlogContext.Provider>

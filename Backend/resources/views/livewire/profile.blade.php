@@ -100,7 +100,11 @@
                         <div wire:ignore.self class="profile-cover rounded-top"
                             data-background="../assets/img/profile-cover.jpg"></div>
                         <div class="card-body pb-5">
-                            <img src="{{ auth()->user()->avatar ? asset('storage/avatars/' . auth()->user()->avatar) : asset('assets/img/avatars/default.jpg') }}"
+                            @php
+                            $img = str_replace("http://localhost:8000/api/images/", "", auth()->user()->avatar);
+                            $avatar = auth()->user()->avatar ? asset("storage/avatars/".$img) : asset('assets/img/avatars/default.jpg');
+                            @endphp
+                            <img src="{{ $avatar }}"
                                 class="avatar-xl rounded-circle mx-auto mt-n7 mb-4" alt="Neil Portrait">
                             <h4 class="h3">
                                 {{ auth()->user()->first_name ? auth()->user()->first_name . ' ' . auth()->user()->last_name : 'User Name'}}

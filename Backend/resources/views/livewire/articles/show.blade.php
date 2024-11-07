@@ -24,8 +24,12 @@
                         <h1>{{ $article->title }}</h1>
                     </div>
                     <div class="card-body">
+                        @php
+                        $img = str_replace("http://localhost:8000/api/images/", "", $article->featured_image);
+                        $image = $img !== 'default.jpg' ? asset("storage/featured_image/".$img) : asset('assets/img/featured_image/default.jpg');
+                        @endphp
                         @if($article->featured_image)
-                        <img src="{{ asset('storage/featured_image/' . $article->featured_image) }}" class="img-fluid mb-3" alt="{{ $article->title }}">
+                        <img src="{{ $image }}" class="img-fluid mb-3" alt="{{ $article->title }}">
                         @endif
                         <p class="text-muted">{{ $article->description }}</p>
                         <hr>

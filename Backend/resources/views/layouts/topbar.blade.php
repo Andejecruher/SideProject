@@ -11,7 +11,8 @@
                         aria-expanded="false">
                         <div class="media d-flex align-items-center">
                             @php
-                            $avatar = auth()->user()->avatar ? asset("storage/avatars/".auth()->user()->avatar) : asset('assets/img/avatars/default.jpg');
+                            $img = str_replace("http://localhost:8000/api/images/", "", auth()->user()->avatar);
+                            $avatar = auth()->user()->avatar ? asset("storage/avatars/".$img) : asset('assets/img/avatars/default.jpg');
                             @endphp
                             <img class="avatar rounded-circle" alt="Image placeholder" src="{{ $avatar }}">
                             <div class="media-body ms-2 text-dark align-items-center d-none d-lg-block">

@@ -5,21 +5,35 @@ import './HeaderSearch.css';
 export default function HeaderSearch() {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedLink, setSelectedLink] = useState('Todas');
-  const { category, categories, setCategory } = useBlog();
+  const [searchQuery, setSearchQuery] = useState('');
+  const { category, categories, setCategory, setSearch } = useBlog();
 
   useEffect(() => {
-
     if (category && category.name) {
-      console.log('Category:', category.name);
       setSelectedLink(category.name);
     }
   }, []);
 
   useEffect(() => {
+    if (category === 'Todas') {
+      setSelectedLink(category);
+    }
     if (category && category.name) {
       setSelectedLink(category.name);
     }
   }, [category]);
+
+  const handleSearchChange = (event) => {
+    ;
+    setSearchQuery(event.target.value);
+  };
+
+  const handleSearchSubmit = (event) => {
+    event.preventDefault();
+    // Realizar la búsqueda aquí
+    setSearch(searchQuery);
+    // Puedes llamar a una función para realizar la búsqueda o redirigir a una página de resultados
+  };
 
   const handleLinkClick = (category) => {
     if (category === 'Todas') {
@@ -40,21 +54,34 @@ export default function HeaderSearch() {
       <nav className="border-gray-200 px-2">
         <div className="container mx-auto flex flex-wrap items-center justify-between">
           <div className="relative mr-3 md:mr-0 md:hidden max-w-[200px] searchInput">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center cursor-pointer" onKeyDown={(e) => e.key === 'Enter' && handleSearchSubmit(e)} onClick={(e) => handleSearchSubmit(e)}>
               <svg className="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                 <path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd"></path>
               </svg>
             </div>
-            <input type="text" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2" placeholder="Search..." />
+            <input
+              type="text"
+              className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2"
+              placeholder="Search..."
+              value={searchQuery}
+              onChange={handleSearchChange}
+              onKeyDown={(e) => e.key === 'Enter' && handleSearchSubmit(e)}
+            />
           </div>
           <div className="flex md:order-2">
             <div className="relative mr-3 md:mr-0 hidden md:block">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center cursor-pointer" onKeyDown={(e) => e.key === 'Enter' && handleSearchSubmit(e)} onClick={(e) => handleSearchSubmit(e)}>
                 <svg className="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                   <path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd"></path>
                 </svg>
               </div>
-              <input type="text" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2" placeholder="Search..." />
+              <input
+                type="text"
+                className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2"
+                placeholder="Search..."
+                value={searchQuery}
+                onChange={handleSearchChange}
+                onKeyDown={(e) => e.key === 'Enter' && handleSearchSubmit(e)} />
             </div>
             <button onClick={toggleMenu} className="md:hidden text-gray-400 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-lg inline-flex items-center justify-center" aria-expanded={isOpen}>
               <span className="sr-only">Open main menu</span>

@@ -19,6 +19,7 @@ class ArticleController extends Controller
         // Get search, category, and pagination parameters
         $search = $request->input('search');
         $category = $request->input('category');
+        $tag = $request->input('tag');
         $perPage = $request->input('per_page', 10); // Number of articles per page, default is 10
 
         // Build the query
@@ -36,6 +37,13 @@ class ArticleController extends Controller
             $query->where('category_id', $category);
         }
 
+        // Apply tag filter if a tag is provided
+        if ($tag) {
+            $query->whereHas('tags', function ($query) use ($tag) {
+                $query->where('tag_id', $tag);
+            });
+        }
+
         // Get paginated articles
         $articles = $query->paginate($perPage);
 
@@ -45,10 +53,6 @@ class ArticleController extends Controller
             'pagination' => [
                 'current_page' => $articles->currentPage(),
                 'per_page' => $articles->perPage(),
-                'links' => [
-                    'prev_page_url' => $articles->previousPageUrl(),
-                    'next_page_url' => $articles->nextPageUrl(),
-                ],
                 'total_pages' => ceil($articles->total() / $articles->perPage()),
                 'total_items' => $articles->total(),
             ],
@@ -89,10 +93,6 @@ class ArticleController extends Controller
                 'pagination' => [
                     'current_page' => $comments->currentPage(),
                     'per_page' => $comments->perPage(),
-                    'links' => [
-                        'prev_page_url' => $comments->previousPageUrl(),
-                        'next_page_url' => $comments->nextPageUrl(),
-                    ],
                     'total_pages' => ceil($comments->total() / $comments->perPage()),
                     'total_items' => $comments->total(),
                 ],

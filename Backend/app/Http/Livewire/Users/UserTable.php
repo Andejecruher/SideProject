@@ -44,7 +44,8 @@ class UserTable extends DataTableComponent
             Column::make(__("Avatar"), "avatar")
                 ->format(function ($value, $column, $row) {
                     // Render the article-image view component with the provided image path
-                    return view('livewire.components.avatar-image', ['imagePath' => $value]);
+                    $img = str_replace("http://localhost:8000/api/images/", "", $value);
+                    return view('livewire.components.avatar-image', ['imagePath' => $img]);
                 }),
             Column::make(__("Gender"), "gender")
                 ->sortable(), // Make the column sortable
