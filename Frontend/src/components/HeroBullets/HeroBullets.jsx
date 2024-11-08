@@ -11,8 +11,7 @@ function HeroBullets({ article, setArticle }) {
 
   const handleReadMore = (article) => {
     setArticle(article);
-    const title = article.title.toLowerCase().replace(/ /g, '-');
-    navigate(`/Blog/${title}`);
+    navigate(`/Blog/${article.id}`);
   }
   return (
     <Container size="md">

@@ -12,17 +12,37 @@ const Posts = () => {
     tags,
     pagination,
     page,
+    category,
+    tag,
+    search,
+    isLoading,
     setPage,
     setArticle,
     setCategory,
     setTag,
+    fetchArticles,
   } = useBlog();
   const navigate = useNavigate();
 
+  const handlePaginate = (pageSelect) => {
+    if (pageSelect === page) return;
+    setPage(pageSelect);
+    let query = `?page=${pageSelect}`;
+    if (category && category !== 'Todas') {
+      query = `?category=${category.id}&page=${pageSelect}`;
+    }
+    if (tag) {
+      query += `&tag=${tag.id}`;
+    }
+    if (search) {
+      query += `&search=${search}`;
+    }
+    fetchArticles(query);
+  };
+
   const handleReadMore = (article) => {
     setArticle(article);
-    const title = article.title.toLowerCase().replace(/ /g, "-");
-    navigate(`/Blog/${title}`);
+    navigate(`/Blog/${article.id}`);
   };
 
   const handleCategory = (category) => {
@@ -34,9 +54,8 @@ const Posts = () => {
   };
 
   useEffect(() => {
-    console.log(pagination);
-    window.scrollTo(0, 0);
-  }, [page]);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [articles]);
 
   return (
     <div className="container mx-auto">
@@ -45,88 +64,113 @@ const Posts = () => {
         {/* Sección principal de posts */}
         <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4">
           {/* Map de los posts */}
-          {articles &&
-            articles.map((article) => (
-              <div
-                key={article.id}
-                className="relative flex flex-col bg-white shadow-sm border border-slate-200 rounded-lg w-100 h-full"
-              >
-                {/* Contenedor de imagen */}
-                <div className="relative h-56 m-2.5 overflow-hidden text-white rounded-md">
-                  <img src={article.thumbnail} alt={article.title} />
-                </div>
-
-                {/* Contenido principal */}
-                <div className="p-4 flex-grow border-t border-slate-200">
-                  {/* Tags */}
-                  <List
-                    size="sm"
-                    icon={
-                      <ThemeIcon size={20} radius="xl">
-                        <IconCheck
-                          style={{ width: rem(12), height: rem(12) }}
-                          stroke={1.5}
-                        />
-                      </ThemeIcon>
-                    }
-                    className={classes.list}
-                  >
-                    {article.tags &&
-                      article.tags.map((tag) => (
-                        <List.Item key={tag.id}>{tag.name}</List.Item>
-                      ))}
-                  </List>
-                  <h6 className="mb-2 text-slate-800 text-xl font-semibold">
-                    {article.title}
-                  </h6>
-                  <p className="text-slate-600 leading-normal font-light">
-                    {article.description}
-                  </p>
-                </div>
-
-                {/* Footer */}
-                <div className="flex items-center justify-between p-4 border-t border-slate-200">
-                  <div className="flex items-center">
-                    <img
-                      alt={article.user.first_name}
-                      src={article.user.avatar}
-                      className="relative inline-block h-8 w-8 rounded-full"
-                    />
-                    <div className="flex flex-col ml-3 text-sm">
-                      <span className="text-slate-800 font-semibold">
-                        {article.user.first_name} {article.user.last_name}
-                      </span>
-                      <span className="text-slate-600">
-                        {new Date(article.created_at).toLocaleDateString()}
-                      </span>
-                    </div>
-                  </div>
-                  <Button
-                    radius="xl"
-                    size="md"
-                    onClick={() => {
-                      handleReadMore(article);
-                    }}
-                  >
-                    Leer más ...
-                  </Button>
-                </div>
+          {isLoading && (
+            <div className="flex items-center justify-center py-10 col-span-1 md:col-span-2">
+              <div className="flex items-center justify-center">
+                <svg
+                  className="animate-spin -ml-1 mr-3 h-5 w-5 text-gray-800"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
+                </svg>
               </div>
-            ))}
+            </div>
+          )}
+
+          {!isLoading && articles && articles.map((article) => (
+            <div
+              key={article.id}
+              className="relative flex flex-col bg-white shadow-sm border border-slate-200 rounded-lg w-100 h-full"
+            >
+              {/* Contenedor de imagen */}
+              <div className="relative h-56 m-2.5 overflow-hidden text-white rounded-md">
+                <img src={article.thumbnail} alt={article.title} />
+              </div>
+
+              {/* Contenido principal */}
+              <div className="p-4 flex-grow border-t border-slate-200">
+                {/* Tags */}
+                <List
+                  size="sm"
+                  icon={
+                    <ThemeIcon size={20} radius="xl">
+                      <IconCheck
+                        style={{ width: rem(12), height: rem(12) }}
+                        stroke={1.5}
+                      />
+                    </ThemeIcon>
+                  }
+                  className={classes.list}
+                >
+                  {article.tags &&
+                    article.tags.map((tag) => (
+                      <List.Item key={tag.id}>{tag.name}</List.Item>
+                    ))}
+                </List>
+                <h6 className="mb-2 text-slate-800 text-xl font-semibold">
+                  {article.title}
+                </h6>
+                <p className="text-slate-600 leading-normal font-light">
+                  {article.description}
+                </p>
+              </div>
+
+              {/* Footer */}
+              <div className="flex items-center justify-between p-4 border-t border-slate-200">
+                <div className="flex items-center">
+                  <img
+                    alt={article.user.first_name}
+                    src={article.user.avatar}
+                    className="relative inline-block h-8 w-8 rounded-full"
+                  />
+                  <div className="flex flex-col ml-3 text-sm">
+                    <span className="text-slate-800 font-semibold">
+                      {article.user.first_name} {article.user.last_name}
+                    </span>
+                    <span className="text-slate-600">
+                      {new Date(article.created_at).toLocaleDateString()}
+                    </span>
+                  </div>
+                </div>
+                <Button
+                  radius="xl"
+                  size="md"
+                  onClick={() => {
+                    handleReadMore(article);
+                  }}
+                >
+                  Leer más ...
+                </Button>
+              </div>
+            </div>
+          ))}
 
           {/* Paginación */}
 
           <div className="flex items-center justify-center py-10 lg:px-0 sm:px-6 px-4 col-span-1 md:col-span-2">
             <div className="w-full  flex items-center justify-between border-t border-gray-200">
               <div
-                className={`${
-                  page === 1
-                    ? "disable hover:text-grey cursor-default"
-                    : "cursor-pointer hover:text-[#2089e3]"
-                } flex items-center pt-3 text-gray-600`}
+                className={`${page === 1
+                  ? "disable hover:text-grey cursor-default"
+                  : "cursor-pointer hover:text-[#2089e3]"
+                  } flex items-center pt-3 text-gray-600`}
                 onClick={() => {
                   if (page === 1) return;
-                  setPage(page - 1);
+                  handlePaginate(page - 1);
                 }}
               >
                 <svg
@@ -170,13 +214,12 @@ const Posts = () => {
                       <p
                         key={index + 1}
                         onClick={() => {
-                          setPage(index + 1);
+                          handlePaginate(index + 1);
                         }}
-                        className={`text-sm font-medium leading-none cursor-pointer border-t hover:border-[#2089e3] pt-3 mr-4 px-2 ${
-                          pagination.current_page === index + 1
-                            ? "text-[#2089e3] border-[#2089e3]"
-                            : "text-gray-600 hover:text-[#2089e3] border-transparent"
-                        }`}
+                        className={`text-sm font-medium leading-none cursor-pointer border-t hover:border-[#2089e3] pt-3 mr-4 px-2 ${pagination.current_page === index + 1
+                          ? "text-[#2089e3] border-[#2089e3]"
+                          : "text-gray-600 hover:text-[#2089e3] border-transparent"
+                          }`}
                       >
                         {index + 1}
                       </p>
@@ -185,14 +228,13 @@ const Posts = () => {
                 </div>
               </div>
               <div
-                className={`${
-                  page === pagination.total_pages
-                    ? "disable hover:text-grey cursor-default"
-                    : "cursor-pointer hover:text-[#2089e3]"
-                } flex items-center pt-3 text-gray-600 `}
+                className={`${page === pagination.total_pages
+                  ? "disable hover:text-grey cursor-default"
+                  : "cursor-pointer hover:text-[#2089e3]"
+                  } flex items-center pt-3 text-gray-600 `}
                 onClick={() => {
-                  if (page === pagination.total_pages) return;
-                  setPage(page + 1);
+                  if (page === pagination.total_pages || page === null) return;
+                  handlePaginate(page + 1);
                 }}
               >
                 <p className="text-sm font-medium leading-none mr-3">

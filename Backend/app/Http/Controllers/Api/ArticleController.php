@@ -21,9 +21,10 @@ class ArticleController extends Controller
         $category = $request->input('category');
         $tag = $request->input('tag');
         $perPage = $request->input('per_page', 10); // Number of articles per page, default is 10
+        $commentsPerPage = $request->input('comments_per_page', 5); // Number of comments per article, default is 5
 
         // Build the query
-        $query = Article::query()->with('category', 'tags', 'comments', 'user');
+        $query = Article::query()->with(['category', 'tags', 'user']);
 
         // Apply search if a search term is provided
         if ($search) {
@@ -47,6 +48,12 @@ class ArticleController extends Controller
         // Get paginated articles
         $articles = $query->paginate($perPage);
 
+        // Load paginated comments for each article
+        $articles->getCollection()->transform(function ($article) use ($commentsPerPage) {
+            $article->comments = $article->comments()->paginate($commentsPerPage);
+            return $article;
+        });
+
         // Response structure
         $response = [
             'data' => $articles->items(),
@@ -59,7 +66,7 @@ class ArticleController extends Controller
             'message' => __('Articles retrieved successfully'),
         ];
 
-        // Return the JSON response with paginated articles
+        // Return the JSON response with paginated articles and comments
         return response()->json($response);
     }
 
@@ -72,7 +79,7 @@ class ArticleController extends Controller
     public function show($id, Request $request)
     {
         // Find the article by ID
-        $article = Article::where('id', $id)->with('category', 'tags')->first();
+        $article = Article::where('id', $id)->with('category', 'tags', 'user')->first();
 
         // Check if the article exists
         if (!$article) {
@@ -80,28 +87,14 @@ class ArticleController extends Controller
         }
 
         // Get pagination parameters
-        $perPage = $request->input('per_page', 10); // Number of comments per page, default is 10
+        $perPage = $request->input('per_page', 5); // Number of comments per page, default is 10
 
-        // Get paginated comments for the article
-        $comments = $article->comments()->paginate($perPage);
+        $article->comments = $article->comments()->paginate($perPage);
 
-        // Response structure
-        $response = [
-            'article' => $article,
-            'comments' => [
-                'data' => $comments->items(),
-                'pagination' => [
-                    'current_page' => $comments->currentPage(),
-                    'per_page' => $comments->perPage(),
-                    'total_pages' => ceil($comments->total() / $comments->perPage()),
-                    'total_items' => $comments->total(),
-                ],
-            ]
-        ];
 
         // Return the JSON response with the article and its paginated comments
         return response()->json([
-            'data' => $response,
+            'data' => $article,
             'message' => __('Article retrieved successfully'),
         ]);
     }
@@ -117,11 +110,17 @@ class ArticleController extends Controller
     {
         // Get the number of latest articles to retrieve
         $limit = $request->input('limit', 5); // Default is 5
+        $commentsPerPage = $request->input('comments_per_page', 5); // Number of comments per article, default is 5
 
         // Get the latest articles based on publication_date
         $articles = Article::orderBy('publication_date', 'desc')->limit($limit)->get();
 
-        $articles->load('category', 'tags');
+        $articles->load('category', 'tags', 'user');
+
+        $articles->transform(function ($article) use ($commentsPerPage) {
+            $article->comments = $article->comments()->paginate($commentsPerPage);
+            return $article;
+        });
         // Response structure
         $response = [
             'data' => $articles,

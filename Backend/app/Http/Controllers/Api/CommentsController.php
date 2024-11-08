@@ -5,13 +5,18 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Comment;
+use App\Models\Article;
 
 class CommentsController extends Controller
 {
     // Listar todos los comentarios de un artículo específico
-    public function index($articleId)
+    public function index(Request $request, $articleId)
     {
+        $perPage = $request->input('per_page', 10);
+
         $comments = Comment::where('article_id', $articleId)->get();
+        $comments = $comments->paginate($request->input($perPage, 5));
+
         return response()->json([
             'data' => $comments->items(),
             'pagination' => [
@@ -29,28 +34,41 @@ class CommentsController extends Controller
     }
 
     // Crear un nuevo comentario para un artículo específico
-    public function store(Request $request, $articleId)
+    public function store(Request $request)
     {
         $request->validate([
             'content' => 'required|string|max:255',
             'author_name' => 'required|string',
             'author_email' => 'required|email',
-            'ip_address' => 'required|ip',
+            'article_id' => 'required|integer|exists:articles,id',
+            'ip_address' => 'ip',
             'article_id' => 'required|integer|exists:articles,id',
         ]);
-
+        // Obtener la dirección IP del cliente
+        $ipAddress = $request->ip();
         $comment = new Comment();
         $comment->content = $request->input('content');
         $comment->author_name = $request->input('author_name');
         $comment->author_email = $request->input('author_email');
-        $comment->ip_address = $request->input('ip_address');
-        $comment->article_id = $articleId;
+        $comment->ip_address = $ipAddress;
+        $comment->article_id = $request->input('article_id');
         $comment->published_at = now();
         $comment->save();
 
+        $article = Article::where('id', $request->input('article_id'))->with('category', 'tags', 'user')->first();
+
+        // Check if the article exists
+        if (!$article) {
+            return response()->json(['message' => __('Article not found')], 404);
+        }
+
+        $article->comments = $article->comments()->paginate(5);
+
+
+        // Return the JSON response with the article and its paginated comments
         return response()->json([
-            'data' => $comment,
-            'message' => __('Comment created successfully'),
+            'data' => $article,
+            'message' => __('Article retrieved successfully and comment created'),
         ]);
     }
 
@@ -76,7 +94,7 @@ class CommentsController extends Controller
             'content' => 'required|string|max:255',
             'author_name' => 'required|string',
             'author_email' => 'required|email',
-            'ip_address' => 'required|ip',
+            'ip_address' => 'ip',
             'article_id' => 'required|integer|exists:articles,id',
         ]);
 

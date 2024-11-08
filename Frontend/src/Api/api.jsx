@@ -11,6 +11,15 @@ export const getArticles = async (query = '') => {
         return error;
     }
 };
+// Llama a la API para obtener un articulo por su ID
+export const getArticleById = async (id) => {
+    try {
+        const response = await axiosInstance.get(`/articles/${id}`);
+        return response.data;
+    } catch (error) {
+        return error;
+    }
+};
 // Llama a la API para obtener los posts mas recientes
 export const getLatestPosts = async () => {
     try {
@@ -33,6 +42,16 @@ export const getCategories = async () => {
 export const getTags = async () => {
     try {
         const response = await axiosInstance.get('/tags');
+        return response.data;
+    } catch (error) {
+        return error;
+    }
+};
+
+// Llamada al api para crear un comentario
+export const createComment = async (data) => {
+    try {
+        const response = await axiosInstance.post(`/comments`, data);
         return response.data;
     } catch (error) {
         return error;

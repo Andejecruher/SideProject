@@ -24,7 +24,7 @@ export default function HeaderSearch() {
   }, [category]);
 
   const handleSearchChange = (event) => {
-    ;
+    event.preventDefault();
     setSearchQuery(event.target.value);
   };
 
@@ -32,13 +32,15 @@ export default function HeaderSearch() {
     event.preventDefault();
     // Realizar la búsqueda aquí
     setSearch(searchQuery);
+    setSelectedLink('Todas');
+    setSearchQuery('');
     // Puedes llamar a una función para realizar la búsqueda o redirigir a una página de resultados
   };
 
   const handleLinkClick = (category) => {
     if (category === 'Todas') {
       setSelectedLink('Todas');
-      setCategory('Todas');
+      setCategory('all');
       return;
     }
     setSelectedLink(category.name);

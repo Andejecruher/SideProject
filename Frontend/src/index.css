@@ -154,6 +154,18 @@ body {
   font-style: normal;
   cursor: pointer;
 }
+.mantine-Notifications-root {
+  z-index: 1000 !important;
+}
+.my-notification-class {
+  font-family: "Manrope", sans-serif;
+  font-size: 16px !important;
+  font-style: normal;
+  font-weight: 500 !important;
+  letter-spacing: -0.32px;
+  line-height: 19.2px;
+  z-index: 1000 !important;
+}
 
 #error-page {
   display: flex;
