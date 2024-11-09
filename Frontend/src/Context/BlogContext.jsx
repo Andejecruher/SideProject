@@ -118,13 +118,11 @@ export const BlogProvider = ({ children }) => {
   };
 
   useEffect(() => {
-
     setTag(null);
     setSearch('');
     if (category === 'all') {
       fetchArticles('');
     }
-
     if (category && category !== 'all' && category !== 'Todas') {
       const query = `?category=${category.id}`;
       fetchArticles(query);
@@ -132,7 +130,6 @@ export const BlogProvider = ({ children }) => {
   }, [category]);
 
   useEffect(() => {
-
     setSearch('');
     setCategory('Todas');
     if (tag) {
@@ -142,7 +139,6 @@ export const BlogProvider = ({ children }) => {
   }, [tag]);
 
   useEffect(() => {
-
     setTag(null);
     if (search) {
       const query = `?search=${search}`;
