@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { getArticles, getCategories, getTags, getLatestPosts, getArticleById, createComment } from '@src/Api/api';
+import { getArticles, getCategories, getTags, getLatestPosts, getArticleById, createComment, registerNewsletter } from '@src/Api/api';
 import PropTypes from 'prop-types';
 
 // Crear el contexto
@@ -56,7 +56,7 @@ export const BlogProvider = ({ children }) => {
       setError('Error fetching article');
       setIsLoading(false);
     }
-  }
+  };
 
   const fetchArticleByIdComments = async (id) => {
     try {
@@ -68,7 +68,7 @@ export const BlogProvider = ({ children }) => {
       setError('Error fetching article');
       setIsLoadingComments(false);
     }
-  }
+  };
 
   const fetchCategories = async () => {
     try {
@@ -97,7 +97,19 @@ export const BlogProvider = ({ children }) => {
     } catch (err) {
       setError('Error creating comment');
     }
-  }
+  };
+
+  const fetchRegisterNewsletter = async (data) => {
+    try {
+      const response = await registerNewsletter(data);
+      if (response && response.data) {
+        return response.data;
+      }
+    } catch (err) {
+      setError('Error registering newsletter');
+      return err;
+    }
+  };
 
   const fetchAllData = async () => {
     setIsLoading(true);
@@ -165,6 +177,7 @@ export const BlogProvider = ({ children }) => {
       fetchArticles,
       fetchCreateComment,
       fetchArticleByIdComments,
+      fetchRegisterNewsletter,
     }}>
       {children}
     </BlogContext.Provider>

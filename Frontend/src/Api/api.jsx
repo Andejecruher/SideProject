@@ -58,3 +58,12 @@ export const createComment = async (data) => {
     }
 };
 
+// Llamada al api para registrar al boletin
+export const registerNewsletter = async (data) => {
+    try {
+        const response = await axiosInstance.post(`/newsletter`, data);
+        return response.data;
+    } catch (error) {
+        return error;
+    }
+};

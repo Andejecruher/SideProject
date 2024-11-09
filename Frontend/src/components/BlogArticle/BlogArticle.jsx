@@ -21,10 +21,6 @@ const BlogArticle = () => {
     }
   }, [comments]);
 
-  useEffect(() => {
-    console.log('isLoadingComments', isLoadingComments);
-  }, [isLoadingComments]);
-
   return (
     <div className="p-3 bg-white shadow-md rounded-lg mt-3 border border-slate-200">
       {/* Title & Description */}
