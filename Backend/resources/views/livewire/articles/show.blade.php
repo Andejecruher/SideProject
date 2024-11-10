@@ -16,7 +16,7 @@
             </nav>
         </div>
     </div>
-    <div class="container mt-5">
+    <div class="mt-5 ml-2 mr-2">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -29,11 +29,13 @@
                         $image = $img !== 'default.jpg' ? asset("storage/featured_image/".$img) : asset('assets/img/featured_image/default.jpg');
                         @endphp
                         @if($article->featured_image)
-                        <img src="{{ $image }}" class="img-fluid mb-3" alt="{{ $article->title }}">
+                        <div class="d-flex justify-content-center">
+                            <img src="{{ $image }}" class="img-fluid mb-3" alt="{{ $article->title }}">
+                        </div>
                         @endif
                         <p class="text-muted">{{ $article->description }}</p>
                         <hr>
-                        <div class="content">
+                        <div class="">
                             {!! $article->content !!}
                         </div>
                         <hr>

@@ -15,7 +15,13 @@
     'articles.show',
     'tags-list',
     'tags.edit',
-    'tags.create',]))
+    'tags.create',
+    'comments-list',
+    'comments.show',
+    'roles.index',
+    'roles.create',
+    'roles.edit',
+    ]))
 
     {{-- Nav --}}
     @include('layouts.nav')

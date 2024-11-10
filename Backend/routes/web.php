@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Err404;
 use App\Http\Livewire\Err500;
@@ -11,10 +12,12 @@ use App\Http\Livewire\Profile;
 use App\Http\Livewire\Categories\Categories;
 use App\Http\Livewire\Articles\Articles;
 use App\Http\Livewire\Tags\Tags;
+use App\Http\Livewire\Comments\Comments;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\TagController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\RolePermissionController;
 use App\Http\Controllers\ImageUploadController;
 
 
@@ -48,10 +51,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/categories-list', Categories::class)->name('categories-list');
     Route::get('/articles-list', Articles::class)->name('articles-list');
     Route::get('/tags-list', Tags::class)->name('tags-list');
+    Route::get('/comments-list', Comments::class)->name('comments-list');
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
 
     // controllers
-    Route::resource('users', UserController::class);
-    Route::resource('categories', CategoryController::class);
-    Route::resource('articles', ArticleController::class);
+    Route::resource('users', UserController::class)->except(['index', 'show']);
+    Route::resource('categories', CategoryController::class)->except(['index', 'show']);
+    Route::resource('articles', ArticleController::class)->except(['index']);
+    Route::resource('comments', CommentController::class)->except(['index', 'create', 'edit', 'update', 'store']);
+    Route::resource('roles', RolePermissionController::class);
 });

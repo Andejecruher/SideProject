@@ -21,6 +21,7 @@ class CreateCommentsTable extends Migration
             $table->string('author_email')->nullable(); // Email of the author, nullable
             $table->date('published_at')->nullable(); // Date of publication, nullable
             $table->string('ip_address')->nullable(); // IP address of the author, nullable
+            $table->boolean('approved')->default(false); // Approved status of the comment, default is false
             $table->foreignId('article_id')->constrained('articles')->onDelete('cascade'); // Foreign key to the articles table, cascade on delete
             $table->timestamps(); // Timestamps for created_at and updated_at
         });

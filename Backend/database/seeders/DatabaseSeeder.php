@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
             CommentsTableSeeder::class, // Seed the comments table
             TagsTableSeeder::class, // Seed the tags table
             ArticleTagTableSeeder::class, // Seed the article_tag table
+            RolePermissionSeeder::class, // Seed the roles and permissions
         ]);
-
     }
 }

@@ -16,6 +16,7 @@ class Comment extends Model
         'article_id', // Foreign key to the articles table
         'author_email', // Email of the author
         'published_at', // Date and time when the comment was published
+        'approved', // Approved status of the comment
         'ip_address', // IP address of the author
     ];
 

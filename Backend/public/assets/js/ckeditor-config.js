@@ -43,7 +43,7 @@ import {
     ImageInsert
 } from 'ckeditor5';
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const contentElement = document.querySelector('#content');
     if (contentElement) {
         ClassicEditor
@@ -101,25 +101,25 @@ document.addEventListener('DOMContentLoaded', function() {
                 ],
                 image: {
                     resizeOptions: [{
-                            name: 'resizeImage:original',
-                            label: 'Default image width',
-                            value: null,
-                        },
-                        {
-                            name: 'resizeImage:25',
-                            label: '25% page width',
-                            value: '25',
-                        },
-                        {
-                            name: 'resizeImage:50',
-                            label: '50% page width',
-                            value: '50',
-                        },
-                        {
-                            name: 'resizeImage:75',
-                            label: '75% page width',
-                            value: '75',
-                        },
+                        name: 'resizeImage:original',
+                        label: 'Default image width',
+                        value: null,
+                    },
+                    {
+                        name: 'resizeImage:25',
+                        label: '25% page width',
+                        value: '25',
+                    },
+                    {
+                        name: 'resizeImage:50',
+                        label: '50% page width',
+                        value: '50',
+                    },
+                    {
+                        name: 'resizeImage:75',
+                        label: '75% page width',
+                        value: '75',
+                    },
                     ],
                     toolbar: [
                         'imageTextAlternative',
@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 mediaEmbed: {
                     previewsInData: true
                 },
-                licenseKey: 'SVpRTWRaSHp5WmRCRFNZSy9zaFI4RkZ0WTBFWWJEOUplOUttUjBZelN4VlBkZkdYUUdtTzhzYWtwUUNBYUE9PS1NakF5TkRFeE1qST0=',
+                //licenseKey: 'SVpRTWRaSHp5WmRCRFNZSy9zaFI4RkZ0WTBFWWJEOUplOUttUjBZelN4VlBkZkdYUUdtTzhzYWtwUUNBYUE9PS1NakF5TkRFeE1qST0=',
                 height: 'auto', // Set the height to auto
                 resizeOptions: {
                     horizontal: true, // Enable horizontal resizing

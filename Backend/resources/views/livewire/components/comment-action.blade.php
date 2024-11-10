@@ -1,16 +1,5 @@
 <!-- resources/views/livewire/components/actions.blade.php -->
-@php
-$show = $show ?? false;
-@endphp
 <div class="d-flex">
-    @if ($show)
-    <a href="{{ route($route.'.show', $id) }}" class="btn btn-sm btn-success me-2 text-white">
-        <i class="fas fa-eye"></i>
-    </a>
-    @endif
-    <a href="{{ route($route.'.edit', $id) }}" class="btn btn-sm btn-primary me-2">
-        <i class="fas fa-edit"></i>
-    </a>
     <form id="delete-form-{{ $id }}" action="{{ route($route.'.destroy', $id) }}" method="POST" style="display: none;">
         @csrf
         @method('DELETE')
