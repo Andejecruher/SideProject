@@ -96,7 +96,7 @@
                     @enderror
                     <div class="d-flex justify-content-center mt-2">
                         @php
-                        $img = str_replace("http://localhost:8000/api/images/", "", $article->featured_image);
+                        $img = str_replace(env('APP_URL') . "/api/images/", "", $article->featured_image);
                         $image = $img !== 'default.jpg' ? asset("storage/featured_image/".$img) : asset('assets/img/featured_image/default.jpg');
                         @endphp
                         <img id="featured_image-preview" src="{{ isset($article) && $article->featured_image ? $image : asset('assets/img/featured_image/default.jpg') }}" alt="Featured Image" class="img-thumbnail mt-2" width="100">
@@ -111,7 +111,7 @@
                     @enderror
                     <div class="d-flex justify-content-center mt-2">
                         @php
-                        $imgthumbnail = str_replace("http://localhost:8000/api/images/", "", $article->thumbnail);
+                        $imgthumbnail = str_replace(env('APP_URL') . "/api/images/", "", $article->thumbnail);
                         $thumbnail = $imgthumbnail !== 'default.jpg' ? asset("storage/thumbnail/".$imgthumbnail) : asset('assets/img/thumbnail/default.jpg');
                         @endphp
                         <img id="thumbnail-preview" src="{{ isset($article) && $article->thumbnail ? $thumbnail : asset('assets/img/thumbnail/default.jpg') }}" alt="Thumbnail" class="img-thumbnail mt-2" width="100">

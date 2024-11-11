@@ -7,7 +7,7 @@
             <div class="d-flex align-items-center">
                 <div class="avatar-lg me-4">
                     @php
-                    $img = str_replace("http://localhost:8000/api/images/", "", auth()->user()->avatar);
+                    $img = str_replace(env('APP_URL') . "/api/images/", "", auth()->user()->avatar);
                     $avatar = auth()->user()->avatar ? asset("storage/avatars/".$img) : asset('assets/img/avatars/default.jpg');
                     @endphp
                     <img src="{{ $avatar }}" class="card-img-top rounded-circle border-white" alt="{{ auth()->user()->name }}">

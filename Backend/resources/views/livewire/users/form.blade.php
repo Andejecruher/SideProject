@@ -50,7 +50,7 @@
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                     @php
-                    $img = str_replace("http://localhost:8000/api/images/", "", auth()->user()->avatar);
+                    $img = str_replace(env('APP_URL') . "/api/images/", "", auth()->user()->avatar);
                     $avatar = auth()->user()->avatar ? asset("storage/avatars/".$img) : asset('assets/img/avatars/default.jpg');
                     @endphp
                     @if(isset($user) && $avatar !== 'default.jpg')

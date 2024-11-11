@@ -44,7 +44,7 @@ class UserTable extends DataTableComponent
             Column::make(__("Avatar"), "avatar")
                 ->format(function ($value, $column, $row) {
                     // Render the article-image view component with the provided image path
-                    $img = str_replace("http://localhost:8000/api/images/", "", $value);
+                    $img = str_replace(env('APP_URL') . "/api/images/", "", $value);
                     return view('livewire.components.avatar-image', ['imagePath' => $img]);
                 }),
             Column::make(__("Gender"), "gender")

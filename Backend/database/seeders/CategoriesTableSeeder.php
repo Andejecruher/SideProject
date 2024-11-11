@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Faker\Factory as Faker;
 
 class CategoriesTableSeeder extends Seeder
 {
@@ -17,16 +16,36 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        // Create a Faker instance
-        $faker = Faker::create();
 
         // Insert 10 fake categories into the categories table
-        foreach (range(1, 10) as $index) {
+        $categorias = [
+            [
+                'name' => 'Programación',
+                'description' => 'Explora guías prácticas, tutoriales y las mejores prácticas en desarrollo de software, tanto en frontend como backend. Ideal para desarrolladores que buscan profundizar en tecnologías y mejorar sus habilidades técnicas.',
+                'icon' => 'fas fa-code',
+                'color' => '#4A90E2'
+            ],
+            [
+                'name' => 'Tecnología e Innovación',
+                'description' => 'Descubre las últimas tendencias y avances en tecnología e inteligencia artificial. Esta categoría abarca temas innovadores, desde IA hasta herramientas de productividad, que transforman el mundo digital.',
+                'icon' => 'fas fa-robot',
+                'color' => '#7B16FF' // Púrpura como color innovador y futurista
+            ],
+            [
+                'name' => 'Superación Personal',
+                'description' => 'Consejos y reflexiones para el crecimiento personal y profesional. Aquí encontrarás estrategias para mejorar la inteligencia emocional, lograr un equilibrio saludable y potenciar tus habilidades en la industria tecnológica.',
+                'icon' => 'fas fa-user-cog',
+                'color' => '#F5A623' // Naranja como color cálido y motivacional
+            ]
+        ];
+
+
+        foreach ($categorias as $category) {
             DB::table('categories')->insert([
-                'name' => $faker->word, // Generate a fake name
-                'description' => $faker->sentence, // Generate a fake description
-                'icon' => $faker->randomElement(['fas fa-laptop', 'fas fa-code', 'fas fa-database', 'fas fa-server', 'fas fa-mobile-alt']), // Assign a random icon
-                'color' => $faker->hexColor, // Generate a random hex color
+                'name' => $category["name"], // Generate a fake name
+                'description' => $category["description"], // Generate a fake description
+                'icon' => $category["icon"], // Assign a random icon
+                'color' => $category["color"], // Generate a random hex color
                 'created_at' => now(), // Set the current timestamp for created_at
                 'updated_at' => now(), // Set the current timestamp for updated_at
             ]);

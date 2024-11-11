@@ -6,8 +6,6 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-use Illuminate\Support\Arr;
-use Faker\Factory as Faker;
 
 class UserSeeder extends Seeder
 {
@@ -20,8 +18,6 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        // Create a Faker instance
-        $faker = Faker::create();
 
         // Insert a fake admin user into the users table
         DB::table("users")->insert([
@@ -32,12 +28,12 @@ class UserSeeder extends Seeder
             'gender' => 'other', // Random gender
             'avatar' => '', // Fake avatar image
             'email_verified_at' => now(), // Email verification timestamp
-            'address' => $faker->address, // Fake address
-            'city' => $faker->city, // Fake city
-            'postal_code' => $faker->randomNumber(6), // Fake postal code
+            'address' => 'Calle Pavo Real #431', // Fake address
+            'city' => 'Puerto Vallarta, Jalisco', // Fake city
+            'postal_code' => '48280', // Fake postal code
             'role' => 'admin', // Role of the user
             'status' => 'active', // Status of the user
-            'phone' => $faker->buildingNumber, // Fake phone number
+            'phone' => '3223018570', // Fake phone number
             'remember_token' => Str::random(10), // Random remember token
         ]);
     }

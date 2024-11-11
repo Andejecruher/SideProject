@@ -6,17 +6,7 @@ use Livewire\Component;
 
 class Comments extends Component
 {
-    /** 
-     * Constructor
-     * 
-     * Apply middleware to protect routes with permissions.
-     */
 
-    public function __construct()
-    {
-        $this->middleware('auth');
-        $this->middleware('comments:articles.index', ['only' => ['index']]);
-    }
     /**
      * Render the Livewire component.
      *

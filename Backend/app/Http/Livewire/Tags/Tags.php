@@ -11,16 +11,7 @@ use Livewire\Component;
  */
 class Tags extends Component
 {
-    /**
-     * Constructor
-     *
-     * Apply middleware to protect routes with permissions.
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-        $this->middleware('permission:tags.index', ['only' => ['index']]);
-    }
+
 
     /**
      * The message to be displayed.

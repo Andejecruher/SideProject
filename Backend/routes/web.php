@@ -44,14 +44,26 @@ Route::get('/500', Err500::class)->name('500');
 Route::middleware('auth')->group(function () {
     // resources
     Route::post('/upload-image', [ImageUploadController::class, 'store'])->name('upload.image');
+    Route::get('/profile', Profile::class)->name('profile');
 
     // views
-    Route::get('/profile', Profile::class)->name('profile');
-    Route::get('/users-list', Users::class)->name('users-list');
-    Route::get('/categories-list', Categories::class)->name('categories-list');
-    Route::get('/articles-list', Articles::class)->name('articles-list');
-    Route::get('/tags-list', Tags::class)->name('tags-list');
-    Route::get('/comments-list', Comments::class)->name('comments-list');
+    Route::middleware(['auth', 'permission:articles.index'])->group(function () {
+        Route::get('/articles-list', Articles::class)->name('articles-list');
+    });
+    Route::middleware(['auth', 'permission:comments.index'])->group(function () {
+        Route::get('/comments-list', Comments::class)->name('comments-list');
+    });
+    Route::middleware(['auth', 'permission:tags.index'])->group(function () {
+        Route::get('/tags-list', Tags::class)->name('tags-list');
+    });
+    Route::middleware(['auth', 'permission:users.index'])->group(function () {
+        Route::get('/users-list', Users::class)->name('users-list');
+    });
+    Route::middleware(['auth', 'permission:categories.index'])->group(function () {
+        Route::get('/categories-list', Categories::class)->name('categories-list');
+    });
+
+    // dashboard
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
 
     // controllers

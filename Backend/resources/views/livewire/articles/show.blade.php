@@ -25,7 +25,7 @@
                     </div>
                     <div class="card-body">
                         @php
-                        $img = str_replace("http://localhost:8000/api/images/", "", $article->featured_image);
+                        $img = str_replace(env('APP_URL') . "/api/images/", "", $article->featured_image);
                         $image = $img !== 'default.jpg' ? asset("storage/featured_image/".$img) : asset('assets/img/featured_image/default.jpg');
                         @endphp
                         @if($article->featured_image)

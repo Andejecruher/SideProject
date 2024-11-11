@@ -67,7 +67,7 @@ class ArticleCommentsTable extends DataTableComponent
             Column::make(__("Thumbnail"), "thumbnail")
                 ->format(function ($value, $column, $row) {
                     // Render the article-image view component with the provided image path
-                    $img = str_replace("http://localhost:8000/api/images/", "", $value);
+                    $img = str_replace(env('APP_URL') . "/api/images/", "", $value);
                     return view('livewire.components.article-thumbnail', ['imagePath' => $img]);
                 }),
             Column::make(__("Publication date"), "publication_date")
