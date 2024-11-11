@@ -44,10 +44,10 @@ class ResetPassword extends Notification
     {
         $url = URL::signedRoute('reset-password', ['id' => $this->token]);
         return (new MailMessage)
-            ->subject('Restablece tu contraseña')
-            ->line('Hola, ¿olvidaste tu contraseña? Haz clic en el botón para restablecerla.')
-            ->action('Restablecer contraseña', $url)
-            ->line('¡Gracias por usar nuestra aplicación!');
+            ->subject(__('Reset your password'))
+            ->line(__('Hello, did you forget your password? Click the button to reset it.'))
+            ->action(__('Reset Password'), $url)
+            ->line(__('Thank you for using our application!'));
     }
 
     /**
