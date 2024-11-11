@@ -54,7 +54,7 @@ export default function HeaderSearch() {
   return (
     <div className="conten-header-search">
       <nav className="border-gray-200 px-2">
-        <div className="container mx-auto flex flex-wrap items-center justify-between">
+        <div className="mx-auto flex flex-wrap items-center justify-between">
           <div className="relative mr-3 md:mr-0 md:hidden max-w-[200px] searchInput">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center cursor-pointer" onKeyDown={(e) => e.key === 'Enter' && handleSearchSubmit(e)} onClick={(e) => handleSearchSubmit(e)}>
               <svg className="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
