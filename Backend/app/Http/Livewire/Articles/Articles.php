@@ -6,6 +6,19 @@ use Livewire\Component;
 
 class Articles extends Component
 {
+    /** 
+     * Constructor
+     * 
+     * Apply middleware to protect routes with permissions.
+     */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('permission:articles.index', ['only' => ['index']]);
+    }
+
+
     /**
      * Render the Livewire component.
      *

@@ -6,15 +6,35 @@ use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use App\Models\Role;
 
+/**
+ * Class RoleTable
+ *
+ * This Livewire component handles the display and management of roles in a data table format.
+ */
 class RoleTable extends DataTableComponent
 {
+    /**
+     * The model associated with the data table.
+     *
+     * @var string
+     */
     protected $model = Role::class;
 
+    /**
+     * Configure the data table.
+     *
+     * @return void
+     */
     public function configure(): void
     {
         $this->setPrimaryKey('id');
     }
 
+    /**
+     * Define the columns for the data table.
+     *
+     * @return array
+     */
     public function columns(): array
     {
         return [

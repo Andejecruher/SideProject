@@ -6,6 +6,18 @@ use Livewire\Component;
 
 class Categories extends Component
 {
+
+    /** 
+     * Constructor
+     * 
+     * Apply middleware to protect routes with permissions.
+     */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('permission:categories.index', ['only' => ['index']]);
+    }
     /**
      * Render the Livewire component.
      *

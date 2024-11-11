@@ -95,6 +95,9 @@ class UserController extends Controller
         // Hash the password
         $user->password = Hash::make($request->password);
 
+        // add role to user
+        $user->assignRole($request->role);
+
         // Save the user to the database
         $user->save();
 
@@ -151,6 +154,9 @@ class UserController extends Controller
         if ($request->filled('password')) {
             $user->password = Hash::make($request->password);
         }
+
+        // adapt role to user
+        $user->syncRoles($request->role);
 
         // Save the user to the database
         $user->save();

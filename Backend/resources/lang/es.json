@@ -23,6 +23,7 @@
     "Articles.update": "Actualizar Artículo",
     "Articles.store": "Guardar Artículo",
     "Articles.index": "Lista de artículos",
+    "Articles.published": "Publicar Artículo",
     "Category": "Categoría",
     "Categories": "Categorías",
     "Categories List": "Lista de categorías",
