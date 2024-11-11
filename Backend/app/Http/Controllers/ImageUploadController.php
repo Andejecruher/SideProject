@@ -8,6 +8,17 @@ use Illuminate\Support\Facades\Storage;
 class ImageUploadController extends Controller
 {
     /**
+     * Constructor
+     *
+     * Apply middleware to protect routes with permissions.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('permission:images.create', ['only' => ['store']]);
+        $this->middleware('permission:images.destroy', ['only' => ['destroy']]);
+    }
+    /**
      * Handle the image upload request from CKEditor.
      *
      * @param \Illuminate\Http\Request $request

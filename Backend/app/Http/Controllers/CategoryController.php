@@ -8,6 +8,20 @@ use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
 {
+    /**
+     * Constructor
+     *
+     * Apply middleware to protect routes with permissions.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('permission:categories.index', ['only' => ['index']]);
+        $this->middleware('permission:categories.show', ['only' => ['show']]);
+        $this->middleware('permission:categories.create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:categories.edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:categories.destroy', ['only' => ['destroy']]);
+    }
 
     /**
      * Show the form for editing the specified category.
@@ -22,8 +36,8 @@ class CategoryController extends Controller
         $category = Category::find($id);
         if (!$category) {
             return redirect()->back()
-                    ->withErrors(['message' => __('Category not found')])
-                    ->withInput();
+                ->withErrors(['message' => __('Category not found')])
+                ->withInput();
         }
 
         // Return the edit form view with the category data

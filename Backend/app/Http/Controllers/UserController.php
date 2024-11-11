@@ -10,6 +10,23 @@ use App\Models\User;
 
 class UserController extends Controller
 {
+
+    /**
+     * Constructor
+     *
+     * Apply middleware to protect routes with permissions.
+     */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('permission:users.index', ['only' => ['index']]);
+        $this->middleware('permission:users.show', ['only' => ['show']]);
+        $this->middleware('permission:users.create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:users.edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:users.destroy', ['only' => ['destroy']]);
+    }
+
     /**
      * Show the form for creating a new user.
      *

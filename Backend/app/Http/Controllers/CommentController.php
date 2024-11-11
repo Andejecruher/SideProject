@@ -8,6 +8,20 @@ use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
+    /**
+     * Constructor
+     *
+     * Apply middleware to protect routes with permissions.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('permission:comments.index', ['only' => ['index']]);
+        $this->middleware('permission:comments.show', ['only' => ['show']]);
+        $this->middleware('permission:comments.create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:comments.edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:comments.destroy', ['only' => ['destroy']]);
+    }
 
     /**
      * Display the specified resource.

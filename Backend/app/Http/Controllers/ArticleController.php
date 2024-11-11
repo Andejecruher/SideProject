@@ -12,6 +12,22 @@ use App\Models\Category;
 
 class ArticleController extends Controller
 {
+
+    /**
+     * Constructor
+     *
+     * Apply middleware to protect routes with permissions.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('permission:articles.index', ['only' => ['index']]);
+        $this->middleware('permission:articles.show', ['only' => ['show']]);
+        $this->middleware('permission:articles.create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:articles.edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:articles.destroy', ['only' => ['destroy']]);
+    }
+
     /**
      * Display a listing of the articles.
      *
