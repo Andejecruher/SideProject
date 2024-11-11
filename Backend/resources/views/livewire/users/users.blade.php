@@ -36,6 +36,7 @@
             <div class="col-9 col-lg-8 d-md-flex">
                 <h2 class="h4">{{__("Users List")}}</h2>
             </div>
+            @can('users.create')
             <div class="col-3 col-lg-4 d-flex justify-content-end">
                 <a href="/users/create" class="btn btn-sm btn-gray-800 d-inline-flex align-items-center">
                     <svg class="icon icon-xs me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -45,6 +46,7 @@
                     {{__("New User")}}
                 </a>
             </div>
+            @endcan
         </div>
     </div>
     <div class="card card-body shadow border-0 table-wrapper table-responsive">

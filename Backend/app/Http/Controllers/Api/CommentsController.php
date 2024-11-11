@@ -14,7 +14,7 @@ class CommentsController extends Controller
     {
         $perPage = $request->input('per_page', 10);
 
-        $comments = Comment::where('article_id', $articleId)->get();
+        $comments = Comment::where('article_id', $articleId)->where('approved', true)->get();
         $comments = $comments->paginate($request->input($perPage, 5));
 
         return response()->json([
@@ -52,7 +52,7 @@ class CommentsController extends Controller
         $comment->author_email = $request->input('author_email');
         $comment->ip_address = $ipAddress;
         $comment->article_id = $request->input('article_id');
-        $comment->published_at = now();
+        $comment->published_at = '';
         $comment->save();
 
         $article = Article::where('id', $request->input('article_id'))->with('category', 'tags', 'user')->first();
@@ -75,7 +75,7 @@ class CommentsController extends Controller
     // Mostrar un comentario específico de un artículo
     public function show($articleId, $id)
     {
-        $comment = Comment::where('article_id', $articleId)->where('id', $id)->first();
+        $comment = Comment::where('article_id', $articleId)->where('approved', true)->where('id', $id)->first();
 
         if (is_null($comment)) {
             return response()->json(['message' => __('Comment not found')], 404);

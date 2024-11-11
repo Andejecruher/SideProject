@@ -117,10 +117,11 @@
                         <img id="thumbnail-preview" src="{{ isset($article) && $article->thumbnail ? $thumbnail : asset('assets/img/thumbnail/default.jpg') }}" alt="Thumbnail" class="img-thumbnail mt-2" width="100">
                     </div>
                 </div>
-
+                @if(auth()->user()->can('articles.edit') || auth()->user()->can('articles.create'))
                 <div class="d-flex justify-content-end">
                     <button type="submit" class="btn btn-primary">{{ isset($article) ? __("Update Article") : __("Create Article") }}</button>
                 </div>
+                @endif
             </form>
         </div>
     </div>

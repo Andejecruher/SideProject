@@ -24,7 +24,7 @@ class RoleTable extends DataTableComponent
                 ->sortable()
                 ->searchable()
                 ->format(function ($value, $column, $row) {
-                    return __($value);
+                    return __(ucfirst($value));
                 }),
             Column::make(__("Guard name"), "guard_name")
                 ->sortable()

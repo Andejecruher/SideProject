@@ -49,6 +49,7 @@
                     </span>
                 </a>
             </li>
+            @can('users.index')
             <li class="nav-item {{ Request::segment(1) == 'users-list' ? 'active' : '' }}">
                 <a href="/users-list" class="nav-link d-flex align-items-center">
                     <span class="sidebar-icon">
@@ -64,6 +65,8 @@
                     <span class="sidebar-text">{{__("Users")}}</span>
                 </a>
             </li>
+            @endcan
+            @can('roles.index')
             <li class="nav-item {{ Request::segment(1) == 'roles' ? 'active' : '' }}">
                 <a href="/roles" class="nav-link d-flex align-items-center">
                     <span class="sidebar-icon">
@@ -79,6 +82,8 @@
                     <span class="sidebar-text">{{__("Role")}}</span>
                 </a>
             </li>
+            @endcan
+            @can('categories.index')
             <li class="nav-item {{ Request::segment(1) == 'categories-list' ? 'active' : '' }}">
                 <a href="/categories-list" class="nav-link d-flex align-items-center">
                     <span class="sidebar-icon">
@@ -91,9 +96,11 @@
                             <path d="M40 48C26.7 48 16 58.7 16 72l0 48c0 13.3 10.7 24 24 24l48 0c13.3 0 24-10.7 24-24l0-48c0-13.3-10.7-24-24-24L40 48zM192 64c-17.7 0-32 14.3-32 32s14.3 32 32 32l288 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L192 64zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32l288 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-288 0zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32l288 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-288 0zM16 232l0 48c0 13.3 10.7 24 24 24l48 0c13.3 0 24-10.7 24-24l0-48c0-13.3-10.7-24-24-24l-48 0c-13.3 0-24 10.7-24 24zM40 368c-13.3 0-24 10.7-24 24l0 48c0 13.3 10.7 24 24 24l48 0c13.3 0 24-10.7 24-24l0-48c0-13.3-10.7-24-24-24l-48 0z" />
                         </svg>
                     </span>
-                    <span class="sidebar-text">{{__("Category")}}</span>
+                    <span class="sidebar-text">{{__("Categories")}}</span>
                 </a>
             </li>
+            @endcan
+            @can('tags.index')
             <li class="nav-item {{ Request::segment(1) == 'tags-list' ? 'active' : '' }}">
                 <a href="/tags-list" class="nav-link d-flex align-items-center">
                     <span class="sidebar-icon">
@@ -109,6 +116,8 @@
                     <span class="sidebar-text">{{__("Tags")}}</span>
                 </a>
             </li>
+            @endcan
+            @can('articles.index')
             <li class="nav-item {{ Request::segment(1) == 'articles-list' ? 'active' : '' }}">
                 <a href="/articles-list" class="nav-link d-flex align-items-center">
                     <span class="sidebar-icon">
@@ -124,6 +133,8 @@
                     <span class="sidebar-text">{{__("Articles")}}</span>
                 </a>
             </li>
+            @endcan
+            @can('comments.index')
             <li class="nav-item {{ Request::segment(1) == 'comments-list' ? 'active' : '' }}">
                 <a href="/comments-list" class="nav-link d-flex align-items-center">
                     <span class="sidebar-icon">
@@ -139,7 +150,7 @@
                     <span class="sidebar-text">{{__("Comments")}}</span>
                 </a>
             </li>
-
+            @endcan
         </ul>
     </div>
 </nav>

@@ -1,4 +1,5 @@
 <!-- resources/views/livewire/components/actions.blade.php -->
+@can($route.'.destroy')
 <div class="d-flex">
     <form id="delete-form-{{ $id }}" action="{{ route($route.'.destroy', $id) }}" method="POST" style="display: none;">
         @csrf
@@ -8,6 +9,7 @@
         <i class="fas fa-trash-alt"></i>
     </button>
 </div>
+@endcan
 
 <script>
     function confirmDeletion(id) {

@@ -64,10 +64,11 @@
                         </div>
                     </div>
                 </div>
-
+                @if(auth()->user()->can('categories.edit') || auth()->user()->can('categories.create'))
                 <div class="d-flex justify-content-end">
                     <button type="submit" class="btn btn-primary">{{ isset($category) ? __("Update Category") : __("Create Category") }}</button>
                 </div>
+                @endif
             </form>
         </div>
     </div>

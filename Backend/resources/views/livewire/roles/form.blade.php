@@ -4,17 +4,17 @@ $role = $role ?? null;
 @endphp
 
 <x-layouts.app>
-  <h1>{{ $role ? __("Edit Role") : __("Create Role") }}</h1>
 
-  <form action="{{ $role ? route('roles.update', $role->id) : route('roles.store') }}" method="POST">
+
+  <form action="{{ $role ? route('roles.update', $role->id) : route('roles.store') }}" method="POST" class="container">
     @csrf
     @if($role)
     @method('PUT')
     @endif
-
+    <h1>{{ $role ? __("Edit Role") : __("Create Role") }}</h1>
     <div class="mb-3 d-flex align-items-center">
       <label for="name" class="me-2">{{__("Name Role")}}</label>
-      <input type="text" name="name" id="name" value="{{ old('name', $role->name ?? '') }}" required class="form-control rounded border-gray-300 fmxw-300 md:fmxw-500">
+      <input type="text" name="name" id="name" value="{{ old('name', $role ? __(ucfirst($role->name)) : '') }}" required class="form-control rounded border-gray-300 fmxw-300 md:fmxw-500">
     </div>
 
     <div class="mb-3">
@@ -35,7 +35,7 @@ $role = $role ?? null;
               <div class="form-check form-check-inline">
                 <input class="form-check-input" type="checkbox" name="permissions[]" value="{{ $permission->name }}"
                   {{ $role && $role->permissions->contains($permission) ? 'checked' : '' }}>
-                <label class="form-check-label">{{ __($permission->name) }}</label>
+                <label class="form-check-label">{{ __(ucfirst($permission->name)) }}</label>
               </div>
               @endforeach
             </td>
@@ -45,9 +45,11 @@ $role = $role ?? null;
       </table>
     </div>
 
+    @if(auth()->user()->can('roles.edit') || auth()->user()->can('roles.create'))
     <div class="d-flex justify-content-end">
       <button type="submit" class="btn btn-primary mx-1">{{ $role ? 'Actualizar' : 'Guardar' }}</button>
       <a href="{{ route('roles.index') }}" class="btn btn-secondary">Cancelar</a>
     </div>
+    @endif
   </form>
 </x-layouts.app>

@@ -3,14 +3,19 @@
 $show = $show ?? false;
 @endphp
 <div class="d-flex">
+    @can($route.'.show')
     @if ($show)
     <a href="{{ route($route.'.show', $id) }}" class="btn btn-sm btn-success me-2 text-white">
         <i class="fas fa-eye"></i>
     </a>
     @endif
+    @endcan
+    @can($route.'.edit')
     <a href="{{ route($route.'.edit', $id) }}" class="btn btn-sm btn-primary me-2">
         <i class="fas fa-edit"></i>
     </a>
+    @endcan
+    @can($route.'.destroy')
     <form id="delete-form-{{ $id }}" action="{{ route($route.'.destroy', $id) }}" method="POST" style="display: none;">
         @csrf
         @method('DELETE')
@@ -18,6 +23,7 @@ $show = $show ?? false;
     <button type="button" class="btn btn-sm btn-danger" onclick="confirmDeletion({{ $id }})">
         <i class="fas fa-trash-alt"></i>
     </button>
+    @endcan
 </div>
 
 <script>

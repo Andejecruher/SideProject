@@ -32,14 +32,14 @@
             <button type="button" class="btn-close btn-sm" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         @endif
-        <div class="table-settings mb-4">
+        <div class="table-settings mb-4 container">
             <div class="row justify-content-between align-items-center">
                 <div class="col-9 col-lg-8 d-md-flex">
                     <h2 class="h4">{{__("Comments List")}}</h2>
                 </div>
             </div>
         </div>
-        <div class="card card-body shadow border-0 table-wrapper table-responsive">
+        <div class="card card-body shadow border-0 table-wrapper table-responsive container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
@@ -78,7 +78,7 @@
                 </div>
             </div>
         </div>
-        <div class="card card-body shadow border-0 table-wrapper table-responsive mt-2">
+        <div class="card card-body shadow border-0 table-wrapper table-responsive mt-2 container">
             <div class="table-settings mb-4">
                 <div class="row justify-content-between align-items-center">
                     <div class="col-9 col-lg-8 d-md-flex">

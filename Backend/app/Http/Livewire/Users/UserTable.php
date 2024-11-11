@@ -48,7 +48,10 @@ class UserTable extends DataTableComponent
                     return view('livewire.components.avatar-image', ['imagePath' => $img]);
                 }),
             Column::make(__("Gender"), "gender")
-                ->sortable(), // Make the column sortable
+                ->sortable() // Make the column sortable
+                ->format(function ($value, $column, $row) {
+                    return __(ucfirst($value));
+                }),
             Column::make(__("Email"), "email")
                 ->searchable() // Make the column searchable
                 ->sortable(), // Make the column sortable
@@ -64,6 +67,13 @@ class UserTable extends DataTableComponent
             Column::make(__("Postal Code"), "postal_code")
                 ->searchable() // Make the column searchable
                 ->sortable(), // Make the column sortable
+            Column::make(__("Role"), "role")
+                ->searchable() // Make the column searchable
+                ->sortable() // Make the column sortable
+                ->format(function ($value, $column, $row) {
+                    // Render the role view component with the provided role
+                    return __(ucfirst($value));
+                }),
             Column::make(__('Actions'), 'id')
                 ->format(function ($value, $column, $row) {
                     // Render the actions view component with the provided ID and route

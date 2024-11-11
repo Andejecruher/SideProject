@@ -16,7 +16,7 @@
             </nav>
         </div>
     </div>
-    <div class="mt-5 ml-2 mr-2">
+    <div class="mt-5 ml-2 mr-2 container">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">

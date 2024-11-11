@@ -12,14 +12,14 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <div>
-                                <label for="first_name">{{__("First name")}}</label>
+                                <label for="first_name">{{__("First Name")}}</label>
                                 <input wire:model="user.first_name" class="form-control" id="first_name" type="text"
                                     placeholder="{{__('Enter your first name')}}" required>
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
                             <div>
-                                <label for="last_name">{{__("Last name")}}</label>
+                                <label for="last_name">{{__("Last Name")}}</label>
                                 <input wire:model="user.last_name" class="form-control" id="last_name" type="text"
                                     placeholder="{{__('Also your last name')}}">
                             </div>

@@ -26,6 +26,7 @@ class ArticleController extends Controller
         // Build the query
         $query = Article::query()->with(['category', 'tags', 'user']);
 
+        $query->orderBy('publication_date', 'desc')->where('published', true);
         // Apply search if a search term is provided
         if ($search) {
             $query->where('title', 'like', '%' . $search . '%')
@@ -50,7 +51,7 @@ class ArticleController extends Controller
 
         // Load paginated comments for each article
         $articles->getCollection()->transform(function ($article) use ($commentsPerPage) {
-            $article->comments = $article->comments()->paginate($commentsPerPage);
+            $article->comments = $article->comments()->where('approved', true)->paginate($commentsPerPage);
             return $article;
         });
 
@@ -79,7 +80,7 @@ class ArticleController extends Controller
     public function show($id, Request $request)
     {
         // Find the article by ID
-        $article = Article::where('id', $id)->with('category', 'tags', 'user')->first();
+        $article = Article::where('id', $id)->where('published', true)->with('category', 'tags', 'user')->first();
 
         // Check if the article exists
         if (!$article) {
@@ -89,7 +90,7 @@ class ArticleController extends Controller
         // Get pagination parameters
         $perPage = $request->input('per_page', 5); // Number of comments per page, default is 10
 
-        $article->comments = $article->comments()->paginate($perPage);
+        $article->comments = $article->comments()->where('approved', true)->paginate($perPage);
 
 
         // Return the JSON response with the article and its paginated comments
@@ -113,12 +114,12 @@ class ArticleController extends Controller
         $commentsPerPage = $request->input('comments_per_page', 5); // Number of comments per article, default is 5
 
         // Get the latest articles based on publication_date
-        $articles = Article::orderBy('publication_date', 'desc')->limit($limit)->get();
+        $articles = Article::orderBy('publication_date', 'desc')->where('published', true)->limit($limit)->get();
 
         $articles->load('category', 'tags', 'user');
 
         $articles->transform(function ($article) use ($commentsPerPage) {
-            $article->comments = $article->comments()->paginate($commentsPerPage);
+            $article->comments = $article->comments()->where('approved', true)->paginate($commentsPerPage);
             return $article;
         });
         // Response structure

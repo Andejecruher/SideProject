@@ -147,9 +147,11 @@
                     @enderror
                 </div>
 
+                @if (auth()->user()->can('users.edit') || auth()->user()->can('users.create'))
                 <div class="d-flex justify-content-end">
                     <button type="submit" class="btn btn-primary">{{ isset($user) ? __("Update User") : __("Create User") }}</button>
                 </div>
+                @endif
             </form>
         </div>
     </div>
