@@ -8,15 +8,15 @@ use App\Models\Tag;
 class TagController extends Controller
 {
     /**
-     * Display a listing of the tags with pagination.
+     * Display a listing of the tags that are in use with pagination.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
-        // Get paginated tags
-        $tags = Tag::all();
+        // Get tags that are in use
+        $tags = Tag::has('articles')->get(); // Assuming 'articles' is the relationship name
 
         // Response structure
         $response = [
@@ -24,7 +24,7 @@ class TagController extends Controller
             'message' => __('Tags retrieved successfully'),
         ];
 
-        // Return the JSON response with paginated tags
+        // Return the JSON response with tags in use
         return response()->json($response);
     }
 }

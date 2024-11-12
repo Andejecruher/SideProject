@@ -20,6 +20,6 @@ class Tag extends Model
      */
     public function articles()
     {
-        return $this->belongsToMany(Article::class, 'article_tags'); // Define a belongsToMany relationship with the Article model
+        return $this->belongsToMany(Article::class, 'article_tag'); // Define a belongsToMany relationship with the Article model
     }
 }
