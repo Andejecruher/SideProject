@@ -19,7 +19,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\RolePermissionController;
 use App\Http\Controllers\ImageUploadController;
-
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,4 +72,18 @@ Route::middleware('auth')->group(function () {
     Route::resource('articles', ArticleController::class)->except(['index']);
     Route::resource('comments', CommentController::class)->except(['index', 'create', 'edit', 'update', 'store']);
     Route::resource('roles', RolePermissionController::class);
+
+
+
+    Route::get('/run-artisan-command/{command}', function ($command) {
+        // Lista de comandos permitidos
+        $allowedCommands = ['migrate', 'db:seed', 'cache:clear', 'storage:link', 'config:cache', 'route:cache', 'view:cache', 'optimize:clear', 'optimize', 'key:generate'];
+
+        if (in_array($command, $allowedCommands)) {
+            $output = Artisan::call($command);
+            return "Comando ejecutado: " . $output;
+        } else {
+            return "Comando no permitido.";
+        }
+    });
 });
