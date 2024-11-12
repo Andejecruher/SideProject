@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { useBlog } from '@src/Context/BlogContext';
 import FormComments from '@src/components/FormComments/FormComments';
+import './BlogArticle.css';
 
 const BlogArticle = () => {
   const { article, pageComments, fetchArticleByIdComments, setPageComments, isLoadingComments } = useBlog();
@@ -64,7 +65,7 @@ const BlogArticle = () => {
 
       {/* Article Content */}
       <div className="text-gray-800 leading-relaxed mb-8">
-        <div dangerouslySetInnerHTML={{ __html: content }} />
+        <div dangerouslySetInnerHTML={{ __html: content }} className='dangerousHtml' />
       </div>
 
       {/* Comments Section */}

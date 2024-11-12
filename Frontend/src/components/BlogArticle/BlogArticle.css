@@ -1,0 +1,87 @@
+.dangerousHtml {
+  /* Mantener el formato general dentro del contenedor */
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+}
+
+/* Estilos para párrafos */
+.dangerousHtml p {
+  margin: 10px 0;
+  padding: 0;
+  text-align: justify;
+}
+
+/* Estilos para encabezados */
+.dangerousHtml h1, .dangerousHtml h2, .dangerousHtml h3, .dangerousHtml h4, .dangerousHtml h5, .dangerousHtml h6 {
+  margin: 20px 0;
+  font-weight: bold;
+}
+
+/* Estilos para listas */
+.dangerousHtml ul, .dangerousHtml ol {
+  margin: 10px 0 10px 20px;
+  padding: 0;
+}
+
+.dangerousHtml li {
+  margin: 5px 0;
+}
+
+/* Estilos para enlaces */
+.dangerousHtml a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.dangerousHtml a:hover {
+  text-decoration: underline;
+}
+
+/* Estilos para textos en negrita */
+.dangerousHtml strong {
+  font-weight: bold;
+}
+
+/* Estilos para textos en cursiva */
+.dangerousHtml em {
+  font-style: italic;
+}
+
+/* Estilos para las imágenes */
+.dangerousHtml img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Estilos para las tablas */
+.dangerousHtml table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+.dangerousHtml th, .dangerousHtml td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+/* Estilos para las citas */
+.dangerousHtml blockquote {
+  margin: 20px 0;
+  padding: 10px 20px;
+  background-color: #f9f9f9;
+  border-left: 5px solid #ccc;
+}
+
+/* Estilos para el código */
+.dangerousHtml code {
+  font-family: Consolas, monospace;
+  background-color: #f8f8f8;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
