@@ -14,13 +14,49 @@
 }
 
 /* Estilos para encabezados */
-.dangerousHtml h1, .dangerousHtml h2, .dangerousHtml h3, .dangerousHtml h4, .dangerousHtml h5, .dangerousHtml h6 {
+.dangerousHtml h1,
+.dangerousHtml h2,
+.dangerousHtml h3,
+.dangerousHtml h4,
+.dangerousHtml h5,
+.dangerousHtml h6 {
   margin: 20px 0;
   font-weight: bold;
 }
 
+/* Estilos para encabezados de primer nivel */
+.dangerousHtml h1 {
+  font-size: 32px;
+}
+
+/* Estilos para encabezados de segundo nivel */
+.dangerousHtml h2 {
+  font-size: 28px;
+}
+
+/* Estilos para encabezados de tercer nivel */
+.dangerousHtml h3 {
+  font-size: 24px;
+}
+
+/* Estilos para encabezados de cuarto nivel */
+.dangerousHtml h4 {
+  font-size: 20px;
+}
+
+/* Estilos para encabezados de quinto nivel */
+.dangerousHtml h5 {
+  font-size: 16px;
+}
+
+/* Estilos para encabezados de sexto nivel */
+.dangerousHtml h6 {
+  font-size: 14px;
+}
+
 /* Estilos para listas */
-.dangerousHtml ul, .dangerousHtml ol {
+.dangerousHtml ul,
+.dangerousHtml ol {
   margin: 10px 0 10px 20px;
   padding: 0;
 }
@@ -64,7 +100,8 @@
   margin: 20px 0;
 }
 
-.dangerousHtml th, .dangerousHtml td {
+.dangerousHtml th,
+.dangerousHtml td {
   border: 1px solid #ddd;
   padding: 8px;
   text-align: left;
@@ -76,6 +113,14 @@
   padding: 10px 20px;
   background-color: #f9f9f9;
   border-left: 5px solid #ccc;
+}
+/* Esttilos para el contendor del codigo */
+.dangerousHtml pre {
+  margin: 20px 0;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-left: 5px solid #ccc;
+  overflow-x: auto;
 }
 
 /* Estilos para el código */
