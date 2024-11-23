@@ -77,10 +77,10 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function show($id, Request $request)
+    public function show($title, Request $request)
     {
-        // Find the article by ID
-        $article = Article::where('id', $id)->where('published', true)->with('category', 'tags', 'user')->first();
+        // Find the article by title
+        $article = Article::where('title', $title)->where('published', true)->with('category', 'tags', 'user')->first();
 
         // Check if the article exists
         if (!$article) {
@@ -91,7 +91,6 @@ class ArticleController extends Controller
         $perPage = $request->input('per_page', 5); // Number of comments per page, default is 10
 
         $article->comments = $article->comments()->where('approved', true)->paginate($perPage);
-
 
         // Return the JSON response with the article and its paginated comments
         return response()->json([

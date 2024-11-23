@@ -52,7 +52,6 @@ class CommentsController extends Controller
         $comment->author_email = $request->input('author_email');
         $comment->ip_address = $ipAddress;
         $comment->article_id = $request->input('article_id');
-        $comment->published_at = '';
         $comment->save();
 
         $article = Article::where('id', $request->input('article_id'))->with('category', 'tags', 'user')->first();
@@ -62,7 +61,7 @@ class CommentsController extends Controller
             return response()->json(['message' => __('Article not found')], 404);
         }
 
-        $article->comments = $article->comments()->paginate(5);
+        $article->comments = $article->comments()->where('approved', true)->paginate(5);
 
 
         // Return the JSON response with the article and its paginated comments
