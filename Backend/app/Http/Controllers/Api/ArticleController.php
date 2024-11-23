@@ -77,10 +77,10 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function show($title, Request $request)
+    public function show($slug, Request $request)
     {
-        // Find the article by title
-        $article = Article::where('title', $title)->where('published', true)->with('category', 'tags', 'user')->first();
+        // Find the article by slug
+        $article = Article::where('slug', $slug)->where('published', true)->with('category', 'tags', 'user')->first();
 
         // Check if the article exists
         if (!$article) {
@@ -88,7 +88,7 @@ class ArticleController extends Controller
         }
 
         // Get pagination parameters
-        $perPage = $request->input('per_page', 5); // Number of comments per page, default is 10
+        $perPage = $request->input('per_page', 5); // Number of comments per page, default is 5
 
         $article->comments = $article->comments()->where('approved', true)->paginate($perPage);
 
@@ -98,7 +98,6 @@ class ArticleController extends Controller
             'message' => __('Article retrieved successfully'),
         ]);
     }
-
     /**
      * Display a listing of the latest articles.
      *

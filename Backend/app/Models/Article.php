@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Str;
 
 
 class Article extends Model
@@ -91,5 +92,23 @@ class Article extends Model
     public function tags()
     {
         return $this->belongsToMany(Tag::class); // Define a belongsToMany relationship with the Tag model
+    }
+
+    /**
+     * Get the slug for the article.
+     *
+     * @return string
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($article) {
+            $article->slug = Str::slug($article->title);
+        });
+
+        static::updating(function ($article) {
+            $article->slug = Str::slug($article->title);
+        });
     }
 }
