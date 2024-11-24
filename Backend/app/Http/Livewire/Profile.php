@@ -3,7 +3,6 @@
 namespace App\Http\Livewire;
 
 use App\Models\User;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 
@@ -49,7 +48,7 @@ class Profile extends Component
             'user.gender' => ['required', Rule::in(['male', 'female', 'other'])],
             'user.address' => 'required',
             'user.phone' => 'numeric',
-            'user.city' => 'max:20',
+            'user.city' => 'max:50',
             'user.postal_code' => 'numeric',
         ];
     }
